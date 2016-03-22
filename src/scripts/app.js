@@ -1,5 +1,6 @@
 import * as routes from "scripts/shared/routes"
+import ready from "scripts/shared/lib/ready";
 
-document.addEventListener('DOMContentLoaded', function(){
+ready(function() {
 	routes.init()
-});
+})

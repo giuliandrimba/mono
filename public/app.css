@@ -5,7 +5,7 @@
 
 /* line 14 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/gulp-stylus/node_modules/stylus/lib/functions/index.styl */
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
 /* line 10 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 90 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/flex.styl */
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 11 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
@@ -41,7 +41,7 @@
 
 /* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/image.styl */
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
 /* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
@@ -89,7 +89,7 @@
 
 /* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/reset.styl */
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
@@ -225,3 +225,63 @@ td {
 a img {
   border: none;
 }
+
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/size.styl */
+
+/* line 15 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+
+/* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+body {
+  background-color: #444;
+}
+
+/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/easings.styl */
+
+/* line 18 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/easings.styl */
+
+/* line 541 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/mixins.styl */
+
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/mixins.styl */
+
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 3 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+.layout .background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  -webkit-transform: translate3D(0, -100%, 0);
+  -moz-transform: translate3D(0, -100%, 0);
+  -o-transform: translate3D(0, -100%, 0);
+  -ms-transform: translate3D(0, -100%, 0);
+  transform: translate3D(0, -100%, 0);
+  -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+  -moz-transition: -moz-transform 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+  -o-transition: -o-transform 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+  -ms-transition: -ms-transform 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* line 13 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 14 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+.layout.animation-in .background {
+  -webkit-transform: translate3D(0, 0, 0);
+  -moz-transform: translate3D(0, 0, 0);
+  -o-transform: translate3D(0, 0, 0);
+  -ms-transform: translate3D(0, 0, 0);
+  transform: translate3D(0, 0, 0);
+}
+
+/* line 541 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 541 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 541 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */

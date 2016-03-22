@@ -1,0 +1,16 @@
+.layout
+  
+  .background
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color #000
+    transform translate3D(0,-100%,0)
+    transition transform 0.75s easeOutExpo
+    
+.layout.animation-in
+  .background
+    transform translate3D(0,0,0)
+  

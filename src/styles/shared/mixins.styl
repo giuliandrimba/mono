@@ -1,0 +1,18 @@
+letter_spacing($spacing)
+  letter-spacing: unit($spacing/1000, 'em');
+
+font_size($size, $leading)
+  font-size $size
+  if $leading
+    line-height: unit(100 * ($leading / $size), "%")
+    
+get_sprite($sprite, $retina=true)
+  div = 1
+  if $retina
+    div = 2
+  background-image url($spritesheet_image)
+  background-repeat no-repeat
+  width ($sprite[4] / div)
+  height: ($sprite[5] / div)
+  background-position ($sprite[2] / div) ($sprite[3] / div)
+  background-size ($spritesheet_width / div) ($spritesheet_height / div)
