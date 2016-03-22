@@ -1,10 +1,17 @@
 import tmpl from "templates/views/layout";
 import _ from "lodash";
+import parseHTML from "scripts/shared/lib/parseHTML";
+import Plane from "scripts/shared/comp/plane";
 
 var el = undefined;
+var plane = undefined;
 
 export function intro(req, done) {
   render();
+
+  plane = new Plane;
+  plane.render(el)
+
   _.defer(animationIn, 0);
 }
 
@@ -17,6 +24,6 @@ function animationIn() {
 }
 
 function render() {
-  document.getElementById("main").innerHTML = tmpl();
-  el = document.getElementById("layout");
+  el = parseHTML(tmpl());
+  document.getElementById("main").appendChild(el);
 }
