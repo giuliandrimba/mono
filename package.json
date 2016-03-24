@@ -15,8 +15,13 @@
   "author": "Giulian Drimba",
   "license": "MIT",
   "dependencies": {
+    "d3-ease": "^0.7.0",
+    "gsap": "^1.18.2",
     "lodash": "^4.6.1",
+    "segment-js": "^1.0.8",
+    "snapsvg": "^0.4.0",
     "three": "^0.75.0",
+    "vivus": "^0.3.0",
     "ways": "^0.5.0"
   },
   "devDependencies": {
