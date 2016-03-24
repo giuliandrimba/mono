@@ -13,17 +13,16 @@ export function intro(req, done) {
 
   plane = new Plane(SVG);
   plane.render()
-
-  _.defer(animationIn, 0);
+  _.defer(()=> { animationIn(done)}, 0);
 }
 
 export function outro(req, done) {
 	
 }
 
-function animationIn() {
+function animationIn(done) {
   el.classList.add("animation-in")
-  plane.animationIn();
+  plane.animationIn(done);
 }
 
 function render() {
@@ -34,3 +33,5 @@ function render() {
   SVG.node.style.width = window.innerWidth;
   SVG.node.style.height = window.innerHeight;
 }
+
+export var SVG = SVG;

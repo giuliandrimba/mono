@@ -3,8 +3,8 @@ import parseHTML from "scripts/shared/lib/parseHTML";
 import * as TweenMax from "gsap";
 import Segment from "segment-js";
 import Easing from "d3-ease";
-import Snap from "snapsvg";
 import svgPath from "scripts/shared/lib/svgPath";
+import _ from "lodash";
 
 export default class Plane {
 
@@ -34,10 +34,13 @@ export default class Plane {
     TweenMax.set(this.face02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
   }
 
-  animationIn() {
+  animationIn(done) {
     this.beforeAnimation();
     TweenMax.to(this.face01.node, 0.75, {strokeDasharray: this.segmentFace01.strokeDasharray("0%", "100%"), delay:0.25, ease:Expo.easeIn });
     TweenMax.to(this.face02.node, 1.5, {strokeDasharray: this.segmentFace02.strokeDasharray("0%", "100%"), delay:1, ease:Expo.easeOut });
+    TweenMax.to(this.face02.node, 1, {stroke: 0x333333, delay:2.5, ease:Expo.easeOut });
+
+    _.delay(done, 1000);
   }
 
   _createFace01() {
@@ -74,9 +77,9 @@ export default class Plane {
 
     face.attr({
       id: "face02",
-      stroke: "#857446",
-      // stroke: "#333333",
-      strokeWidth: "0.5" ,
+      // stroke: "#857446",
+      stroke: "#333333",
+      strokeWidth: "1" ,
       fill: "none"
     })
 

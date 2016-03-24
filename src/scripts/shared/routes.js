@@ -5,10 +5,12 @@ import * as calendar from "scripts/views/calendar";
 import ways from "ways";
 
 export function init() {
+  ways.flow('run+destroy');
+  
   ways("/", layout.intro, layout.outro);
   ways("/intro", intro.intro, intro.outro, "/");
   ways("/monkey", monkey.intro, monkey.outro, "/");
   ways("/calendar", calendar.intro, calendar.outro, "/");
 
-  ways.go("/")
+  ways.go("/intro")
 }
