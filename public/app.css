@@ -247,23 +247,7 @@ body {
 
 /* line 3 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
-
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/logo.styl */
-
-/* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/logo.styl */
-.logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -o-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-}
-
-/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/logo.styl */
+/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
 
 /* line 10 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
