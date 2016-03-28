@@ -3,6 +3,8 @@ import svgPath from "scripts/shared/lib/svgPath";
 import Vivus from "vivus";
 import Snap from "snapsvg";
 import Ease from "d3-ease"
+import _ from "lodash";
+
 
 export default class logo {
   constructor(SVG) {
@@ -18,7 +20,7 @@ export default class logo {
   }
 
   render(parent) {
-    
+
     this.SVG = new Snap(this.WIDTH, this.HEIGHT)
     this.SVG.node.id = "logo-svg";
     this.SVG.node.setAttribute("viewBox",`0 0 524 524`)
@@ -47,8 +49,10 @@ export default class logo {
       }, ()=>{})
   }
 
-  animationOut() {
-
+  animationOut(done) {
+    this.vivus.animTimingFunction = Ease.easeExpInOut;
+    this.vivus.play(-1.3);
+    _.delay(done, 500);
   }
 
   resize() {
