@@ -73,9 +73,9 @@ export default class logo {
 
     path.moveTo(initX, initY);
     path.lineTo(initX + 363, initY);
-    path.lineTo(initX + 363, initY + 99);
-    path.lineTo(initX, initY + 99);
-    path.lineTo(initX, initY - 3);
+    path.lineTo(initX + 363, initY + 88);
+    path.lineTo(initX, initY + 88);
+    path.lineTo(initX, initY - 6);
 
     path.moveTo(initX, initY);
 
@@ -83,7 +83,7 @@ export default class logo {
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
-      strokeWidth: "6" ,
+      strokeWidth: "12" ,
       fill: "none"
     })
 
@@ -96,16 +96,16 @@ export default class logo {
     let initX = 80;
     let initY = 80;
 
-    path.moveTo(initX + 363, initY + 130);
-    path.lineTo(initX, initY + 130);
+    path.moveTo(initX + 368, initY + 134);
+    path.lineTo(initX, initY + 134);
     path.lineTo(initX, initY + 360);
-    path.lineTo(initX + 363, initY + 360);
+    path.lineTo(initX + 367, initY + 360);
 
     let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
-      strokeWidth: "6" ,
+      strokeWidth: "12" ,
       fill: "none"
     })
 
@@ -116,20 +116,20 @@ export default class logo {
     let path = svgPath()
 
     let initX = 80 + 136;
-    let initY = 80 + 188;
+    let initY = 80 + 192;
 
     path.moveTo(initX, initY);
-    path.lineTo(initX + 228, initY);
-    path.lineTo(initX + 228, initY + 56);
+    path.lineTo(initX + 226, initY);
+    path.lineTo(initX + 226, initY + 56);
     path.lineTo(initX, initY + 56);
     path.lineTo(initX, initY + 112);
-    path.lineTo(initX + 228, initY + 112);
+    path.lineTo(initX + 231, initY + 112);
 
     let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
-      strokeWidth: "6" ,
+      strokeWidth: "12" ,
       fill: "none"
     })
 
@@ -149,7 +149,7 @@ export default class logo {
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
-      strokeWidth: "6" ,
+      strokeWidth: "12" ,
       fill: "none"
     })
 
