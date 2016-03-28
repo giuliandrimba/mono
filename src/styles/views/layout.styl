@@ -9,14 +9,20 @@
     background-color #000
     transform translate3D(0,-100%,0)
     transition transform 0.75s easeOutExpo
+    
+  path 
+    shape-rendering crispEdges
 
-  #svg
+  #plane
     position absolute
     z-index 2
+    top 50%
+    left 50%
+    transform translateX(-50%) translateY(-50%)
     
   #pages
     position absolute
-    z-index 1
+    z-index 2
     width 100%
     height 100%
 

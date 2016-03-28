@@ -36,10 +36,14 @@ export default class logo {
     this.path04 = this._createPath04();
     this.svg.append(this.path04);
     this.resize()
+    this.events();
+  }
+
+  events() {
+    window.addEventListener("resize", this.resize.bind(this));
   }
 
   animationIn() {
-    console.log(Ease);
     this.vivus = new Vivus('logo-svg', {
         duration: 150,
         animTimingFunction: Ease.easeExpOut
@@ -47,9 +51,6 @@ export default class logo {
   }
 
   resize() {
-
-    // this.WIDTH = window.innerWidth * 363 / 1920;
-    // this.HEIGHT = this.WIDTH;
 
     this.CENTER_X = window.innerWidth / 2;
     this.CENTER_Y = window.innerHeight / 2;
@@ -78,7 +79,7 @@ export default class logo {
 
     path.moveTo(initX, initY);
 
-    let face = this.SVG.path(path.getPath())
+    let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
@@ -100,7 +101,7 @@ export default class logo {
     path.lineTo(initX, initY + 360);
     path.lineTo(initX + 363, initY + 360);
 
-    let face = this.SVG.path(path.getPath())
+    let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
@@ -115,7 +116,7 @@ export default class logo {
     let path = svgPath()
 
     let initX = 80 + 136;
-    let initY = 80 + 199;
+    let initY = 80 + 188;
 
     path.moveTo(initX, initY);
     path.lineTo(initX + 228, initY);
@@ -124,7 +125,7 @@ export default class logo {
     path.lineTo(initX, initY + 112);
     path.lineTo(initX + 228, initY + 112);
 
-    let face = this.SVG.path(path.getPath())
+    let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
@@ -144,7 +145,7 @@ export default class logo {
     path.moveTo(initX, initY);
     path.lineTo(initX, initY + 229);
 
-    let face = this.SVG.path(path.getPath())
+    let face = this.svg.path(path.getPath())
     face.attr({
       id: "logoSVG",
       stroke: "#85734c",
