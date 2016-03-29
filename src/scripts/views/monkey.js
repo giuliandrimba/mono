@@ -1,12 +1,13 @@
 import tmpl from "templates/views/monkey.html";
 import parseHTML from "scripts/shared/lib/parseHTML";
-import THREE from "three";
 import OBJLoader from "three-obj-loader";
+import Head from "scripts/shared/comp/head";
 
 var el = undefined;
 var scene = undefined;
 var camera = undefined;
 var renderer = undefined;
+var head = undefined;
 
 export function intro(req, done) {
   render();
@@ -18,6 +19,7 @@ export function outro(req, done) {
 }
 
 function animationin() {
+  head.animationIn();
 }
 
 function events() {
@@ -36,6 +38,8 @@ function render() {
   scene.fog = new THREE.Fog(0x222222, 20, -20);
 
   addLights();
+
+  head = new Head(scene, camera, renderer);
 
   el.appendChild(renderer.domElement);
 

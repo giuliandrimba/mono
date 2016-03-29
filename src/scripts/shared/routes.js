@@ -5,7 +5,7 @@ import * as calendar from "scripts/views/calendar";
 import ways from "ways";
 
 export function init() {
-  ways.flow('run+destroy');
+  ways.flow('destroy+run');
   
   ways("/", layout.intro, layout.outro);
   ways("/intro", intro.intro, intro.outro, "/");

@@ -1,3 +1,4 @@
+import "scripts/shared/lib/vendors";
 import * as routes from "scripts/shared/routes"
 import ready from "scripts/shared/lib/ready";
 
