@@ -26,7 +26,7 @@ export default class Head {
 
   animationIn() {
     if(this.loaded) {
-      TweenMax.to(this.mesh.position, 1, {y:0, ease:Expo.easeOut})
+      TweenMax.to(this.mesh.position, 2, {y:0, ease:Expo.easeInOut})
     } else {
       this.triggeredAnimationIn = true;
     }
@@ -71,7 +71,7 @@ export default class Head {
     self.scene.add(self.mesh);
     self.loaded = true;
 
-    this.mesh.position.y -= 5;
+    this.mesh.position.y -= 0.32;
 
     if(this.triggeredAnimationIn) {
       this.animationIn();
@@ -87,7 +87,7 @@ export default class Head {
     }
 
   distort() {
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.5, {value:0.0, ease:Expo.easeOut, delay:0.5})
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.015})
   } 
 
