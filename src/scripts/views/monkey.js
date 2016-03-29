@@ -72,6 +72,7 @@ function resize() {
 
 function loop() {
   requestAnimationFrame( loop );
+  head.update()
   camera.lookAt( scene.position )
   renderer.render(scene, camera);
 }

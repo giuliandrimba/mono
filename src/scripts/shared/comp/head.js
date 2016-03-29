@@ -25,7 +25,7 @@ export default class Head {
 
   animationIn() {
     if(this.loaded) {
-
+      TweenMax.to(this.mesh.position, 0.5, {y:0, ease:Expo.easeOut})
     } else {
       this.triggeredAnimationIn = true;
     }
@@ -50,28 +50,27 @@ export default class Head {
   createMesh() {
     // this.material = new THREE.MeshPhongMaterial({color:0x4c4c4c, wireframe:false, transparent:true, shading: THREE.FlatShading, emissive:0x000000, specular:0x000000})
     var self = this;
-    this.loadTexture(function() {
-      self.material = new THREE.ShaderMaterial({
-        uniforms : {
-          time           : {type: 'f', value: 0},
-          ambient        : {type: 'c', value: new THREE.Color(0x000000)},
-          tDiffuse       : {type: 't', value: self.texture},
-          specular       : {type: 'f', value: .5},
-          color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
-          shininess      : {type: 'f', value: .5},
-          lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)}
-        },
-        vertexShader : glslify('../../../shader/head/vert.glsl'),
-        fragmentShader : glslify('../../../shader/head/frag.glsl'),
-        shading     : THREE.FlatShading,
-        // wireframe   : true, 
-        transparent : true
-      })
-      // let geometry = new THREE.BufferGeometry().fromGeometry(new THREE.IcosahedronGeometry(60, 4));
-      self.mesh = new THREE.Mesh(this.geometry, self.material);
-      self.scene.add(self.mesh);
-      self.loaded = true;
+    self.material = new THREE.ShaderMaterial({
+      uniforms : {
+        time           : {type: 'f', value: 0},
+        ambient        : {type: 'c', value: new THREE.Color(0x000000)},
+        specular       : {type: 'f', value: .1},
+        color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
+        shininess      : {type: 'f', value: 2.9},
+        lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
+        distortion     : {type: 'f', value: 5.0}
+      },
+      vertexShader : glslify('../../../shader/head/vert.glsl'),
+      fragmentShader : glslify('../../../shader/head/frag.glsl'),
+      shading     : THREE.FlatShading,
+      // wireframe   : true, 
+      transparent : true
     })
+    self.mesh = new THREE.Mesh(this.geometry, self.material);
+    self.scene.add(self.mesh);
+    self.loaded = true;
+
+    this.mesh.position.y -= 5;
 
     if(this.triggeredAnimationIn) {
       this.animationIn();
@@ -81,11 +80,14 @@ export default class Head {
   }
 
   update() {
-
+    var delta = 5 * this.clock.getDelta();
+    // if(this.mesh)
+      // this.mesh.rotation.y += 0.03 * delta;
   }
 
   distort() {
-    
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:0.0, ease:Expo.easeOut})
+    TweenMax.to(this.mesh.rotation, 1.3, {y:(45 * Math.PI / 180), ease:Expo.easeOut})
   }
 
   loadOBJ(done) {
