@@ -26,7 +26,7 @@ export default class Head {
 
   animationIn() {
     if(this.loaded) {
-      TweenMax.to(this.mesh.position, 0.5, {y:0, ease:Expo.easeOut})
+      TweenMax.to(this.mesh.position, 1, {y:0, ease:Expo.easeOut})
     } else {
       this.triggeredAnimationIn = true;
     }
@@ -59,7 +59,7 @@ export default class Head {
         color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
         shininess      : {type: 'f', value: 2.9},
         lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
-        distortion     : {type: 'f', value: 5.0}
+        distortion     : {type: 'f', value: 10.0}
       },
       vertexShader : glslify('../../../shader/head/vert.glsl'),
       fragmentShader : glslify('../../../shader/head/frag.glsl'),
@@ -87,8 +87,8 @@ export default class Head {
     }
 
   distort() {
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:0.0, ease:Expo.easeOut})
-    TweenMax.to(this, 1.3, {speed:0.015})
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.5, {value:0.0, ease:Expo.easeOut, delay:0.5})
+    TweenMax.to(this, 1, {speed:0.015})
   } 
 
   loadOBJ(done) {
