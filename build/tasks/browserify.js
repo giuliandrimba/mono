@@ -11,6 +11,7 @@ var server = require("./server");
 var config = require("../config.json");
 var jadeify = require("jadeify");
 var stringify = require("stringify");
+var glslify = require("glslify");
 var error = require('./util/error');
 var log = require('./util/log');
 var watchify = require("watchify");
@@ -26,13 +27,14 @@ function buildBrowserify() {
     packageCache: {},
     entries: config.browserify.boot,
     debug: env,
-    extensions: ['.jade', '.html', '.hbs'],
-    paths: ['./src/', './src/scripts/']
+    extensions: ['.jade', '.html', '.hbs', '.glsl'],
+    paths: ['./src/']
   })
   .transform("hbsfy")
   .transform("babelify", {presets: ["es2015"]})
   .transform(jadeify)
   .transform(stringify(['.html']))
+  .transform("glslify")
 
   if(argv.watch) {
     b = watchify(b)

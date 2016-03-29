@@ -32,7 +32,7 @@ function render() {
 
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
-  renderer = new THREE.WebGLRenderer({alpha: true})
+  renderer = new THREE.WebGLRenderer({alpha: true, antialias : false, transparent: false})
 
   camera.position.set(0, 0, 4)
   scene.fog = new THREE.Fog(0x222222, 20, -20);

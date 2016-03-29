@@ -1,2 +1,2 @@
-import THREE from "three";
+import THREE from 'three'; 
 window.THREE = THREE;
