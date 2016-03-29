@@ -9,13 +9,14 @@ export default class Head {
     this.renderer = renderer;
     this.loader = new THREE.OBJLoader();
     this.loaded = false;
-    this.animating = false;
+    this.animating = true;
     this.angle = 0;
     this.TOTAL_VERTICES = 0;
 
     this.material = undefined;
     this.geometry = undefined;
     this.mesh = undefined;
+    this.speed = 0.3;
 
     this.clock = new THREE.Clock();
     this.loadOBJ(this.createMesh.bind(this));
@@ -81,14 +82,14 @@ export default class Head {
 
   update() {
     var delta = 5 * this.clock.getDelta();
-    // if(this.mesh)
-      // this.mesh.rotation.y += 0.03 * delta;
-  }
+    if(this.mesh)
+      this.mesh.rotation.y += this.speed * delta;
+    }
 
   distort() {
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:0.0, ease:Expo.easeOut})
-    TweenMax.to(this.mesh.rotation, 1.3, {y:(45 * Math.PI / 180), ease:Expo.easeOut})
-  }
+    TweenMax.to(this, 1.3, {speed:0.015})
+  } 
 
   loadOBJ(done) {
     let path = './assets/macaco_medium.OBJ';
