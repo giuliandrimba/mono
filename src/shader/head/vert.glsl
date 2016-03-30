@@ -6,7 +6,6 @@ varying vec3 vLight;
 uniform vec3 lightDirection;
 uniform float time;
 uniform float distortion;
-uniform float Y;
 
 void main() {
     vUv = uv;

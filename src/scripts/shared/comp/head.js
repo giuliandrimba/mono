@@ -1,5 +1,6 @@
 import OBJLoader from "three-obj-loader";
 OBJLoader(window.THREE);
+require("scripts/shared/lib/three/mod3.distort");
 const glslify = require('glslify');
 
 export default class Head {
@@ -16,6 +17,9 @@ export default class Head {
     this.material = undefined;
     this.geometry = undefined;
     this.mesh = undefined;
+    this.mod3 = undefined;
+    this.distortionAngle = 270;
+
     this.speed = 0.3;
 
     this.clock = new THREE.Clock();
@@ -50,6 +54,8 @@ export default class Head {
 
   createMesh() {
     // this.material = new THREE.MeshPhongMaterial({color:0x4c4c4c, wireframe:false, transparent:true, shading: THREE.FlatShading, emissive:0x000000, specular:0x000000})
+
+
     var self = this;
     self.material = new THREE.ShaderMaterial({
       uniforms : {
@@ -77,18 +83,30 @@ export default class Head {
       this.animationIn();
     }
 
-    this.distort()
+    this.mod3 = new MOD3.ModifierStack( MOD3.LibraryThree, this.mesh );
+    this.distort = new window.MOD3.Distort( this.distortionAngle * Math.PI / 180 );
+    this.mod3.addModifier( this.distort );
+
+    this.animDistort()
   }
 
   update() {
     var delta = 5 * this.clock.getDelta();
     if(this.mesh)
       this.mesh.rotation.y += this.speed * delta;
-    }
 
-  distort() {
+    if(this.mod3) {
+      this.distort.angle = this.distortionAngle * Math.PI / 180
+      this.mod3.apply()
+      this.mesh.geometry.verticesNeedUpdate = true;
+    }
+  }
+
+  animDistort() {
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.015})
+    TweenMax.to(this, 1.1, {distortionAngle:45, ease:Expo.easeInOut, delay:0.7})
+    TweenMax.to(this, 0.8, {distortionAngle:0, ease:Back.easeOut, delay:1.3})
   } 
 
   loadOBJ(done) {
