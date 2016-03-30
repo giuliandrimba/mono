@@ -102,6 +102,10 @@ export default class Head {
     }
   }
 
+  resize() {
+
+  }
+
   animDistort() {
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.015})
