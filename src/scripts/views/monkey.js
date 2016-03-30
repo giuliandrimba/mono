@@ -2,6 +2,8 @@ import tmpl from "templates/views/monkey.html";
 import parseHTML from "scripts/shared/lib/parseHTML";
 import OBJLoader from "three-obj-loader";
 import Head from "scripts/shared/comp/head";
+import * as layout from "scripts/views/layout";
+import _ from "lodash";
 
 var el = undefined;
 var scene = undefined;
@@ -20,6 +22,7 @@ export function outro(req, done) {
 
 function animationin() {
   head.animationIn();
+  _.delay(layout.showMenu, 1000)
 }
 
 function events() {

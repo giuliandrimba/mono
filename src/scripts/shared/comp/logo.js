@@ -7,7 +7,7 @@ import _ from "lodash";
 
 
 export default class logo {
-  constructor(SVG) {
+  constructor() {
     this.SVG = undefined;
     this.WIDTH = 524;
     this.HEIGHT = 524;
