@@ -16,7 +16,10 @@ export function intro(req, done) {
 
 export function outro(req, done) {
   console.log("intro outro");
-	logo.animationOut(done);
+	logo.animationOut(()=>{
+    dispose();
+    done();
+  });
 }
 
 function animationin() {
@@ -38,4 +41,8 @@ function render() {
 
 function resize() {
 
+}
+
+function dispose() {
+  el.remove()
 }

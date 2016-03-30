@@ -5,7 +5,7 @@
 
 /* line 14 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/gulp-stylus/node_modules/stylus/lib/functions/index.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
 /* line 10 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 90 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/flex.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 11 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
@@ -41,7 +41,7 @@
 
 /* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/image.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
 /* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
@@ -89,7 +89,7 @@
 
 /* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/reset.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
@@ -243,11 +243,16 @@ body {
 
 /* line 541 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/mixins.styl */
 
-/* line 3 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/mixins.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/mixins.styl */
 
-/* line 3 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
+/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
 
-/* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
+/* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
+#plane {
+  pointer-events: none;
+}
+
+/* line 25 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
 
 /* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
@@ -302,9 +307,9 @@ body {
   transform: translate3D(0, 0, 0);
 }
 
-/* line 16 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
-/* line 16 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+/* line 25 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 .intro {
@@ -330,9 +335,10 @@ body {
   -o-transition: -o-transform 1s cubic-bezier(1, 0, 0, 1);
   -ms-transition: -ms-transform 1s cubic-bezier(1, 0, 0, 1);
   transition: transform 1s cubic-bezier(1, 0, 0, 1);
+  pointer-events: none;
 }
 
-/* line 15 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+/* line 16 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 .intro path {
   shape-rendering: crispEdges;
 }

@@ -8,12 +8,18 @@ export default class Head {
   constructor(scene, camera, renderer) {
     this.scene = scene;
     this.loaded = false;
-    this.animating = true;
+    this.animating = false;
+    this.dragging = false;
     this.angle = 0;
 
     this.material = undefined;
     this.geometry = undefined;
     this.mesh = undefined;
+
+    this.windowHalfX = window.innerWidth / 2;
+    this.mouseDownX = 0;
+    this.mouseX = 0;
+    this.mouseDownAngle = 0;    
 
     this.speed = 0.3;
     this.clock = new THREE.Clock();
@@ -32,8 +38,43 @@ export default class Head {
   }
 
   animationOut() {
-    
+
   }
+
+  events() {
+    document.addEventListener("mousedown", this.onMouseDown.bind(this))
+    document.addEventListener("mouseup", this.onMouseUp.bind(this))
+  }
+
+  onMouseDown(event) {
+    if(this.animating)
+      return;
+
+    this.dragging = true;
+    TweenMax.killTweensOf(this.distortion);
+
+    this.mouseDownX = ( event.clientX - this.windowHalfX ) / 2;
+    this.mouseX = ( event.clientX - this.windowHalfX ) / 2;
+    this.mouseDownAngle = this.distortion.angle;
+    document.addEventListener("mousemove", this.onMouseMove.bind(this));
+  }
+
+  onMouseMove(event) {
+    this.mouseX = ( event.clientX - this.windowHalfX ) / 2;
+  }
+
+  onMouseUp(event) {
+    this.dragging = false;
+    document.removeEventListener("mousemove", this.onMouseMove.bind(this))
+    if(this.animating)
+      return
+
+    TweenMax.killTweensOf(this.distortion);
+
+    var time = 1
+    TweenMax.to(this.distortion, time, {angle:0, ease:Elastic.easeOut})
+
+  } 
 
   createMesh(geometry) {
     var self = this;
@@ -62,6 +103,7 @@ export default class Head {
 
     if(this.triggeredAnimationIn) {
       this.animationIn();
+      this.events();
     }
 
     this.distortion = new Distortion(this.mesh);
@@ -73,6 +115,10 @@ export default class Head {
     var delta = 5 * this.clock.getDelta();
     if(this.mesh)
       this.mesh.rotation.y += this.speed * delta;
+
+    if(this.dragging) {
+      this.distortion.angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 0.5) * -1
+    }
 
     if(this.distortion) {
       this.distortion.update();
