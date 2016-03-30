@@ -1,14 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="674px"
-	 height="566px" viewBox="0 0 674 566" enable-background="new 0 0 674 566" xml:space="preserve">
-<g id="logo">
-	<g>
-		<g>
-			<path fill="#85734C" d="M533.721,190.93H138.465V93.349h395.255V190.93z M150.465,178.93h371.255v-73.582H150.465V178.93z"/>
-		</g>
-		<g>
+<svg xmlns="http://www.w3.org/2000/svg" width="674" height="566" viewBox="0 0 674 566"><path fill="#85734C" d="M533.721 190.93H138.465V93.349H533.72v97.581zm-383.256-12H521.72v-73.582H150.465v73.582zM534 403H272v-55h250v-31H272v-12h262v55H284v31h250z"/><path fill="#85734C" d="M533.721 463.931H138.465V235.349h395.256v12H150.465v204.582h383.256z"/><path fill="#85734C" d="M234 241h12v217h-12z"/><g><path fill="#85734C" d="M534 403H272v-55h250v-31H272v-12h262v55H284v31h250z"/><path fill="#85734C" d="M533.721 463.931H138.465V235.349h395.256v12H150.465v204.582h383.256z"/><path fill="#85734C" d="M234 241h12v217h-12z"/></g></svg>>
 			<polygon fill="#85734C" points="534,403 272,403 272,348 522,348 522,317 272,317 272,305 534,305 534,360 284,360 284,391 
 				534,391 			"/>
 		</g>
