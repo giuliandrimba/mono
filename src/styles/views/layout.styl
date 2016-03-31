@@ -9,9 +9,6 @@
     background-color #000
     transform translate3D(0,-100%,0)
     transition transform 0.75s easeOutExpo
-    
-  path 
-    shape-rendering crispEdges
 
   #plane
     position absolute
@@ -20,13 +17,20 @@
     left 50%
     transform translateX(-50%) translateY(-50%)
     
+    path 
+        shape-rendering crispEdges
+    
   #menu
+    cursor pointer
     position absolute
     z-index 2
     left 165px
     top 50%;
     margin-top -56px
     overflow hidden
+    
+    path 
+        shape-rendering crispEdges
 
 .layout.animation-in
   .background
