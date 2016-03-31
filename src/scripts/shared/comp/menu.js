@@ -33,10 +33,6 @@ export default class Menu {
     this.circle = this._createCircle();
     this.circleOver = this._createCircleOver();
 
-    this.SVG.append(this.borderPath);
-    this.SVG.append(this.innerPath);
-    this.SVG.append(this.circle);
-
     parent.appendChild(this.SVG.node);
     this.events();
   }
@@ -93,6 +89,7 @@ export default class Menu {
     }, 2000)
   }
 
+  // Template
   _createCircle() {
     let circle = this.SVG.circle(86, -13, 13);
     circle.attr({

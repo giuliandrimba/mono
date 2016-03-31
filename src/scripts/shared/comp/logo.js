@@ -46,7 +46,7 @@ export default class logo {
     this.vivus = new Vivus('logo-svg', {
         duration: 150,
         animTimingFunction: Ease.easeExpOut
-      }, ()=>{})
+      })
   }
 
   animationOut(done) {

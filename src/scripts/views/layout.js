@@ -16,7 +16,7 @@ export function intro(req, done) {
   plane.render(el)
 
   menu = new Menu()
-  _.defer(()=> { animationIn(done)}, 0);
+  _.defer(animationIn.bind(this, done), 0);
 }
 
 export function outro(req, done) {

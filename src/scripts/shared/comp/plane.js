@@ -31,11 +31,9 @@ export default class Plane {
     this.SVG.node.setAttribute("viewBox",`0 0 600 600`)
 
     this.face01 = this._createFace01()
-    this.SVG.append(this.face01)
     this.segmentFace01 = new Segment(this.face01.node);
 
     this.face02 = this._createFace02()
-    this.SVG.append(this.face02)
     this.segmentFace02 = new Segment(this.face02.node);
 
     parent.appendChild(this.SVG.node);
@@ -74,7 +72,6 @@ export default class Plane {
 
     face.attr({
       id: "face01",
-      // stroke: "#ffffff",
       stroke: "#333333",
       strokeWidth: "1" ,
       fill: "none"
@@ -95,7 +92,6 @@ export default class Plane {
 
     face.attr({
       id: "face02",
-      // stroke: "#857446",
       stroke: "#333333",
       strokeWidth: "1" ,
       fill: "none"
