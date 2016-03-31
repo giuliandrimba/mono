@@ -12,8 +12,8 @@ export default class Menu {
     this.vivus = undefined;
     this.borderPath = undefined;
 
-    this.circleOverDelay = undefined;
-    this.circleDelay = undefined;
+    this.bigCircleDelay = undefined;
+    this.smallCircleDelay = undefined;
   }
 
   render(parent) {
@@ -30,8 +30,8 @@ export default class Menu {
     this.overPath = this._createOverPath();
     this.segmentOverPath = new Segment(this.overPath.node);
 
-    this.circle = this._createCircle();
-    this.circleOver = this._createCircleOver();
+    this.smallCircle = this._createSmallCircle();
+    this.bigCircle = this._createBigCircle();
 
     parent.appendChild(this.SVG.node);
     this.events();
@@ -46,28 +46,28 @@ export default class Menu {
     TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     
-    window.clearTimeout(this.circleDelay);
-    this.circle.stop();
-    this.circle.animate({cy:this.SIZE + 13}, 700, Ease.easeExpOut)
+    window.clearTimeout(this.smallCircleDelay);
+    this.smallCircle.stop();
+    this.smallCircle.animate({cy:this.SIZE + 13}, 700, Ease.easeExpOut)
 
-    window.clearTimeout(this.circleOverDelay);
-    this.circleOverDelay = _.delay(()=>{
-      this.circleOver.stop();
-      this.circleOver.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
+    window.clearTimeout(this.bigCircleDelay);
+    this.bigCircleDelay = _.delay(()=>{
+      this.bigCircle.stop();
+      this.bigCircle.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
     }, 100)
   }
 
   onMouseOut() {
     TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
-    window.clearTimeout(this.circleOverDelay);
-    this.circleOver.stop();
-    this.circleOver.animate({cy:-26}, 700, Ease.easeExpOut)
+    window.clearTimeout(this.bigCircleDelay);
+    this.bigCircle.stop();
+    this.bigCircle.animate({cy:-26}, 700, Ease.easeExpOut)
 
-    window.clearTimeout(this.circleDelay);
-    this.circleDelay = _.delay(()=>{
-      this.circle.stop();
-      this.circle.animate({cy:30}, 900, Ease.easeExpOut)
+    window.clearTimeout(this.smallCircleDelay);
+    this.smallCircleDelay = _.delay(()=>{
+      this.smallCircle.stop();
+      this.smallCircle.animate({cy:30}, 900, Ease.easeExpOut)
     }, 100)
   }
 
@@ -84,13 +84,13 @@ export default class Menu {
     TweenMax.to(this.innerPath.node, 1.3, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), delay:1, ease:Expo.easeOut });
 
     _.delay(()=>{
-      this.circle.animate({cy:30}, 750, Ease.easeExpOut)
-      TweenMax.to(this.circle.node, 0.75, {cy: 30, ease:Expo.easeIn });
+      this.smallCircle.animate({cy:30}, 750, Ease.easeExpOut)
+      TweenMax.to(this.smallCircle.node, 0.75, {cy: 30, ease:Expo.easeIn });
     }, 2000)
   }
 
   // Template
-  _createCircle() {
+  _createSmallCircle() {
     let circle = this.SVG.circle(86, -13, 13);
     circle.attr({
       id: "menu:circle",
@@ -100,10 +100,20 @@ export default class Menu {
     return circle;
   }
 
-  _createCircleOver() {
+  _createSmallCircleRed() {
+    let circle = this.SVG.circle(86, -13 - this.SIZE, 13);
+    circle.attr({
+      id: "menu:circle:red",
+      stroke: "none",
+      fill: "#ff0000"
+    })
+    return circle;
+  }
+
+  _createBigCircle() {
     let circle = this.SVG.circle(this.SIZE / 2, -26, 26);
     circle.attr({
-      id: "menu:circle:over",
+      id: "menu:circle:big",
       stroke: "none",
       fill: "#ea232a"
     })

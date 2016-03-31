@@ -11,6 +11,7 @@ export default class Head {
     this.animating = false;
     this.dragging = false;
     this.angle = 0;
+    this.drag_percent = 0;
 
     this.material = undefined;
     this.geometry = undefined;
@@ -19,7 +20,7 @@ export default class Head {
     this.windowHalfX = window.innerWidth / 2;
     this.mouseDownX = 0;
     this.mouseX = 0;
-    this.mouseDownAngle = 0;    
+    this.mouseDownAngle = 0; 
 
     this.speed = 0.3;
     this.clock = new THREE.Clock();
