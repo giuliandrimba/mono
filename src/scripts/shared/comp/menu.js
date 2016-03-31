@@ -11,6 +11,9 @@ export default class Menu {
     this.SIZE = 114;
     this.vivus = undefined;
     this.borderPath = undefined;
+
+    this.circleOverDelay = undefined;
+    this.circleDelay = undefined;
   }
 
   render(parent) {
@@ -46,19 +49,30 @@ export default class Menu {
   onMouseOver() {
     TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
+    
+    window.clearTimeout(this.circleDelay);
     this.circle.stop();
     this.circle.animate({cy:this.SIZE + 13}, 700, Ease.easeExpOut)
-    this.circleOver.stop();
-    this.circleOver.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
+
+    window.clearTimeout(this.circleOverDelay);
+    this.circleOverDelay = _.delay(()=>{
+      this.circleOver.stop();
+      this.circleOver.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
+    }, 100)
   }
 
   onMouseOut() {
     TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
-    this.circle.stop();
-    this.circle.animate({cy:30}, 900, Ease.easeExpOut)
+    window.clearTimeout(this.circleOverDelay);
     this.circleOver.stop();
     this.circleOver.animate({cy:-26}, 700, Ease.easeExpOut)
+
+    window.clearTimeout(this.circleDelay);
+    this.circleDelay = _.delay(()=>{
+      this.circle.stop();
+      this.circle.animate({cy:30}, 900, Ease.easeExpOut)
+    }, 100)
   }
 
   beforeAnimationIn() {
