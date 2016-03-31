@@ -28,6 +28,7 @@ export default class Menu {
     this.segmentOverPath = new Segment(this.overPath.node);
 
     this.circle = this._createCircle();
+    this.circleOver = this._createCircleOver();
 
     this.SVG.append(this.borderPath);
     this.SVG.append(this.innerPath);
@@ -43,15 +44,21 @@ export default class Menu {
   }
 
   onMouseOver() {
-    TweenMax.to(this.innerPath.node, 1, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
+    TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
-    this.circle.animate({cy:this.SIZE / 2, cx:this.SIZE / 2, r:26, fill:"#ea232a"}, 750, Ease.easeExpOut)
+    this.circle.stop();
+    this.circle.animate({cy:this.SIZE + 13}, 700, Ease.easeExpOut)
+    this.circleOver.stop();
+    this.circleOver.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
   }
 
   onMouseOut() {
     TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
-    this.circle.animate({cy:30, cx:86, r:13, fill:"#85734c"}, 750, Ease.easeExpOut)
+    this.circle.stop();
+    this.circle.animate({cy:30}, 900, Ease.easeExpOut)
+    this.circleOver.stop();
+    this.circleOver.animate({cy:-26}, 700, Ease.easeExpOut)
   }
 
   beforeAnimationIn() {
@@ -78,6 +85,16 @@ export default class Menu {
       id: "menu:circle",
       stroke: "none",
       fill: "#85734c"
+    })
+    return circle;
+  }
+
+  _createCircleOver() {
+    let circle = this.SVG.circle(this.SIZE / 2, -26, 26);
+    circle.attr({
+      id: "menu:circle:over",
+      stroke: "none",
+      fill: "#ea232a"
     })
     return circle;
   }
