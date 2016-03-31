@@ -10,6 +10,7 @@ var scene = undefined;
 var camera = undefined;
 var renderer = undefined;
 var head = undefined;
+var title = undefined;
 
 export function intro(req, done) {
   render();
@@ -23,6 +24,9 @@ export function outro(req, done) {
 function animationin() {
   head.animationIn();
   _.delay(layout.showMenu, 1000)
+  _.delay(()=> {
+    title.classList.add("show");
+  }, 4000)
 }
 
 function events() {
@@ -32,6 +36,8 @@ function events() {
 function render() {
   el = parseHTML(tmpl);
   document.getElementById("pages").appendChild(el);
+
+  title = document.querySelector(".title");
 
   scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );

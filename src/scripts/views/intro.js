@@ -7,16 +7,16 @@ import _ from "lodash";
 
 var el = undefined;
 var logo = undefined;
+var title = undefined;
 
 export function intro(req, done) {
 	render();
   done();
-  console.log("intro done")
 }
 
 export function outro(req, done) {
-  console.log("intro outro");
-	logo.animationOut(()=>{
+  title.classList.remove("show");
+  logo.animationOut(()=>{
     dispose();
     done();
   });
@@ -24,9 +24,14 @@ export function outro(req, done) {
 
 function animationin() {
   logo.animationIn()
+
+  _.delay(()=> {
+    title.classList.add("show")
+  }, 1000)
+
   _.delay(()=>{ 
     ways.go("/monkey");
-  }, 3000)
+  }, 4000)
 }
 
 function render() {
@@ -35,6 +40,8 @@ function render() {
 
   logo = new Logo(layout.SVG)
   logo.render(el);
+  
+  title = document.querySelector(".title");
 
   animationin();
 }

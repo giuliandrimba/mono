@@ -13,5 +13,20 @@
     transition transform 1s easeInOutExpo;
     pointer-events none
     
-  path
-    shape-rendering crispEdges
+    path
+      shape-rendering crispEdges
+      
+  .title
+    font-size 10px
+    font-family "RobotoMonoMedium"
+    position absolute
+    color #fff
+    opacity 0
+    top 50%
+    left 50%
+    transform translateX(-50%) translateY(-50%)
+    margin-top 20%
+    transition opacity 1s easeOutExpo 1s;
+    
+  .title.show
+    opacity 0.4
