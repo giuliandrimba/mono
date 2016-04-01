@@ -76,6 +76,7 @@ export default class Head {
 
   onMouseUp(event) {
     document.body.classList.remove("grabbing");
+
     Head.scope.dragging = false;
     document.removeEventListener("mousemove", Head.scope.onMouseMove)
 
@@ -83,6 +84,24 @@ export default class Head {
       return
 
     TweenMax.killTweensOf(Head.scope.distortion);
+
+    if(Head.scope.distortion.angle > 180) {
+      Head.scope.distortion.explode()
+      Head.scope.emit("drag", 0);
+
+      var rotationAngle = 0
+      var rot = Head.scope.mesh.rotation.y * 180 / Math.PI
+      if(rot > 360) {
+        var rotationAngle = (rot - (rot % 360)) * Math.PI / 180
+      }
+
+      TweenMax.to(Head.scope.mesh.rotation, 1, {y:rotationAngle, ease:Expo.easeout})
+      setTimeout(function() {
+        Head.scope.animating = false
+      }, 2000)
+
+      return;
+    }
 
     var time = 1
     TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut})

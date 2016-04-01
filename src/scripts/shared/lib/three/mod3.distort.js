@@ -89,7 +89,7 @@
           this.scaleAngle = 1;
           TweenMax.to(this, 0.8, {scaleAngle:1.1, ease:Expo.easeOut})
           TweenMax.to(this, 2, {scaleAngle:1, ease:Expo.easeInOut, delay:0.69})
-          TweenMax.to(this, 0.8, {distortScale:0.05, yoyo:true, repeat:1, ease:Expo.easeOut})
+          TweenMax.to(this, 0.8, {distortScale:0.2, yoyo:true, repeat:1, ease:Expo.easeOut})
           TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69})
         },
 
@@ -117,7 +117,6 @@
 
                 if(!v.scaleMult)
                   v.scaleMult = 1;
-                  v.oldScaleMult = 1;
 
                 if(!v.distortScale)
                   v.distortScale = 0
@@ -126,8 +125,8 @@
 
                 v.scaleMult = (this.scaleAngle + (v.scale * (v.distortScale)))
 
-                if(v.scaleMult > 1.7)
-                  v.scaleMult = 1.7
+                if(v.scaleMult > 3.5)
+                  v.scaleMult = 3.5
 
                 vec = v.getVector( );
                 vec = vec.multiply(new Vector3(v.scaleMult, v.scaleMult, v.scaleMult))
@@ -148,4 +147,4 @@
         }
     });
 
-}(window.MOD3);
+}(MOD3);
