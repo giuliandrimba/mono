@@ -27,6 +27,7 @@ export default class Plane {
   render(parent) {
 
     this.SVG = new Snap(600, 600);
+    this.SVG.node.opacity = 0;
     this.SVG.node.id = "plane";
     this.SVG.node.setAttribute("viewBox",`0 0 600 600`)
 
@@ -61,17 +62,27 @@ export default class Plane {
   beforeAnimation() {
     TweenMax.set(this.face01.node, { css:{strokeDasharray: this.segmentFace01.strokeDasharray(0, 0) } });
     TweenMax.set(this.face02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
-    TweenMax.set(this.dragProgress01.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
-    TweenMax.set(this.dragProgress02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
+    TweenMax.set(this.dragProgress01.node, { css:{strokeDasharray: this.segmentDragProgress01.strokeDasharray("0%", "0%") } });
+    TweenMax.set(this.dragProgress02.node, { css:{strokeDasharray: this.segmentDragProgress02.strokeDasharray("0%", "0%") } });
+    this.SVG.node.style.opacity = 1;
   }
 
   animationIn(done) {
     this.beforeAnimation();
     TweenMax.to(this.face01.node, 0.75, {strokeDasharray: this.segmentFace01.strokeDasharray("0%", "100%"), delay:0.25, ease:Expo.easeIn });
     TweenMax.to(this.face02.node, 1.5, {strokeDasharray: this.segmentFace02.strokeDasharray("0%", "100%"), delay:1, ease:Expo.easeOut });
-    TweenMax.to(this.face02.node, 1, {stroke: 0x333333, delay:2.5, ease:Expo.easeOut });
 
-    _.delay(done, 1000);
+    if(done)
+      _.delay(done, 1000);
+  }
+
+  show() {
+    this.animationIn()
+  }
+
+  hide() {
+    TweenMax.set(this.face01.node, { css:{strokeDasharray: this.segmentFace01.strokeDasharray(0, 0) } });
+    TweenMax.set(this.face02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
   }
 
   _createFace01() {

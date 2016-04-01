@@ -15,13 +15,13 @@ class Distortion {
     this.mesh.geometry.verticesNeedUpdate = true;
   }
 
-  explode() {
+  explode(done) {
     if(Math.abs(this.angle) < 180)
       return;
 
     TweenMax.to(this, 2, {angle:0, ease:Expo.easeOut})
 
-    this.twist.explode()
+    this.twist.explode(done)
   }
 }
 export default Distortion;

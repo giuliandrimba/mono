@@ -32,11 +32,32 @@ function animationin() {
 function events() {
   window.addEventListener("resize", resize);
   head.on("drag", onDrag)
+  head.on("drag:start", onDragStart)
+  head.on("drag:end", onDragEnd)
+  head.on("explode:start", onExplodeStart)
+  head.on("explode:end", onExplodeEnd)
 }
 
 function onDrag(percentage) {
   layout.plane.showProgress(percentage);
   layout.menu.showProgress(percentage);
+}
+
+function onDragStart() {
+  title.classList.remove("show");
+}
+
+function onDragEnd() {
+  title.classList.add("show");
+}
+
+function onExplodeStart() {
+  layout.plane.hide()
+}
+
+function onExplodeEnd() {
+  title.classList.add("show");
+  layout.plane.show()
 }
 
 function render() {

@@ -5,7 +5,7 @@
 
 /* line 14 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/gulp-stylus/node_modules/stylus/lib/functions/index.styl */
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
 /* line 10 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 90 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/flex.styl */
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 11 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
@@ -41,7 +41,7 @@
 
 /* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/image.styl */
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
 /* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
@@ -89,7 +89,7 @@
 
 /* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/reset.styl */
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
@@ -226,23 +226,40 @@ a img {
   border: none;
 }
 
-/* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/size.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/size.styl */
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
 body {
   background-color: #444;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-/* line 4 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+/* line 6 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
 body.grab {
   cursor: -webkit-grab;
 }
 
-/* line 7 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+/* line 9 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
 body.grabbing {
   cursor: -webkit-grabbing;
+}
+
+/* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
@@ -273,9 +290,9 @@ body.grabbing {
   pointer-events: none;
 }
 
-/* line 36 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
+/* line 37 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/comp/plane.styl */
 
-/* line 2 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 16 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
@@ -310,14 +327,17 @@ body.grabbing {
   -o-transform: translateX(-50%) translateY(-50%);
   -ms-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
 }
 
-/* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 .layout #plane path {
   shape-rendering: crispEdges;
 }
 
-/* line 22 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 23 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 .layout #menu {
   cursor: pointer;
   position: absolute;
@@ -328,14 +348,14 @@ body.grabbing {
   overflow: hidden;
 }
 
-/* line 31 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 .layout #menu path {
   shape-rendering: crispEdges;
 }
 
-/* line 34 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
-
 /* line 35 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+
+/* line 36 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 .layout.animation-in .background {
   -webkit-transform: translate3D(0, 0, 0);
   -moz-transform: translate3D(0, 0, 0);

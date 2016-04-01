@@ -15,6 +15,7 @@ export default class Head {
     this.dragging = false;
     this.angle = 0;
     this.drag_percent = 0;
+    this.animating = false;
 
     this.material = undefined;
     this.geometry = undefined;
@@ -58,6 +59,8 @@ export default class Head {
     if(Head.scope.animating)
       return;
 
+    Head.scope.emit("drag:start")
+
     document.body.classList.add("grabbing");
     Head.scope.dragging = true;
     TweenMax.killTweensOf(Head.scope.distortion);
@@ -75,18 +78,23 @@ export default class Head {
   }
 
   onMouseUp(event) {
-    document.body.classList.remove("grabbing");
 
     Head.scope.dragging = false;
-    document.removeEventListener("mousemove", Head.scope.onMouseMove)
-
-    if(Head.scope.animating)
-      return
+    document.body.classList.remove("grabbing");
+    document.removeEventListener("mousemove", Head.scope.onMouseMove) 
 
     TweenMax.killTweensOf(Head.scope.distortion);
 
-    if(Head.scope.distortion.angle > 180) {
-      Head.scope.distortion.explode()
+    if(Math.abs(Head.scope.distortion.angle) > 270) {
+
+      Head.scope.animating = true;
+      Head.scope.emit("explode:start")
+      Head.scope.distortion.explode(()=> {
+      Head.scope.emit("explode:end")
+        _.delay(()=>{
+          Head.scope.animating = false;
+        }, 2000)
+      })
       Head.scope.emit("drag", 0);
 
       var rotationAngle = 0
@@ -96,16 +104,14 @@ export default class Head {
       }
 
       TweenMax.to(Head.scope.mesh.rotation, 1, {y:rotationAngle, ease:Expo.easeout})
-      setTimeout(function() {
-        Head.scope.animating = false
-      }, 2000)
 
       return;
     }
 
     var time = 1
-    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut})
+    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut, onComplete:()=>{Head.scope.animating = false}})
     Head.scope.emit("drag", 0);
+    Head.scope.emit("drag:end")
   } 
 
   createMesh(geometry) {

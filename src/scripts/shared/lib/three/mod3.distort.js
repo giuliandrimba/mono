@@ -85,12 +85,12 @@
             return this;
         },
 
-        explode: function() {
+        explode: function(done) {
           this.scaleAngle = 1;
           TweenMax.to(this, 0.8, {scaleAngle:1.1, ease:Expo.easeOut})
           TweenMax.to(this, 2, {scaleAngle:1, ease:Expo.easeInOut, delay:0.69})
           TweenMax.to(this, 0.8, {distortScale:0.2, yoyo:true, repeat:1, ease:Expo.easeOut})
-          TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69})
+          TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69, onComplete:done})
         },
 
         _apply: function( ) {
