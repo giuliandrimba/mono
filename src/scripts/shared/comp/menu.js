@@ -73,12 +73,12 @@ export default class Menu {
     
     window.clearTimeout(this.smallCircleDelay);
     this.smallCircle.stop();
-    this.smallCircle.animate({cy:this.SIZE + 13}, 700, Ease.easeExpOut)
+    this.smallCircle.animate({cy:this.SIZE + 13}, 500, Ease.easeExpOut)
 
     window.clearTimeout(this.bigCircleDelay);
     this.bigCircleDelay = _.delay(()=>{
       this.bigCircle.stop();
-      this.bigCircle.animate({cy:this.SIZE / 2}, 900, Ease.easeExpOut)
+      this.bigCircle.animate({cy:this.SIZE / 2}, 700, Ease.easeExpOut)
     }, 100)
   }
 
@@ -89,12 +89,12 @@ export default class Menu {
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     window.clearTimeout(this.bigCircleDelay);
     this.bigCircle.stop();
-    this.bigCircle.animate({cy:-26}, 700, Ease.easeExpOut)
+    this.bigCircle.animate({cy:-26}, 500, Ease.easeExpOut)
 
     window.clearTimeout(this.smallCircleDelay);
     this.smallCircleDelay = _.delay(()=>{
       this.smallCircle.stop();
-      this.smallCircle.animate({cy:30}, 900, Ease.easeExpOut)
+      this.smallCircle.animate({cy:30}, 700, Ease.easeExpOut)
     }, 100)
   }
 
