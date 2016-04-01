@@ -58,6 +58,7 @@ function onExplodeStart() {
 function onExplodeEnd() {
   title.classList.add("show");
   layout.plane.show()
+  // layout.menu.showProgress(0);
 }
 
 function render() {
