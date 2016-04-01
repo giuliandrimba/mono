@@ -36,6 +36,7 @@ function events() {
 
 function onDrag(percentage) {
   layout.plane.showProgress(percentage);
+  layout.menu.showProgress(percentage);
 }
 
 function render() {

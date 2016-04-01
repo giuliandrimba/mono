@@ -11,7 +11,7 @@ export default class Menu {
     this.SIZE = 114;
     this.vivus = undefined;
     this.borderPath = undefined;
-
+    this.locked = false;
     this.bigCircleDelay = undefined;
     this.smallCircleDelay = undefined;
   }
@@ -31,6 +31,7 @@ export default class Menu {
     this.segmentOverPath = new Segment(this.overPath.node);
 
     this.smallCircle = this._createSmallCircle();
+    this.smallCircleRed = this._createSmallCircleRed();
     this.bigCircle = this._createBigCircle();
 
     parent.appendChild(this.SVG.node);
@@ -42,7 +43,31 @@ export default class Menu {
     this.SVG.node.addEventListener("mouseout", this.onMouseOut.bind(this))
   }
 
+  showProgress(progress) {
+    let pos = progress * (this.SIZE + 13);
+
+    if(progress === 0) {
+      this.locked = false;
+    } else {
+      this.locked = true;
+    }
+
+    this.smallCircle.stop();
+    this.smallCircle.animate({cy: 30 + pos}, 200, Ease.easeExpOut)
+
+    if(progress > 0.8) {
+      this.smallCircleRed.stop();
+      this.smallCircleRed.animate({cy: -41 + pos}, 500, Ease.easeExpOut)
+    } else {
+      this.smallCircleRed.stop();
+      this.smallCircleRed.animate({cy: -41}, 500, Ease.easeExpOut)
+    }
+  }
+
   onMouseOver() {
+    if(this.locked)
+      return;
+
     TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     
@@ -58,6 +83,8 @@ export default class Menu {
   }
 
   onMouseOut() {
+    if(this.locked)
+      return;
     TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     window.clearTimeout(this.bigCircleDelay);
@@ -105,7 +132,8 @@ export default class Menu {
     circle.attr({
       id: "menu:circle:red",
       stroke: "none",
-      fill: "#ff0000"
+      fill: "#ff0000",
+      "cy": 30 - this.SIZE
     })
     return circle;
   }

@@ -40,3 +40,4 @@ export function showMenu() {
 }
 
 export var plane = plane;
+export var menu = menu;

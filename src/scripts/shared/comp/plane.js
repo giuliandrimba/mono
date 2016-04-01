@@ -50,7 +50,6 @@ export default class Plane {
 
   showProgress(percentage) {
     let per = percentage * 100;
-    console.log(`${per}%`)
     TweenMax.to(this.dragProgress01.node, 0.2, {strokeDasharray: this.segmentDragProgress01.strokeDasharray("0%", `${per}%`) });
     TweenMax.to(this.dragProgress02.node, 0.2, {strokeDasharray: this.segmentDragProgress02.strokeDasharray("0%", `${per}%`) });
   }
