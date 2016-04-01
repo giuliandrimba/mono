@@ -3,9 +3,12 @@ OBJLoader(window.THREE);
 const glslify = require('glslify');
 import loadObj from "scripts/shared/lib/three/loadObj";
 import Distortion from "scripts/shared/lib/three/distortion";
+import happens from "happens";
 
 export default class Head {
   constructor(scene, camera, renderer) {
+    happens(this);
+
     this.scene = scene;
     this.loaded = false;
     this.animating = false;
@@ -25,6 +28,10 @@ export default class Head {
     this.speed = 0.3;
     this.clock = new THREE.Clock();
 
+    Head.scope = this;
+
+    document.body.classList.add("grab");
+
     loadObj('./assets/macaco_medium.OBJ', this.createMesh.bind(this))
 
     this.triggeredAnimationIn = false;
@@ -43,38 +50,43 @@ export default class Head {
   }
 
   events() {
-    document.addEventListener("mousedown", this.onMouseDown.bind(this))
-    document.addEventListener("mouseup", this.onMouseUp.bind(this))
+    document.addEventListener("mousedown", this.onMouseDown)
+    document.addEventListener("mouseup", this.onMouseUp)
   }
 
   onMouseDown(event) {
-    if(this.animating)
+    if(Head.scope.animating)
       return;
 
-    this.dragging = true;
-    TweenMax.killTweensOf(this.distortion);
+    document.body.classList.add("grabbing");
+    Head.scope.dragging = true;
+    TweenMax.killTweensOf(Head.scope.distortion);
 
-    this.mouseDownX = ( event.clientX - this.windowHalfX ) / 2;
-    this.mouseX = ( event.clientX - this.windowHalfX ) / 2;
-    this.mouseDownAngle = this.distortion.angle;
-    document.addEventListener("mousemove", this.onMouseMove.bind(this));
+    Head.scope.mouseDownX = ( event.clientX - Head.scope.windowHalfX ) / 2;
+    Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
+    Head.scope.mouseDownAngle = Head.scope.distortion.angle;
+
+    document.addEventListener("mousemove", Head.scope.onMouseMove);
   }
 
   onMouseMove(event) {
-    this.mouseX = ( event.clientX - this.windowHalfX ) / 2;
+    Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
+    Head.scope.emit("drag", Head.scope.drag_percent);
   }
 
   onMouseUp(event) {
-    this.dragging = false;
-    document.removeEventListener("mousemove", this.onMouseMove.bind(this))
-    if(this.animating)
+    document.body.classList.remove("grabbing");
+    Head.scope.dragging = false;
+    document.removeEventListener("mousemove", Head.scope.onMouseMove)
+
+    if(Head.scope.animating)
       return
 
-    TweenMax.killTweensOf(this.distortion);
+    TweenMax.killTweensOf(Head.scope.distortion);
 
     var time = 1
-    TweenMax.to(this.distortion, time, {angle:0, ease:Elastic.easeOut})
-
+    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut})
+    Head.scope.emit("drag", 0);
   } 
 
   createMesh(geometry) {
@@ -118,16 +130,22 @@ export default class Head {
       this.mesh.rotation.y += this.speed * delta;
 
     if(this.dragging) {
-      this.distortion.angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 0.5) * -1
+      // this.distortion.angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 0.5) * -1
+      var angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 2) * -1
+      this.distortion.angle = angle / this.windowHalfX * 360
     }
 
     if(this.distortion) {
       this.distortion.update();
+      this.drag_percent = Math.abs(this.distortion.angle / 270);
+      if(this.drag_percent > 1)
+        this.drag_percent = 1
     }
+    
   }
 
   resize() {
-
+    this.windowHalfX = window.innerWidth / 2;
   }
 
   animDistort() {

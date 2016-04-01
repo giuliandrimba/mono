@@ -19,6 +19,7 @@
     "d3-ease": "^0.7.0",
     "glslify": "^5.0.2",
     "gsap": "^1.18.2",
+    "happens": "^0.6.0",
     "lodash": "^4.6.1",
     "segment-js": "^1.0.8",
     "snapsvg": "^0.4.0",

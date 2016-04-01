@@ -31,9 +31,15 @@ function animationin() {
 
 function events() {
   window.addEventListener("resize", resize);
+  head.on("drag", onDrag)
+}
+
+function onDrag(percentage) {
+  layout.plane.showProgress(percentage);
 }
 
 function render() {
+
   el = parseHTML(tmpl);
   document.getElementById("pages").appendChild(el);
 

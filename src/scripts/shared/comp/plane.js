@@ -36,10 +36,23 @@ export default class Plane {
     this.face02 = this._createFace02()
     this.segmentFace02 = new Segment(this.face02.node);
 
+    this.dragProgress01 = this._createDragProgress01()
+    this.segmentDragProgress01 = new Segment(this.dragProgress01.node);
+
+    this.dragProgress02 = this._createDragProgress02()
+    this.segmentDragProgress02 = new Segment(this.dragProgress02.node);
+
     parent.appendChild(this.SVG.node);
 
     this.resize()
     this.events();
+  }
+
+  showProgress(percentage) {
+    let per = percentage * 100;
+    console.log(`${per}%`)
+    TweenMax.to(this.dragProgress01.node, 0.2, {strokeDasharray: this.segmentDragProgress01.strokeDasharray("0%", `${per}%`) });
+    TweenMax.to(this.dragProgress02.node, 0.2, {strokeDasharray: this.segmentDragProgress02.strokeDasharray("0%", `${per}%`) });
   }
 
   events() {
@@ -49,6 +62,8 @@ export default class Plane {
   beforeAnimation() {
     TweenMax.set(this.face01.node, { css:{strokeDasharray: this.segmentFace01.strokeDasharray(0, 0) } });
     TweenMax.set(this.face02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
+    TweenMax.set(this.dragProgress01.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
+    TweenMax.set(this.dragProgress02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
   }
 
   animationIn(done) {
@@ -93,6 +108,44 @@ export default class Plane {
     face.attr({
       id: "face02",
       stroke: "#333333",
+      strokeWidth: "1" ,
+      fill: "none"
+    })
+
+    return face;
+  }
+
+  _createDragProgress01() {
+     let path = svgPath()
+
+     path.moveTo(this.INIT_X + this.WIDTH, this.INIT_Y + this.HEIGHT);
+     path.lineTo(this.INIT_X + this.WIDTH, this.INIT_Y);
+     path.lineTo(this.INIT_X + this.WIDTH / 2, this.INIT_Y + this.HEIGHT / 2);
+
+     let face = this.SVG.path(path.getPath())
+
+     face.attr({
+      id: "dragprogress01",
+      stroke: "#ff0000",
+      strokeWidth: "1" ,
+      fill: "none"
+    })
+
+    return face;
+  }
+
+  _createDragProgress02() {
+     let path = svgPath()
+
+     path.moveTo(this.INIT_X + this.WIDTH, this.INIT_Y + this.HEIGHT);
+     path.lineTo(this.INIT_X, this.INIT_Y + this.HEIGHT);
+     path.lineTo(this.INIT_X + this.WIDTH / 2, this.INIT_Y + this.HEIGHT / 2);
+
+     let face = this.SVG.path(path.getPath())
+
+     face.attr({
+      id: "dragprogress01",
+      stroke: "#ff0000",
       strokeWidth: "1" ,
       fill: "none"
     })

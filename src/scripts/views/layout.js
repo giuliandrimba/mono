@@ -23,6 +23,7 @@ export function outro(req, done) {
 	done();
 }
 
+
 function animationIn(done) {
   el.classList.add("animation-in")
   plane.animationIn(done);
@@ -37,3 +38,5 @@ export function showMenu() {
   menu.render(el);
   menu.animationIn();
 }
+
+export var plane = plane;
