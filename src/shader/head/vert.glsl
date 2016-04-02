@@ -6,6 +6,11 @@ varying vec3 vLight;
 uniform vec3 lightDirection;
 uniform float time;
 uniform float distortion;
+uniform float explosion;
+
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
 
 void main() {
     vUv = uv;
@@ -16,6 +21,12 @@ void main() {
     vLight = normalize(lightDirection - vPosition);
     
     mvPosition.y += mvPosition.y * distortion - distortion;
+
+    float scale = vLight.z;
+
+    // vec2 r = vec2(1.0,1.0);
+    // fract r1 = rand(r);
+    mvPosition += vec4(vNormal, 0.0) * explosion * scale;
 
     gl_Position = projectionMatrix * mvPosition;
 }

@@ -10,6 +10,7 @@ uniform vec3 lightDirection;
 uniform float specular;
 uniform float shininess;
 uniform float time;
+uniform float opacity;
 
 float lambert(vec3 n, vec3 d)
 {
@@ -46,5 +47,5 @@ void main()
                 shininess 
             );
    
-    gl_FragColor = vec4(light, 1.0);
+    gl_FragColor = vec4(light, opacity);
 }

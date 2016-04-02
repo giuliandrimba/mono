@@ -125,7 +125,9 @@ export default class Head {
         color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
         shininess      : {type: 'f', value: 2.9},
         lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
-        distortion     : {type: 'f', value: 10.0}
+        distortion     : {type: 'f', value: 10.0},
+        explosion     : {type: 'f', value: 0.0},
+        opacity     : {type: 'f', value: 1.0}
       },
       vertexShader : glslify('../../../shader/head/vert.glsl'),
       fragmentShader : glslify('../../../shader/head/frag.glsl'),
