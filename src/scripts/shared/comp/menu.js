@@ -7,6 +7,7 @@ import _ from "lodash";
 
 export default class Menu {
   constructor() {
+    this.el = undefined;
     this.SVG = undefined;
     this.SIZE = 114;
     this.vivus = undefined;
@@ -17,6 +18,8 @@ export default class Menu {
   }
 
   render(parent) {
+    this.el = document.createElement("div");
+    this.el.id = "menu-area"
     this.SVG = new Snap(this.SIZE, this.SIZE);
     this.SVG.node.id = "menu";
     this.SVG.node.setAttribute("viewBox",`0 0 ${this.SIZE} ${this.SIZE}`);
@@ -34,13 +37,14 @@ export default class Menu {
     this.smallCircleRed = this._createSmallCircleRed();
     this.bigCircle = this._createBigCircle();
 
-    parent.appendChild(this.SVG.node);
+    this.el.appendChild(this.SVG.node)
+    parent.appendChild(this.el);
     this.events();
   }
 
   events() {
-    this.SVG.node.addEventListener("mouseover", this.onMouseOver.bind(this))
-    this.SVG.node.addEventListener("mouseout", this.onMouseOut.bind(this))
+    this.el.addEventListener("mouseover", this.onMouseOver.bind(this))
+    this.el.addEventListener("mouseout", this.onMouseOut.bind(this))
   }
 
   showProgress(progress) {
