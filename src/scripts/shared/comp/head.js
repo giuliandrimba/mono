@@ -69,7 +69,7 @@ export default class Head {
     Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
     Head.scope.mouseDownAngle = Head.scope.distortion.angle;
 
-    document.addEventListener("mousemove", Head.scope.onMouseMove);
+    document.querySelector(".monkey").addEventListener("mousemove", Head.scope.onMouseMove);
   }
 
   onMouseMove(event) {
@@ -81,7 +81,7 @@ export default class Head {
 
     Head.scope.dragging = false;
     document.body.classList.remove("grabbing");
-    document.removeEventListener("mousemove", Head.scope.onMouseMove) 
+    document.querySelector(".monkey").removeEventListener("mousemove", Head.scope.onMouseMove) 
 
     TweenMax.killTweensOf(Head.scope.distortion);
 
