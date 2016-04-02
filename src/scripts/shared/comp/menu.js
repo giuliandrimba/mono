@@ -15,6 +15,7 @@ export default class Menu {
     this.locked = false;
     this.bigCircleDelay = undefined;
     this.smallCircleDelay = undefined;
+    this.overState = false;
   }
 
   render(parent) {
@@ -48,6 +49,10 @@ export default class Menu {
   }
 
   showProgress(progress) {
+
+    if(this.overState)
+      return
+
     let pos = progress * (this.SIZE + 13);
 
     if(progress === 0) {
@@ -72,6 +77,8 @@ export default class Menu {
     if(this.locked)
       return;
 
+    this.overState = true;
+
     TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     
@@ -89,6 +96,9 @@ export default class Menu {
   onMouseOut() {
     if(this.locked)
       return;
+
+    this.overState = false;
+
     TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
     TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     window.clearTimeout(this.bigCircleDelay);
