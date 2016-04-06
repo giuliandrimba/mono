@@ -2,6 +2,7 @@ import tmpl from "templates/views/monkey.html";
 import parseHTML from "scripts/shared/lib/parseHTML";
 import OBJLoader from "three-obj-loader";
 import Head from "scripts/shared/comp/head";
+import Dot from "scripts/shared/comp/dot";
 import * as layout from "scripts/views/layout";
 import _ from "lodash";
 
@@ -10,6 +11,7 @@ var scene = undefined;
 var camera = undefined;
 var renderer = undefined;
 var head = undefined;
+var dot = undefined;
 var title = undefined;
 
 export function intro(req, done) {
@@ -78,6 +80,7 @@ function render() {
   addLights();
 
   head = new Head(scene, camera, renderer);
+  dot = new Dot(scene, camera, renderer);
 
   el.appendChild(renderer.domElement);
 
@@ -111,6 +114,7 @@ function resize() {
 function loop() {
   requestAnimationFrame( loop );
   head.update()
+  dot.update()
   camera.lookAt( scene.position )
   renderer.render(scene, camera);
 }

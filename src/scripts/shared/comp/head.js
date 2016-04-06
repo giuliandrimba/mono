@@ -136,7 +136,7 @@ export default class Head {
       transparent : true
     })
     self.mesh = new THREE.Mesh(this.geometry, self.material);
-    self.scene.add(self.mesh);
+    // self.scene.add(self.mesh);
     self.loaded = true;
 
     this.mesh.position.y -= 0.32;
