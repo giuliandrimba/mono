@@ -24,7 +24,7 @@ export default class Dot {
   }
 
   createMesh() {
-    var geometry = new THREE.IcosahedronGeometry(1, 5);
+    var geometry = new THREE.IcosahedronGeometry(1, 6);
 
     var explodeModifier = new THREE.ExplodeModifier();
     explodeModifier.modify( geometry );
@@ -37,7 +37,7 @@ export default class Dot {
 
     for ( var f = 0; f < numFaces; f ++ ) {
         var index = 9 * f;
-        var d = 10 * ( 1.7 - Math.random() ) * 2;
+        var d = 4 * ( 1.1 - Math.random() );
         for ( var i = 0; i < 3; i ++ ) {
           displacement[ index + ( 3 * i )     ] = d;
           displacement[ index + ( 3 * i ) + 1 ] = d;
@@ -46,13 +46,12 @@ export default class Dot {
       }
 
     this.geometry.addAttribute( 'displacement', new THREE.BufferAttribute( displacement, 3 ) );
-    this.geometry.addAttribute( 'faces', new THREE.BufferAttribute( geometry.vertices, 3 ) );
 
     // this.material = new THREE.MeshBasicMaterial({color:0xFF0000})
     this.material = new THREE.ShaderMaterial({
       uniforms : {
         time        : {type: 'f', value: this.time},
-        opacity     : {type: 'f', value: 1.0},
+        opacity     : {type: 'f', value: 0.0},
         amplitude: { type: "f", value: 0.1 }
       },
       vertexShader : glslify('../../../shader/dot/vert.glsl'),
@@ -63,12 +62,11 @@ export default class Dot {
     })
 
     this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.scene.add(this.mesh);
+    this.scene.add(this.mesh);  
+    this.mesh.visible = false;
 
     var time = Date.now() * 0.001;
     this.mesh.material.uniforms.amplitude.value = 1.0;
-
-    TweenMax.to(this.mesh.material.uniforms[ 'amplitude' ], 2.5, {value:0.0, ease:Expo.easeInOut, delay:2})
   }
 
   explode() {
@@ -80,7 +78,16 @@ export default class Dot {
     }
   }
 
+  impplode() {
+    this.mesh.visible = true;
+    TweenMax.to(this.mesh.material.uniforms[ 'amplitude' ], 3, {value:0.0, ease:Expo.easeInOut})
+    TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 1, {value:1.0, ease:Expo.easeInOut})
+  }
+
   update() {
+
+    this.mesh.rotation.y += 0.005;
+
     // var time = Date.now() * 0.001;
     // this.time -= .00025 * ( Date.now() - this.start );
     // if(this.time > 0)

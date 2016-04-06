@@ -60,6 +60,7 @@ function onExplodeStart() {
 function onExplodeEnd() {
   title.classList.add("show");
   layout.plane.show()
+  dot.impplode()
   // layout.menu.showProgress(0);
 }
 
@@ -79,8 +80,8 @@ function render() {
 
   addLights();
 
-  head = new Head(scene, camera, renderer);
   dot = new Dot(scene, camera, renderer);
+  head = new Head(scene, camera, renderer);
 
   el.appendChild(renderer.domElement);
 

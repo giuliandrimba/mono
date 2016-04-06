@@ -43,6 +43,6 @@ void main() {
     float centerDist = sqrt(pow(position.x - 1.0, 2.0) + pow(position.y - 1.0, 2.0));
     vec3 curlPos = snoiseVec3(normal) * max(0.0, (time - centerDist*2.0));
     vec3 pos = (position + curlPos) * amplitude;
-    vec3 newPosition = position + normal * displacement * (amplitude * snoiseVec3(normal));
+    vec3 newPosition = position + normal * displacement * (amplitude * sin(centerDist));
     gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
 }
