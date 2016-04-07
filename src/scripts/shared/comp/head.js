@@ -115,6 +115,10 @@ export default class Head {
     Head.scope.emit("drag:end")
   } 
 
+  implode() {
+    Head.scope.distortion.implode()
+  }
+
   createMesh(geometry) {
     var self = this;
     this.geometry = geometry;

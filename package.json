@@ -17,6 +17,7 @@
   "dependencies": {
     "2pi-scale": "^1.0.0",
     "d3-ease": "^0.7.0",
+    "glsl-easings": "^1.0.0",
     "glslify": "^5.0.2",
     "gsap": "^1.18.2",
     "happens": "^0.6.0",
