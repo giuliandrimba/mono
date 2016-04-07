@@ -1,5 +1,6 @@
 #pragma glslify: snoise = require(glsl-noise/simplex/3d)
-#pragma glslify: ease = require(glsl-easings/exponential-in-out)
+#pragma glslify: ease = require(glsl-easings/quintic-in-out)
+
 
 uniform float v_frame;
 uniform float amplitude;
@@ -17,16 +18,17 @@ vec3 snoiseVec3( vec3 x ){
 }
 
 void main() {
+
     float motionInPercent = ((v_frame * springs.x) / total_frames);
     float easingPercent = 0.0;
     if(motionInPercent < 1.0) {
       easingPercent = ease(1.0 - motionInPercent);
     }
 
-    float centerDist = sqrt(pow(initPos.x - 1.0, 2.0) + pow(initPos.y - 1.0, 2.0));
-    vec3 curlPos = snoiseVec3(normal) * max(0.0, (easingPercent - centerDist*2.0));
-
     vec3 pos = position + normal * displacement * easingPercent;
+
+    vec3 rnd = snoiseVec3(pos - initPos);
+    pos += rnd * easingPercent;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );
 }
