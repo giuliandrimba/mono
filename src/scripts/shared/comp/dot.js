@@ -27,7 +27,7 @@ export default class Dot {
   }
 
   createMesh() {
-    var geometry = new THREE.IcosahedronGeometry(1, 5);
+    var geometry = new THREE.IcosahedronGeometry(1, 6);
 
     var explodeModifier = new THREE.ExplodeModifier();
     explodeModifier.modify( geometry );
@@ -42,7 +42,7 @@ export default class Dot {
 
     for ( var f = 0; f < numFaces; f ++ ) {
         var index = 9 * f;
-        var vindex = 3 * f;
+        // console.log(vindex)
         var spring = 0.8 + Math.random()
         var d = 9 * ( 1.1 - Math.random() );
         for ( var i = 0; i < 3; i ++ ) {
@@ -51,6 +51,7 @@ export default class Dot {
           displacement[ index + ( 3 * i ) + 1 ] = d;
           displacement[ index + ( 3 * i ) + 2 ] = d;
 
+          var vindex = index + ( 3 * i );
           springs[ index + ( 3 * i )     ] = spring;
           springs[ index + ( 3 * i ) + 1 ] = spring;
           springs[ index + ( 3 * i ) + 2 ] = spring;
@@ -71,6 +72,7 @@ export default class Dot {
     // this.material = new THREE.MeshBasicMaterial({color:0xFF0000})
     this.material = new THREE.ShaderMaterial({
       uniforms : {
+        amplitude : {type: 'f', value: 3.14},
         total_frames : {type: 'f', value: this.total_frames},
         v_frame      :{type: 'f', value: 0.0},
         opacity      : {type: 'f', value: 0.0},
@@ -93,7 +95,7 @@ export default class Dot {
 
   implode() {
     this.mesh.visible = true;
-    // TweenMax.to(this.mesh.material.uniforms[ 'amplitude' ], 3, {value:0.0, onComplete:this.onImplode})
+    TweenMax.to(this.mesh.material.uniforms[ 'amplitude' ], 3, {value:0.0, ease:Expo.easeInOut, onComplete:this.onImplode})
     TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 1, {value:1.0, ease:Expo.easeInOut})
   }
 
@@ -106,9 +108,6 @@ export default class Dot {
     this.mesh.material.uniforms['v_frame'].value = this.frame;
 
     if(this.mesh.visible) {
-      // var z = (this.frame % this.total_frames * 0.01)
-      // var t = this.total_frames * 0.01;
-      // this.mesh.position.z = z;
       this.mesh.rotation.y += 0.005;
       
     }
