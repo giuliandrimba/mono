@@ -24,8 +24,8 @@ export function outro(req, done) {
 }
 
 function animationin() {
-  dot.implode()
-  // head.animationIn();
+  // dot.implode()
+  head.animationIn();
   _.delay(layout.showMenu, 1000)
   _.delay(()=> {
     title.classList.add("show");
@@ -34,11 +34,11 @@ function animationin() {
 
 function events() {
   window.addEventListener("resize", resize);
-  // head.on("drag", onDrag)
-  // head.on("drag:start", onDragStart)
-  // head.on("drag:end", onDragEnd)
-  // head.on("explode:start", onExplodeStart)
-  // head.on("explode:end", onExplodeEnd)
+  head.on("drag", onDrag)
+  head.on("drag:start", onDragStart)
+  head.on("drag:end", onDragEnd)
+  head.on("explode:start", onExplodeStart)
+  head.on("explode:end", onExplodeEnd)
 }
 
 function onDrag(percentage) {
@@ -61,6 +61,7 @@ function onExplodeStart() {
 function onExplodeEnd() {
   title.classList.add("show");
   layout.plane.show()
+  dot.implode()
   // layout.menu.showProgress(0);
 }
 
@@ -81,7 +82,7 @@ function render() {
   addLights();
 
   dot = new Dot(scene, camera, renderer);
-  // head = new Head(scene, camera, renderer);
+  head = new Head(scene, camera, renderer);
 
   el.appendChild(renderer.domElement);
 
@@ -108,13 +109,13 @@ function addLights() {
 function resize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  // head.resize();
+  head.resize();
   renderer.setSize(window.innerWidth,  window.innerHeight);
 }
 
 function loop() {
   requestAnimationFrame( loop );
-  // head.update()
+  head.update()
   dot.update()
   camera.lookAt( scene.position )
   renderer.render(scene, camera);

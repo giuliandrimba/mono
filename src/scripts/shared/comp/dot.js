@@ -27,7 +27,7 @@ export default class Dot {
   }
 
   createMesh() {
-    var geometry = new THREE.IcosahedronGeometry(1, 6);
+    var geometry = new THREE.IcosahedronGeometry(1, 4);
 
     var explodeModifier = new THREE.ExplodeModifier();
     explodeModifier.modify( geometry );
@@ -108,10 +108,10 @@ export default class Dot {
   }
 
   update() {
-    this.frame++;
-    this.mesh.material.uniforms['v_frame'].value = this.frame;
 
     if(this.mesh.visible) {
+      this.frame++;
+      this.mesh.material.uniforms['v_frame'].value = this.frame;
       var amp = this.mesh.material.uniforms[ 'amplitude' ].value
       // this.mesh.scale.set(amp,amp,amp)
       this.mesh.rotation.y += 0.01;
