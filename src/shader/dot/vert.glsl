@@ -27,7 +27,7 @@ void main() {
 
     vec3 pos = position + normal * displacement * easingPercent;
 
-    vec3 rnd = snoiseVec3(pos - initPos);
+    vec3 rnd = snoiseVec3(pos - initPos) * 1.3;
     pos += rnd * easingPercent;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4( pos, 1.0 );

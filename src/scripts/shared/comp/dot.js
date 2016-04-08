@@ -27,7 +27,7 @@ export default class Dot {
   }
 
   createMesh() {
-    var geometry = new THREE.IcosahedronGeometry(1, 5);
+    var geometry = new THREE.IcosahedronGeometry(1, 6);
 
     var explodeModifier = new THREE.ExplodeModifier();
     explodeModifier.modify( geometry );
