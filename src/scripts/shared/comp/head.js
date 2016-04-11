@@ -16,6 +16,7 @@ export default class Head {
     this.angle = 0;
     this.drag_percent = 0;
     this.animating = false;
+    this.canDrag = true;
 
     this.material = undefined;
     this.geometry = undefined;
@@ -50,13 +51,21 @@ export default class Head {
 
   }
 
+  enableDrag() {
+    Head.scope.canDrag = true;
+  }
+
+  disableDrag() {
+    Head.scope.canDrag = false;
+  }
+
   events() {
     document.querySelector(".monkey").addEventListener("mousedown", this.onMouseDown)
     document.addEventListener("mouseup", this.onMouseUp)
   }
 
   onMouseDown(event) {
-    if(Head.scope.animating)
+    if(Head.scope.animating || !Head.scope.canDrag)
       return;
 
     Head.scope.emit("drag:start")
@@ -73,6 +82,8 @@ export default class Head {
   }
 
   onMouseMove(event) {
+    if(!Head.scope.canDrag)
+      return
     Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
     Head.scope.emit("drag", Head.scope.drag_percent);
   }

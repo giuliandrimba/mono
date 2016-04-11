@@ -23,7 +23,7 @@ export function outro(req, done) {
   done()
 }
 
-function animationin() {
+function animationIn() {
   // dot.implode()
   head.animationIn();
   _.delay(layout.showMenu, 1000)
@@ -55,13 +55,17 @@ function onDragEnd() {
 }
 
 function onExplodeStart() {
+  head.disableDrag()
   layout.plane.hide()
 }
 
 function onExplodeEnd() {
-  title.classList.add("show");
-  layout.plane.show()
   dot.implode()
+}
+
+function onImplodeEnd() {
+  // title.classList.add("show");
+  layout.plane.show()
 }
 
 function render() {
@@ -77,12 +81,16 @@ function render() {
 
   camera.position.set(0, 0, 4)
 
-  dot = new Dot(scene, camera, renderer);
   head = new Head(scene, camera, renderer);
+
+  _.defer(()=>{
+    dot = new Dot(scene, camera, renderer);
+    dot.on("implode:end", onImplodeEnd)
+  }, 0);
 
   el.appendChild(renderer.domElement);
 
-  animationin();
+  animationIn();
   resize()
   events()
   loop()
@@ -99,7 +107,7 @@ function resize() {
 function loop() {
   requestAnimationFrame( loop );
   head.update()
-  dot.update()
+  if(dot) dot.update()
   camera.lookAt( scene.position )
   renderer.render(scene, camera);
 }

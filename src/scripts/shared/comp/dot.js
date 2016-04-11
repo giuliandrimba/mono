@@ -102,6 +102,7 @@ export default class Dot {
   }
 
   onImplode() {
+    Dot.scope.emit("implode:end");
     // Dot.scope.renderer.setClearColor( 0xf21a0d, 1 );
   }
 
