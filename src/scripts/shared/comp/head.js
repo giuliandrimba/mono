@@ -65,7 +65,7 @@ export default class Head {
   }
 
   onMouseDown(event) {
-    if(Head.scope.animating || !Head.scope.canDrag)
+    if(Head.scope.animating || !Head.scope.canDrag || !Head.scope.mesh.visible)
       return;
 
     Head.scope.emit("drag:start")
@@ -82,13 +82,15 @@ export default class Head {
   }
 
   onMouseMove(event) {
-    if(!Head.scope.canDrag)
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
       return
     Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
     Head.scope.emit("drag", Head.scope.drag_percent);
   }
 
   onMouseUp(event) {
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
+      return
 
     Head.scope.dragging = false;
     document.body.classList.remove("grabbing");
@@ -107,7 +109,6 @@ export default class Head {
           Head.scope.animating = false;
         }, 2000)
       })
-      Head.scope.emit("drag:end", 0);
 
       var rotationAngle = 0
       var rot = Head.scope.mesh.rotation.y * 180 / Math.PI

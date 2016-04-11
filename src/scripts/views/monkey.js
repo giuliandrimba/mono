@@ -56,9 +56,11 @@ function onDragEnd() {
 }
 
 function onExplodeStart() {
+  title.classList.remove("show");
   head.disableDrag()
   layout.menu.lock()
   layout.plane.hide()
+  layout.plane.showProgress(0);
 }
 
 function onExplodeEnd() {
