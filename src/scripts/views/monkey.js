@@ -52,10 +52,12 @@ function onDragStart() {
 
 function onDragEnd() {
   title.classList.add("show");
+  layout.plane.showProgress(0);
 }
 
 function onExplodeStart() {
   head.disableDrag()
+  layout.menu.lock()
   layout.plane.hide()
 }
 

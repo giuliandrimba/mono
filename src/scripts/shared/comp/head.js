@@ -107,7 +107,7 @@ export default class Head {
           Head.scope.animating = false;
         }, 2000)
       })
-      Head.scope.emit("drag", 0);
+      Head.scope.emit("drag:end", 0);
 
       var rotationAngle = 0
       var rot = Head.scope.mesh.rotation.y * 180 / Math.PI
