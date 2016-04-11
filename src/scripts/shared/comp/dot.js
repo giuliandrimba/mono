@@ -121,6 +121,12 @@ export default class Dot {
         if(this.frame / this.total_frames <= 1) {
           this.frame+= 1;
           this.mesh.material.uniforms['v_frame'].value = this.frame;
+
+          if(this.frame / this.total_frames > 0.5 && !this.completed) {
+            this.emit("implode:end")
+            this.completed = true;
+          }
+
         }
       }
       if(this.mesh.rotation.y < 3.8)
