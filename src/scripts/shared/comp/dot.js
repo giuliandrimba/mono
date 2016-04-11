@@ -19,6 +19,10 @@ export default class Dot {
     this.start = Date.now()
     Dot.scope = this;
 
+    this.icosahedronGeometry = new THREE.IcosahedronGeometry(1, 6);
+    var explodeModifier = new THREE.ExplodeModifier();
+    explodeModifier.modify( this.icosahedronGeometry );
+
     this.createMesh()
   } 
 
@@ -27,15 +31,11 @@ export default class Dot {
   }
 
   createMesh() {
-    var geometry = new THREE.IcosahedronGeometry(1, 4);
 
-    var explodeModifier = new THREE.ExplodeModifier();
-    explodeModifier.modify( geometry );
+    var numFaces = this.icosahedronGeometry.faces.length;
+    var numVertices = this.icosahedronGeometry.vertices.length
 
-    var numFaces = geometry.faces.length;
-    var numVertices = geometry.vertices.length
-
-    this.geometry = new THREE.BufferGeometry().fromGeometry( geometry );
+    this.geometry = new THREE.BufferGeometry().fromGeometry( this.icosahedronGeometry );
 
     var displacement = new Float32Array( numFaces * 3 * 3 );
     var initPos = new Float32Array( numFaces * 3 * 3 );
@@ -43,7 +43,6 @@ export default class Dot {
 
     for ( var f = 0; f < numFaces; f ++ ) {
         var index = 9 * f;
-        // console.log(vindex)
         var spring = 1.0 + Math.random()
         var d = 9 * ( 1.1 - Math.random() );
         for ( var i = 0; i < 3; i ++ ) {
@@ -54,15 +53,14 @@ export default class Dot {
         }
       }
 
-    for ( var f = 0; f < geometry.vertices.length; f ++ ) {
+    for ( var f = 0; f < numVertices; f ++ ) {
       var index = 3 * f;
-      initPos[ index ] = geometry.vertices[ f ].x;
-      initPos[ index + 1 ] = geometry.vertices[ f ].y;
-      initPos[ index + 2 ] = geometry.vertices[ f ].z;
+      initPos[ index ] = this.icosahedronGeometry.vertices[ f ].x;
+      initPos[ index + 1 ] = this.icosahedronGeometry.vertices[ f ].y;
+      initPos[ index + 2 ] = this.icosahedronGeometry.vertices[ f ].z;
 
       if(f % 9 === 0)
         var rnd = Math.random() * 0.2;
-      var vindex = index / numVertices;
       
       springs[ index     ] = 0.8 + rnd;
       springs[ index + 1 ] = 0.8 + rnd;

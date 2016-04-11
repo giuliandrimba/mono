@@ -52,7 +52,7 @@ export default class logo {
   animationOut(done) {
     this.vivus.animTimingFunction = Ease.easeExpInOut;
     this.vivus.play(-1.3);
-    _.delay(done, 1450);
+    _.delay(done, 2000);
   }
 
   resize() {

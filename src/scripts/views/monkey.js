@@ -62,7 +62,6 @@ function onExplodeEnd() {
   title.classList.add("show");
   layout.plane.show()
   dot.implode()
-  // layout.menu.showProgress(0);
 }
 
 function render() {
@@ -77,9 +76,6 @@ function render() {
   renderer = new THREE.WebGLRenderer({alpha: true, antialias : true, transparent: false})
 
   camera.position.set(0, 0, 4)
-  scene.fog = new THREE.Fog(0x222222, 20, -20);
-
-  addLights();
 
   dot = new Dot(scene, camera, renderer);
   head = new Head(scene, camera, renderer);
@@ -92,19 +88,6 @@ function render() {
   loop()
 }
 
-function addLights() {
-  var lights = [];
-  lights[0] = new THREE.PointLight( 0xffffff, 1, 0 );
-  lights[1] = new THREE.PointLight( 0xffffff, 1, 0 );
-  lights[2] = new THREE.PointLight( 0xffffff, 1, 0 );
-
-  lights[1].position.set( 100, 200, 100 );
-  lights[2].position.set( -100, -200, -100 );
-
-  scene.add( lights[0] );
-  scene.add( lights[1] );
-  scene.add( lights[2] );
-}
 
 function resize() {
   camera.aspect = window.innerWidth / window.innerHeight;
