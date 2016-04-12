@@ -72,9 +72,9 @@ function onExplodeEnd() {
 
 function onImplodeEnd() {
   // title.classList.add("show");
-  background.show(()=>{
-    head.implode()
-  })
+  // background.show(()=>{
+    // head.implode()
+  // })
   // layout.plane.show()
 }
 

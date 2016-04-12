@@ -103,11 +103,11 @@ export default class Head {
       Head.scope.animating = true;
       Head.scope.emit("explode:start")
       Head.scope.distortion.explode(()=> {
-      Head.scope.emit("explode:end")
-      Head.scope.mesh.visible = false;
-        _.delay(()=>{
-          Head.scope.animating = false;
-        }, 2000)
+        Head.scope.emit("explode:end")
+        // Head.scope.mesh.visible = false;
+          _.delay(()=>{
+            Head.scope.animating = false;
+          }, 2000)
       })
 
       var rotationAngle = 0
@@ -116,7 +116,7 @@ export default class Head {
         var rotationAngle = (rot - (rot % 360)) * Math.PI / 180
       }
 
-      TweenMax.to(Head.scope.mesh.rotation, 1, {y:rotationAngle, ease:Expo.easeout})
+      TweenMax.to(Head.scope.mesh.rotation, 0.75, {y:rotationAngle, ease:Expo.easeout})
 
       return;
     }

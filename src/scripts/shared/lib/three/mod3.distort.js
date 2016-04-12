@@ -88,7 +88,8 @@
         explode: function(done) {
           this.scaleAngle = 1;
           TweenMax.to(this, 0.8, {scaleAngle:1.1, ease:Expo.easeOut})
-          TweenMax.to(this, 1.5, {distortScale:2, ease:Expo.easeInOut, onComplete:done})
+          TweenMax.to(this, 2, {distortScale:3.5, ease:Expo.easeInOut})
+          setTimeout(done, 1500);
           // TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69, onComplete:done})
         },
 
@@ -135,12 +136,12 @@
                 if(!v.distortScale)
                   v.distortScale = 0
 
-                v.distortScale += (this.distortScale - v.distortScale) * (v.velocity<.5 ? 2*v.velocity*v.velocity : -1+2*(2-v.velocity)*v.velocity)
+                v.distortScale += (this.distortScale - v.distortScale) * (v.velocity<.5 ? 3*v.velocity*v.velocity : -1+2*(2-v.velocity)*v.velocity)
 
                 v.scaleMult = (this.scaleAngle + (v.scale * (v.distortScale)))
 
-                if(v.scaleMult > 3.5)
-                  v.scaleMult = 3.5
+                if(v.scaleMult > 7)
+                  v.scaleMult = 7
 
                 vec = v.getVector( );
                 vec = vec.multiply(new Vector3(v.scaleMult, v.scaleMult, v.scaleMult))

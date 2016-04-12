@@ -55,7 +55,6 @@ export default class Dot {
       }
 
       if(f % 3 === 0) {
-        // var d = 20 * (2 - Math.random());
         var d = (50 * Math.random());
       }
 
@@ -97,6 +96,7 @@ export default class Dot {
     this.canCountFrames = false;
     this.frame = 0;
     this.mesh.rotation.y = 0;
+    // this.mesh.rotation.y = 3.8
     this.mesh.material.uniforms[ 'opacity' ].value = 0.0;
     this.mesh.material.uniforms['v_frame'].value = this.frame;
     this.mesh.material.uniforms['animType'].value = 1;
@@ -104,7 +104,7 @@ export default class Dot {
     window.clearTimeout(this.timeout);
     this.timeout = setTimeout(()=>{
       this.canCountFrames = true;
-    }, 1000)
+    }, 0)
 
     this.animType++;
     if(this.animType > 2)
@@ -114,18 +114,18 @@ export default class Dot {
   update() {
 
     if(this.mesh.visible) {
-      if(this.canCountFrames) {
-        if(this.frame / this.total_frames <= 1) {
-          this.frame+= 1;
-          this.mesh.material.uniforms['v_frame'].value = this.frame;
 
-          if(this.frame / this.total_frames > 0.5 && !this.completed) {
-            this.emit("implode:end")
-            this.completed = true;
-            TweenMax.set(this.mesh.material.uniforms[ 'opacity' ], {value:0.0, delay: 0.75})
-          }
+      if(this.frame / this.total_frames <= 1) {
+        this.frame += 1;
+        this.mesh.material.uniforms['v_frame'].value = this.frame;
+
+        if(this.frame / this.total_frames > 0.5 && !this.completed) {
+          this.emit("implode:end")
+          this.completed = true;
+          // TweenMax.set(this.mesh.material.uniforms[ 'opacity' ], {value:0.0, delay: 0.75})
         }
       }
+
       if(this.mesh.rotation.y < 3.8)
         this.mesh.rotation.y += 0.02;
       
