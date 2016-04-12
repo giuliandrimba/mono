@@ -15,6 +15,7 @@ export default class Dot {
     this.time = 1.0;
     this.frame = 0;
     this.total_frames = 60 * 4;
+    this.finished = false;
 
     this.start = Date.now()
     Dot.scope = this;
@@ -110,10 +111,6 @@ export default class Dot {
       this.animType = 0
   }
 
-  onImplode() {
-    Dot.scope.emit("implode:end");
-  }
-
   update() {
 
     if(this.mesh.visible) {
@@ -125,8 +122,8 @@ export default class Dot {
           if(this.frame / this.total_frames > 0.5 && !this.completed) {
             this.emit("implode:end")
             this.completed = true;
+            TweenMax.set(this.mesh.material.uniforms[ 'opacity' ], {value:0.0, delay: 0.75})
           }
-
         }
       }
       if(this.mesh.rotation.y < 3.8)

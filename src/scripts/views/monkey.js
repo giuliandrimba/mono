@@ -3,6 +3,7 @@ import parseHTML from "scripts/shared/lib/parseHTML";
 import OBJLoader from "three-obj-loader";
 import Head from "scripts/shared/comp/head";
 import Dot from "scripts/shared/comp/dot";
+import Background from "scripts/shared/comp/background";
 import * as layout from "scripts/views/layout";
 import _ from "lodash";
 
@@ -12,6 +13,8 @@ var camera = undefined;
 var renderer = undefined;
 var head = undefined;
 var dot = undefined;
+var background = undefined;
+var background = undefined;
 var title = undefined;
 
 export function intro(req, done) {
@@ -69,7 +72,10 @@ function onExplodeEnd() {
 
 function onImplodeEnd() {
   // title.classList.add("show");
-  layout.plane.show()
+  background.show(()=>{
+    head.implode()
+  })
+  // layout.plane.show()
 }
 
 function render() {
@@ -86,6 +92,7 @@ function render() {
   camera.position.set(0, 0, 4)
 
   head = new Head(scene, camera, renderer);
+  background = new Background(scene, camera, renderer);
 
   _.defer(()=>{
     dot = new Dot(scene, camera, renderer);

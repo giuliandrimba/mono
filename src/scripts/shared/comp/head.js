@@ -128,6 +128,7 @@ export default class Head {
   } 
 
   implode() {
+    this.mesh.visible = true;
     Head.scope.distortion.implode()
   }
 
