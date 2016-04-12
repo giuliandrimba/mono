@@ -71,11 +71,15 @@ function onExplodeEnd() {
 }
 
 function onImplodeEnd() {
-  // title.classList.add("show");
-  // background.show(()=>{
-    // head.implode()
-  // })
-  // layout.plane.show()
+  layout.plane.show()
+  _.delay(()=> {
+
+    dot.hide()
+    background.show(()=>{
+      head.animationIn();
+    })
+    
+  }, 1750)
 }
 
 function render() {

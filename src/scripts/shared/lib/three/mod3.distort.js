@@ -93,7 +93,7 @@
           // TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69, onComplete:done})
         },
 
-        implode: function(done) {
+        reset: function(done) {
 
           var total = this.mod.vertices.length;
           var vs = this.mod.vertices;
@@ -104,8 +104,7 @@
           }
 
           this.scaleAngle = 1;
-          TweenMax.to(this, 1, {scaleAngle:1, ease:Expo.easeInOut})
-          TweenMax.to(this, 1.5, {distortScale:0, ease:Expo.easeInOut})
+          this.distortScale = 0
         },
 
         _apply: function( ) {

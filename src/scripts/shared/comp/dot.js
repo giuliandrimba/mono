@@ -100,7 +100,7 @@ export default class Dot {
     this.mesh.material.uniforms[ 'opacity' ].value = 0.0;
     this.mesh.material.uniforms['v_frame'].value = this.frame;
     this.mesh.material.uniforms['animType'].value = 1;
-    TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 2, {value:1.0, ease:Expo.easeOut})
+    TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 3, {value:1.0, ease:Expo.easeOut})
     window.clearTimeout(this.timeout);
     this.timeout = setTimeout(()=>{
       this.canCountFrames = true;
@@ -109,6 +109,10 @@ export default class Dot {
     this.animType++;
     if(this.animType > 2)
       this.animType = 0
+  }
+
+  hide() {
+    this.mesh.material.uniforms[ 'opacity' ].value = 0.0;
   }
 
   update() {
@@ -122,7 +126,6 @@ export default class Dot {
         if(this.frame / this.total_frames > 0.5 && !this.completed) {
           this.emit("implode:end")
           this.completed = true;
-          // TweenMax.set(this.mesh.material.uniforms[ 'opacity' ], {value:0.0, delay: 0.75})
         }
       }
 

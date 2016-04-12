@@ -40,8 +40,11 @@ export default class Head {
   }
 
   animationIn() {
+    
     if(this.loaded) {
+      this.reset();
       TweenMax.to(this.mesh.position, 2, {y:0, ease:Expo.easeInOut})
+      this.animDistort()
     } else {
       this.triggeredAnimationIn = true;
     }
@@ -79,6 +82,16 @@ export default class Head {
     Head.scope.mouseDownAngle = Head.scope.distortion.angle;
 
     document.addEventListener("mousemove", Head.scope.onMouseMove);
+  }
+
+  reset() {
+    this.mouseDownX = 0;
+    this.mouseX = 0;
+    this.mouseDownAngle = 0; 
+    this.mesh.visible = true;
+    this.mesh.position.y -= 0.32;
+    this.mesh.material.uniforms[ 'distortion' ].value = 10.0
+    this.distortion.reset();
   }
 
   onMouseMove(event) {
@@ -157,16 +170,12 @@ export default class Head {
     self.scene.add(self.mesh);
     self.loaded = true;
 
-    this.mesh.position.y -= 0.32;
+    this.distortion = new Distortion(this.mesh);
 
     if(this.triggeredAnimationIn) {
       this.animationIn();
       this.events();
     }
-
-    this.distortion = new Distortion(this.mesh);
-
-    this.animDistort()
   }
 
   update() {

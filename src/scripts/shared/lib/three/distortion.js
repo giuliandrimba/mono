@@ -25,11 +25,10 @@ class Distortion {
     this.twist.explode(done)
   }
 
-  implode(done) {
-    TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 1, {value:1.0,ease:Expo.easeOut, delay:0.9})
-    TweenMax.to(this, 2, {angle:0, ease:Expo.easeOut})
-
-    this.twist.implode(done)
+  reset() {
+    this.mesh.material.uniforms[ 'opacity' ].value = 1;
+    this.angle = 270;
+    this.twist.reset()
   }
 }
 export default Distortion;

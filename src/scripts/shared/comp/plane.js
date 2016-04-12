@@ -97,7 +97,8 @@ export default class Plane {
 
     face.attr({
       id: "face01",
-      stroke: "#333333",
+      stroke: "#ffffff",
+      opacity:0.2,
       strokeWidth: "1" ,
       fill: "none"
     })
@@ -117,7 +118,8 @@ export default class Plane {
 
     face.attr({
       id: "face02",
-      stroke: "#333333",
+      stroke: "#ffffff",
+      opacity:0.2,
       strokeWidth: "1" ,
       fill: "none"
     })

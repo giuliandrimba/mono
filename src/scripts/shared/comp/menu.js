@@ -182,7 +182,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:out",
-      stroke: "#4d4d4d",
+      stroke: "#ffffff",
+      opacity:0.2,
       strokeWidth: "1" ,
       fill: "none"
     })
@@ -200,7 +201,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:inner",
-      stroke: "#4d4d4d",
+      stroke: "#ffffff",
+      opacity:0.2,
       strokeWidth: "0.5" ,
       fill: "none"
     })
@@ -216,7 +218,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:over",
-      stroke: "#4d4d4d",
+      stroke: "#ffffff",
+      opacity:0.2,
       strokeWidth: "0.5" ,
       fill: "none"
     })
