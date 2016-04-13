@@ -88,6 +88,7 @@ export default class Dot {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.scene.add(this.mesh);  
     this.mesh.visible = false;
+    this.mesh.name = "dot";
   }
 
   implode() {
@@ -114,6 +115,7 @@ export default class Dot {
 
   hide() {
     this.mesh.material.uniforms[ 'opacity' ].value = 0.0;
+    this.mesh.visible = false;
   }
 
   update() {
