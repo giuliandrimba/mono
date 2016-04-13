@@ -92,7 +92,7 @@ function render() {
 
   title = document.querySelector(".title");
 
-  scene = window.scene = new THREE.Scene()
+  scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
   renderer = new THREE.WebGLRenderer({alpha: true, antialias : true, transparent: false})
 

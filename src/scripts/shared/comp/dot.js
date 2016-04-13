@@ -12,12 +12,14 @@ export default class Dot {
     this.material = undefined;
     this.geometry = undefined;
     this.mesh = undefined;
-    this.time = 1.0;
     this.frame = 0;
     this.total_frames = 60 * 4;
     this.finished = false;
+    this.time = performance.now();
+    this.now = performance.now()
+    this.distance = 0;
 
-    this.start = Date.now()
+    this.clock = new THREE.Clock();
     Dot.scope = this;
 
     this.icosahedronGeometry = new THREE.IcosahedronGeometry(1, 6);
@@ -120,14 +122,20 @@ export default class Dot {
 
   update() {
 
-    if(this.mesh.visible) {
+    this.now = performance.now();
+    this.distance = this.now - this.time;
+    this.time = this.now;
 
+    if(this.mesh.visible) {
+        
       if(this.frame / this.total_frames <= 1) {
-        this.frame += 1;
+        this.frame += this.distance / 20;
         this.mesh.material.uniforms['v_frame'].value = this.frame;
 
+        var count = this.frame / this.total_frames;
+
         if(this.frame / this.total_frames > 0.5 && !this.completed) {
-          this.emit("implode:end")
+          this.emit("implode:end", count)
           this.completed = true;
         }
       }
