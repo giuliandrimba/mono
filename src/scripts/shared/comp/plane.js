@@ -83,6 +83,7 @@ export default class Plane {
   hide() {
     TweenMax.set(this.face01.node, { css:{strokeDasharray: this.segmentFace01.strokeDasharray(0, 0) } });
     TweenMax.set(this.face02.node, { css:{strokeDasharray: this.segmentFace02.strokeDasharray(0, 0) } });
+    this.showProgress(0)
   }
 
   _createFace01() {

@@ -27,18 +27,16 @@ export function outro(req, done) {
 }
 
 function animationIn() {
-  // dot.implode()
   head.animationIn();
-  _.delay(layout.showMenu, 1000)
-  _.delay(()=> {
-    title.classList.add("show");
-  }, 4000)
+
+  _.delay(layout.showMenu, 1000);
+  _.delay(showTitle, 4000);
 }
 
 function events() {
   window.addEventListener("resize", resize);
-  head.on("drag", onDrag)
   head.on("drag:start", onDragStart)
+  head.on("drag", onDrag)
   head.on("drag:end", onDragEnd)
   head.on("explode:start", onExplodeStart)
   head.on("explode:end", onExplodeEnd)
@@ -50,20 +48,19 @@ function onDrag(percentage) {
 }
 
 function onDragStart() {
-  title.classList.remove("show");
+  hideTitle()
 }
 
 function onDragEnd() {
-  title.classList.add("show");
+  showTitle()
   layout.plane.showProgress(0);
 }
 
 function onExplodeStart() {
-  title.classList.remove("show");
+  hideTitle()
   head.disableDrag()
   layout.menu.lock()
   layout.plane.hide()
-  layout.plane.showProgress(0);
 }
 
 function onExplodeEnd() {
@@ -72,14 +69,12 @@ function onExplodeEnd() {
 
 function onImplodeEnd() {
   layout.plane.show()
-  _.delay(()=> {
+  _.delay(showBackground, 1750);
+}
 
-    dot.hide()
-    background.show(()=>{
-      head.animationIn();
-    })
-    
-  }, 1750)
+function showBackground() {
+  dot.hide()
+  background.show(()=> { head.animationIn() })
 }
 
 function render() {
@@ -111,6 +106,13 @@ function render() {
   loop()
 }
 
+function showTitle() {
+  title.classList.add("show");
+}
+
+function hideTitle() {
+  title.classList.remove("show");
+}
 
 function resize() {
   camera.aspect = window.innerWidth / window.innerHeight;
