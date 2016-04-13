@@ -79,17 +79,17 @@ export default class Menu {
 
     this.overState = true;
 
-    TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
-    TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
+    TweenMax.to(this.innerPath.node, 0.25, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
+    TweenMax.to(this.overPath.node, 0.25, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     
     window.clearTimeout(this.smallCircleDelay);
     this.smallCircle.stop();
-    this.smallCircle.animate({cy:this.SIZE + 13}, 500, Ease.easeExpOut)
+    this.smallCircle.animate({cy:this.SIZE + 13}, 250, Ease.easeExpOut)
 
     window.clearTimeout(this.bigCircleDelay);
     this.bigCircleDelay = _.delay(()=>{
       this.bigCircle.stop();
-      this.bigCircle.animate({cy:this.SIZE / 2}, 700, Ease.easeExpOut)
+      this.bigCircle.animate({cy:this.SIZE / 2}, 500, Ease.easeExpOut)
     }, 100)
   }
 
@@ -106,16 +106,16 @@ export default class Menu {
 
     this.overState = false;
 
-    TweenMax.to(this.overPath.node, 0.75, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
-    TweenMax.to(this.innerPath.node, 0.75, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
+    TweenMax.to(this.overPath.node, 0.5, {strokeDasharray: this.segmentOverPath.strokeDasharray("0%", "0%"), ease:Expo.easeOut });
+    TweenMax.to(this.innerPath.node, 0.5, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), ease:Expo.easeOut });
     window.clearTimeout(this.bigCircleDelay);
     this.bigCircle.stop();
-    this.bigCircle.animate({cy:-26}, 500, Ease.easeExpOut)
+    this.bigCircle.animate({cy:-26}, 350, Ease.easeExpOut)
 
     window.clearTimeout(this.smallCircleDelay);
     this.smallCircleDelay = _.delay(()=>{
       this.smallCircle.stop();
-      this.smallCircle.animate({cy:30}, 700, Ease.easeExpOut)
+      this.smallCircle.animate({cy:30}, 500, Ease.easeExpOut)
     }, 100)
   }
 
