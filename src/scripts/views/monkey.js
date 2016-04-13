@@ -16,6 +16,7 @@ var dot = undefined;
 var background = undefined;
 var background = undefined;
 var title = undefined;
+var showTitleTimeout = undefined
 
 export function intro(req, done) {
   render();
@@ -30,7 +31,7 @@ function animationIn() {
   head.animationIn();
 
   _.delay(layout.showMenu, 1000);
-  _.delay(showTitle, 4000);
+  showTitleTimeout = _.delay(showTitle, 4000);
 }
 
 function events() {
@@ -118,6 +119,7 @@ function showTitle() {
 }
 
 function hideTitle() {
+  window.clearTimeout(showTitleTimeout);
   title.classList.remove("show");
 }
 

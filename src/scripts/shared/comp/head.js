@@ -186,6 +186,10 @@ export default class Head {
   }
 
   update() {
+
+    if(!this.loaded)
+      return
+
     var delta = 5 * this.clock.getDelta();
 
     if(this.mesh)
