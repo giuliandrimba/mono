@@ -29,7 +29,7 @@ export function outro(req, done) {
 
 function animationIn() {
   head.animationIn();
-
+  head.disableDrag()
   _.delay(layout.showMenu, 1000);
   showTitleTimeout = _.delay(showTitle, 4000);
 }
@@ -116,6 +116,7 @@ function render() {
 
 function showTitle() {
   title.classList.add("show");
+  head.enableDrag()
 }
 
 function hideTitle() {
