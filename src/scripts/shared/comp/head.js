@@ -91,6 +91,7 @@ export default class Head {
     this.mesh.position.y -= 0.32;
     this.mesh.material.uniforms[ 'distortion' ].value = 10.0
     this.distortion.reset();
+    this.mesh.rotation.y = 0;
   }
 
   onMouseMove(event) {
@@ -131,19 +132,17 @@ export default class Head {
         Head.scope.animating = false;
       }, 2000)
     })
-
+    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 0.5, {value:0.0, ease:Expo.easeOut, delay:1.35})
     Head.scope.resetAngle()
   }
 
   resetAngle() {
     var rotationAngle = 0
-    var rot = Head.scope.mesh.rotation.y * 180 / Math.PI
+    var rot = Head.scope.mesh.rotation.y
 
-    if(rot > 360) {
-      var rotationAngle = (rot - (rot % 360)) * Math.PI / 180
-    }
-
-    TweenMax.to(Head.scope.mesh.rotation, 0.75, {y:rotationAngle, ease:Expo.easeout})
+    var rotationAngle = ((rot - (rot % Math.PI)))
+    rotationAngle -= Math.PI * 4;
+    TweenMax.to(Head.scope.mesh.rotation, 1.75, {y:rotationAngle, ease:Expo.easeOut})
 
   }
 
