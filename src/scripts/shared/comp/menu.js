@@ -94,12 +94,10 @@ export default class Menu {
   }
 
   lock() {
-    console.log("LOCK")
-    this.showProgress(1);
+
   }
 
   unlock() {
-    console.log("UNLOCK")
   }
 
   onMouseOut() {

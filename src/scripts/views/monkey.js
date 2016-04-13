@@ -74,7 +74,14 @@ function onImplodeEnd() {
 
 function showBackground() {
   dot.hide()
-  background.show(()=> { head.animationIn() })
+  background.show(()=> { onBackgroundShow() })
+}
+
+function onBackgroundShow() {
+  head.animationIn(()=>{
+    layout.menu.showProgress(0);
+    head.enableDrag()
+  })
 }
 
 function render() {

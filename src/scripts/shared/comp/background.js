@@ -24,7 +24,7 @@ export default class Background {
   show(done) {
     TweenMax.set(this.mesh.material, {opacity:1})
     TweenMax.to(this.mesh.material, 2.5, {opacity:0})
-    setTimeout(done, 3250);
+    setTimeout(done, 1500);
   }
 
   update() {

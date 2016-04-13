@@ -38,11 +38,11 @@ export default class Head {
     this.triggeredAnimationIn = false;
   }
 
-  animationIn() {
+  animationIn(done) {
     
     if(this.loaded) {
       this.reset();
-      TweenMax.to(this.mesh.position, 2, {y:0, ease:Expo.easeInOut})
+      TweenMax.to(this.mesh.position, 2, {y:0, ease:Expo.easeInOut, onComplete:done})
       this.animDistort()
     } else {
       this.triggeredAnimationIn = true;

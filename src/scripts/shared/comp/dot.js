@@ -91,6 +91,7 @@ export default class Dot {
   }
 
   implode() {
+    this.completed = false;
     this.mesh.visible = true;
     TweenMax.killTweensOf(this.mesh.material.uniforms[ 'opacity' ]);
     this.canCountFrames = false;
