@@ -15,7 +15,6 @@ export default class Head {
     this.dragging = false;
     this.angle = 0;
     this.drag_percent = 0;
-    this.animating = false;
     this.canDrag = true;
 
     this.material = undefined;
@@ -112,25 +111,7 @@ export default class Head {
     TweenMax.killTweensOf(Head.scope.distortion);
 
     if(Math.abs(Head.scope.distortion.angle) > 270) {
-
-      Head.scope.animating = true;
-      Head.scope.emit("explode:start")
-      Head.scope.distortion.explode(()=> {
-        Head.scope.emit("explode:end")
-        // Head.scope.mesh.visible = false;
-          _.delay(()=>{
-            Head.scope.animating = false;
-          }, 2000)
-      })
-
-      var rotationAngle = 0
-      var rot = Head.scope.mesh.rotation.y * 180 / Math.PI
-      if(rot > 360) {
-        var rotationAngle = (rot - (rot % 360)) * Math.PI / 180
-      }
-
-      TweenMax.to(Head.scope.mesh.rotation, 0.75, {y:rotationAngle, ease:Expo.easeout})
-
+      Head.scope.explode()
       return;
     }
 
@@ -139,6 +120,32 @@ export default class Head {
     Head.scope.emit("drag", 0);
     Head.scope.emit("drag:end")
   } 
+
+  explode() {
+    Head.scope.animating = true;
+    Head.scope.emit("explode:start")
+
+    Head.scope.distortion.explode(()=> {
+      Head.scope.emit("explode:end")
+      _.delay(()=>{
+        Head.scope.animating = false;
+      }, 2000)
+    })
+
+    Head.scope.resetAngle()
+  }
+
+  resetAngle() {
+    var rotationAngle = 0
+    var rot = Head.scope.mesh.rotation.y * 180 / Math.PI
+
+    if(rot > 360) {
+      var rotationAngle = (rot - (rot % 360)) * Math.PI / 180
+    }
+
+    TweenMax.to(Head.scope.mesh.rotation, 0.75, {y:rotationAngle, ease:Expo.easeout})
+
+  }
 
   implode() {
     this.mesh.visible = true;
@@ -180,11 +187,11 @@ export default class Head {
 
   update() {
     var delta = 5 * this.clock.getDelta();
+
     if(this.mesh)
       this.mesh.rotation.y += this.speed * delta;
 
     if(this.dragging) {
-      // this.distortion.angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 0.5) * -1
       var angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 2) * -1
       this.distortion.angle = angle / this.windowHalfX * 360
     }
