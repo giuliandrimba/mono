@@ -182,7 +182,7 @@ export default class Menu {
       id: "menu:out",
       stroke: "#ffffff",
       opacity:0.2,
-      strokeWidth: "1" ,
+      strokeWidth: "2" ,
       fill: "none"
     })
 
@@ -201,7 +201,7 @@ export default class Menu {
       id: "menu:inner",
       stroke: "#ffffff",
       opacity:0.2,
-      strokeWidth: "0.5" ,
+      strokeWidth: "1" ,
       fill: "none"
     })
 
@@ -218,7 +218,7 @@ export default class Menu {
       id: "menu:over",
       stroke: "#ffffff",
       opacity:0.2,
-      strokeWidth: "0.5" ,
+      strokeWidth: "1" ,
       fill: "none"
     })
 
