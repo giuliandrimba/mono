@@ -20,7 +20,7 @@ export default class Grid {
     this.buildDays()
     this.render()
     if(moment().month() === this.month) {
-      this.addCaleido()
+      this.addCaleido(false)
     }
   }
 
@@ -36,7 +36,6 @@ export default class Grid {
 
   animate() {
     if(moment().month() === this.month){
-      this.caleido.reset()
       for(var i = 0; i < this.texts.length; i++) {
         this.texts[i].y = this.texts[i]._y2
         TweenMax.to(this.texts[i], 3, {y:this.texts[i]._y, ease:Quart.easeInOut, delay:this.texts[i]._delay * 0.1})
@@ -47,11 +46,12 @@ export default class Grid {
   }
 
   showCaleido() {
+    this.caleido.reset();
     this.caleido.show();
   }
 
-  addCaleido() {
-    this.caleido = new Caleido(moment().date());
+  addCaleido(reset) {
+    this.caleido = new Caleido(moment().date(), reset);
     this.textsContainer.addChild(this.caleido.el);
     this.caleido.el.x = this.texts[7].x + (this.texts[7].width / 2)
     this.caleido.el.y = this.texts[7].y + (this.texts[7].height / 2)
@@ -75,8 +75,8 @@ export default class Grid {
         num = `0${num}`
       }
 
-      let text = new PIXI.Text(num,{font : `${fontSize}px Helvetica`, fill : 0xFFFFFF});
-      text.alpha = 0.3;
+      let text = new PIXI.Text(num,{font : `${fontSize}px HelveticaBold`, fill : 0xFFFFFF});
+      text.alpha = 0.06;
       text.x = col * (marginLeft + text.width);
       if(moment().month() === this.month){
         text._y = row * (marginBottom + text.height);
@@ -133,9 +133,11 @@ export default class Grid {
     this.el.removeChildren()
     this.textsContainer = this.buildTexts()
     this.el.addChild(this.textsContainer);
-
-    if(moment().month() === this.month) {
-      this.addCaleido()
+    if(this.caleido) {
+      this.caleido.resize()
+      this.textsContainer.addChild(this.caleido.el);
+      this.caleido.el.x = this.texts[7].x + (this.texts[7].width / 2)
+      this.caleido.el.y = this.texts[7].y + (this.texts[7].height / 2)
     }
   }
 }

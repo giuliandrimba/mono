@@ -3,6 +3,7 @@ import _ from "lodash";
 import parseHTML from "scripts/shared/lib/parseHTML";
 import Plane from "scripts/shared/comp/plane";
 import Menu from "scripts/shared/comp/menu";
+import WebFont from 'webfontloader';
 
 var el = undefined;
 var plane = undefined;
@@ -10,6 +11,12 @@ var SVG = undefined;
 var menu = undefined;
 
 export function intro(req, done) {
+  WebFont.load({
+    custom: {
+      families:['HelveticaBold'],
+      urls: ['/app.css']
+    }
+  })
   render();
 
   plane = new Plane();

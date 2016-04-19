@@ -1,8 +1,11 @@
+import tmpl from "templates/views/monkey.html";
+import parseHTML from "scripts/shared/lib/parseHTML";
 import TweenMax from "gsap";
 import moment from "moment";
 import Grid from "scripts/shared/comp/grid";
 import _ from "lodash";
 
+var el = undefined;
 var renderer = undefined;
 var stage = undefined;
 var grid = undefined;
@@ -10,6 +13,7 @@ var gridsContainer = undefined;
 var numGrids = 12;
 var numGrids = 12;
 var grids = [];
+
 
 export function intro(req, done) {
 	render();
@@ -21,9 +25,12 @@ export function outro(req, done) {
 }
 
 function render() {
+  el = parseHTML(tmpl);
+  document.getElementById("pages").appendChild(el);
+
   renderer = new PIXI.WebGLRenderer(window.innerWidth, window.innerHeight, {antialias: true});
   renderer.view.id = "calendar";
-  document.getElementById("pages").appendChild(renderer.view);
+  el.appendChild(renderer.view);
 
   stage = new PIXI.Container();
   gridsContainer = new PIXI.Container;
@@ -34,13 +41,12 @@ function render() {
     grids.push(grid);
   }
 
-  document.body.addEventListener("mousedown", animationIn)
   window.addEventListener("resize", resize)
 
   stage.addChild(gridsContainer);
 
-  animationIn();
   resize();
+  animationIn();
   loop()
 }
 
@@ -53,7 +59,7 @@ function resize() {
 }
 
 function animationIn() {
-  gridsContainer.y = 0;
+  gridsContainer.y = window.innerHeight
   let _y = window.innerHeight * moment().month();
   TweenMax.to(gridsContainer, 3, {y:- _y, ease:Quart.easeInOut});
   for(var i = 0; i < numGrids; i++) {

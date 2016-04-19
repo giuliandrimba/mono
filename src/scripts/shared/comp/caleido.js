@@ -1,6 +1,7 @@
 export default class Caleido {
   constructor(date) {
     this.date = date;
+    this.ORIGINAL_WIDTH = window.innerWidth
     this.el = new PIXI.Container();
     this.firstBorders = [];
     this.secondBorders = [];
@@ -21,7 +22,7 @@ export default class Caleido {
   buildPattern(total) {
     var fontSize = Math.round(120 * window.innerWidth / 1920);
     this.pattern = new PIXI.Container();
-    this.text = new PIXI.Text(this.date,{font : `${fontSize}px Helvetica`, fill : 0x000000});
+    this.text = new PIXI.Text(this.date,{font : `${fontSize}px HelveticaBold`, fill : 0x000000});
     this.text.alpha = 0;
     this.text.x = -this.text.width / 2;
     this.text.y = -this.text.width / 2;
@@ -291,6 +292,7 @@ export default class Caleido {
 
   resize() {
     this.RADIUS = Math.round(109 * window.innerWidth / 1920);
+    this.el.scale.x = this.el.scale.y = window.innerWidth / this.ORIGINAL_WIDTH;
   }
 
   show() {
