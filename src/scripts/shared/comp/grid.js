@@ -45,6 +45,12 @@ export default class Grid {
     }
   }
 
+  animateOut() {
+    if(this.caleido) {
+      this.caleido.hide()
+    }
+  }
+
   showCaleido() {
     this.caleido.reset();
     this.caleido.show();

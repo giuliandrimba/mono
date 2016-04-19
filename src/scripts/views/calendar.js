@@ -5,6 +5,7 @@ import moment from "moment";
 import Grid from "scripts/shared/comp/grid";
 import _ from "lodash";
 
+var rendered = false;
 var el = undefined;
 var date = undefined;
 var monthDay = undefined;
@@ -15,15 +16,25 @@ var gridsContainer = undefined;
 var numGrids = 12;
 var numGrids = 12;
 var grids = [];
+var rAF = undefined;
+var active = false;
 
 
 export function intro(req, done) {
-	render();
+  active = true;
+  if(!rendered) {
+    render(); 
+  } else {
+    init();
+  }
   done();
 }
 
 export function outro(req, done) {
-  done();
+  active = false;
+  // window.cancelAnimationFrame(rAF);
+  animationOut()
+  // done();
 }
 
 function render() {
@@ -49,7 +60,10 @@ function render() {
   window.addEventListener("resize", resize)
 
   stage.addChild(gridsContainer);
+  init();
+}
 
+function init() {
   resize();
   animationIn();
   loop()
@@ -79,8 +93,15 @@ function animationIn() {
   }
 }
 
+function animationOut() {
+  date.classList.remove("tween");
+  for(var i = 0; i < numGrids; i++) {
+    grids[i].animateOut();
+  }
+}
+
 function loop() {
-  window.requestAnimationFrame(loop);
+  rAF = window.requestAnimationFrame(loop);
 
   renderer.render(stage);
 }

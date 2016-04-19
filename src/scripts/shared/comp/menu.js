@@ -83,7 +83,6 @@ export default class Menu {
   }
 
   enableCalendarState() {
-    let paths = this.el.querySelector("path")
     this.onMouseOver()
     this.calendarState = true;
 
@@ -93,14 +92,23 @@ export default class Menu {
   }
 
   disableCalendarState() {
-
+    this.calendarState = false;
+    this.borderPath.attr({stroke:"#333333"})
+    this.innerPath.attr({stroke:"#333333"})
+    this.overPath.attr({stroke:"#333333"})
+    this.onMouseOut()
   }
 
   onMouseDown() {
     if(this.animating)
       return
-    this.enableCalendarState()
-    ways.go("/calendar");
+    if(!this.calendarState) {
+      this.enableCalendarState()
+      ways.go("/calendar");
+    } else {
+      this.disableCalendarState()
+      ways.go("/monkey");
+    }
   }
 
   onMouseOver() {

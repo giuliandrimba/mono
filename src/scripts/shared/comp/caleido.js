@@ -42,7 +42,150 @@ export default class Caleido {
     this.circle.scale.x = this.circle.scale.y = 0
   }
 
-  buildFirstBorder(width, height) {
+  resize() {
+    this.RADIUS = Math.round(109 * window.innerWidth / 1920);
+    this.el.scale.x = this.el.scale.y = window.innerWidth / this.ORIGINAL_WIDTH;
+  }
+
+  show() {
+    TweenMax.to(this.circle.scale, 2,{x:1,y:1, ease:Expo.easeInOut});
+    TweenMax.to(this.text, 1,{alpha:1, ease:Expo.easeInOut, delay:0.5});
+
+    for(var f = 0; f < this.firstBorders.length; f++) {
+      let border = this.firstBorders[f];
+      TweenMax.to(border.circle, 1.7, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.5})
+    }
+
+    for(var s = 0; s < this.secondBorders.length; s++) {
+      let border = this.secondBorders[s];
+      TweenMax.to(border.circle, 1.9, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.6})
+    }
+
+    for(var t = 0; t < this.thirdBorders.length; t++) {
+      let border = this.thirdBorders[t];
+      TweenMax.to(border.circle, 2.3, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.65})
+    }
+  }
+
+  hide() {
+
+    for(var t = 0; t < this.thirdBorders.length; t++) {
+      let border = this.thirdBorders[t];
+      TweenMax.to(border.circle, 1, {x:border.circle._x2, y:border.circle._y2, ease:Expo.easeInOut})
+    }
+
+    for(var s = 0; s < this.secondBorders.length; s++) {
+      let border = this.secondBorders[s];
+      TweenMax.to(border.circle, 0.9, {x:border.circle._x2, y:border.circle._y2, ease:Expo.easeInOut, delay:0.2})
+    }
+
+    for(var f = 0; f < this.firstBorders.length; f++) {
+      let border = this.firstBorders[f];
+      TweenMax.to(border.circle, 0.7, {x:border.circle._x2, y:border.circle._y2, ease:Expo.easeInOut, delay:0.3})
+    }
+
+    TweenMax.to(this.circle.scale, 1,{x:0,y:0, ease:Expo.easeInOut, delay:0.4});
+    TweenMax.to(this.text, 0.5,{alpha:0, ease:Expo.easeInOut, delay:0.5});
+  }
+
+  buildCircle() {
+    var g = new PIXI.Graphics();
+    g.beginFill(0xFF0000)
+    g.drawCircle(0,0,this.RADIUS);
+    g.endFill()
+
+    return g;
+  }
+
+  buildBorder(width, height, position) {
+    var _width = Math.round(width * window.innerWidth / 1920);
+    var _height = Math.round(height * window.innerWidth / 1920);
+    var b1 = new PIXI.Container();
+    var b1mask = this.buildMask(_width,_height);
+    var b1circle = this.buildCircle()
+    b1.circle = b1circle;
+    b1.addChild(b1mask);
+    b1.addChild(b1circle);
+    b1circle.mask = b1mask;
+
+    if(position === "top") {
+      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
+      b1circle.x = b1circle._x2 = (b1circle.width / 2);
+
+      b1circle._y = (b1circle.height / 2);
+      b1circle._x = (b1circle.width / 2);
+    }
+
+    if(position === "right") {
+      b1circle.y = b1circle._y2 = (b1circle.height / 2);
+      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
+
+      b1circle._y = (b1circle.height / 2);
+      b1circle._x = (-b1circle.width / 2) + _width;
+    }
+
+    if(position === "bottom") {
+      b1circle.y = b1circle._y2 = (-b1circle.width / 2) - 2
+      b1circle.x = b1circle._x2 = (b1circle.width / 2);
+
+      b1circle._y = (-b1circle.width / 2) + _height
+      b1circle._x = (b1circle.width / 2);
+    }
+
+    if(position === "left") {
+      b1circle.y = b1circle._y2 = (b1circle.height / 2) + 2;
+      b1circle.x = b1circle._x2 = (b1circle.width);
+
+      b1circle._y = (b1circle.height / 2);
+      b1circle._x = (b1circle.width / 2);
+    }
+
+    if(position === "top-right") {
+      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
+      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
+
+      b1circle._y = (b1circle.height / 2);
+      b1circle._x = (-b1circle.width / 2) + _width;
+    }
+
+    if(position === "bottom-right") {
+      b1circle.y = b1circle._y2 = (-b1circle.height / 2) - 2;
+      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
+
+      b1circle._y = (-b1circle.height / 2) + _height;
+      b1circle._x = (-b1circle.width / 2) + _width;
+    }
+
+    if(position === "bottom-left") {
+      b1circle.y = b1circle._y2 = (-b1circle.height / 2) - 2;
+      b1circle.x = b1circle._x2 =(b1circle.width) + 2;
+
+      b1circle._y = (-b1circle.height / 2) + _height;
+      b1circle._x = (b1circle.width / 2);
+    }
+
+    if(position === "top-left") {
+      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
+      b1circle.x = b1circle._x2 = (b1circle.width) + 2;
+
+      b1circle._y = (b1circle.height / 2);
+      b1circle._x = (b1circle.width / 2);
+    }
+
+    b1._width = _width
+    b1._height = _height
+
+    return b1;
+  }
+
+  buildMask(width, height) {
+    var mask = new PIXI.Graphics()
+    mask.beginFill(0xFF0000)
+    mask.drawRect(0,0,width, height)
+    return mask;
+  }
+
+   buildFirstBorder(width, height) {
     var b1 = this.buildBorder(218, 109, "top");
     b1.x = (- this.circle.width / 2);
     b1.y = (-this.circle.height) - 2
@@ -191,131 +334,5 @@ export default class Caleido {
     b12.y = (-this.circle.height) - this.secondBorders[0]._height - 5
     this.pattern.addChild(b12);
     this.thirdBorders.push(b12);
-  }
-
-  buildCircle() {
-    var g = new PIXI.Graphics();
-    g.beginFill(0xFF0000)
-    g.drawCircle(0,0,this.RADIUS);
-    g.endFill()
-
-    return g;
-  }
-
-  buildBorder(width, height, position) {
-    var _width = Math.round(width * window.innerWidth / 1920);
-    var _height = Math.round(height * window.innerWidth / 1920);
-    var b1 = new PIXI.Container();
-    var b1mask = this.buildMask(_width,_height);
-    var b1circle = this.buildCircle()
-    b1.circle = b1circle;
-    b1.addChild(b1mask);
-    b1.addChild(b1circle);
-    b1circle.mask = b1mask;
-
-    if(position === "top") {
-      b1circle.y = (b1circle.height) + 2;
-      b1circle.x = (b1circle.width / 2);
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "right") {
-      b1circle.y = (b1circle.height / 2);
-      b1circle.x = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom") {
-      b1circle.y = (-b1circle.width / 2) - 2
-      b1circle.x = (b1circle.width / 2);
-
-      b1circle._y = (-b1circle.width / 2) + _height
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "left") {
-      b1circle.y = (b1circle.height / 2) + 2;
-      b1circle.x = (b1circle.width);
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "top-right") {
-      b1circle.y = (b1circle.height) + 2;
-      b1circle.x = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom-right") {
-      b1circle.y = (-b1circle.height / 2) - 2;
-      b1circle.x = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (-b1circle.height / 2) + _height;
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom-left") {
-      b1circle.y = (-b1circle.height / 2) - 2;
-      b1circle.x = (b1circle.width) + 2;
-
-      b1circle._y = (-b1circle.height / 2) + _height;
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "top-left") {
-      b1circle.y = (b1circle.height) + 2;
-      b1circle.x = (b1circle.width) + 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    b1._width = _width
-    b1._height = _height
-
-    return b1;
-  }
-
-  buildMask(width, height) {
-    var mask = new PIXI.Graphics()
-    mask.beginFill(0xFF0000)
-    mask.drawRect(0,0,width, height)
-    return mask;
-  }
-
-  resize() {
-    this.RADIUS = Math.round(109 * window.innerWidth / 1920);
-    this.el.scale.x = this.el.scale.y = window.innerWidth / this.ORIGINAL_WIDTH;
-  }
-
-  show() {
-    TweenMax.to(this.circle.scale, 2,{x:1,y:1, ease:Expo.easeInOut});
-    TweenMax.to(this.text, 1,{alpha:1, ease:Expo.easeInOut, delay:0.5});
-
-    for(var f = 0; f < this.firstBorders.length; f++) {
-      let border = this.firstBorders[f];
-      TweenMax.to(border.circle, 1.7, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.5})
-    }
-
-    for(var s = 0; s < this.secondBorders.length; s++) {
-      let border = this.secondBorders[s];
-      TweenMax.to(border.circle, 1.9, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.6})
-    }
-
-    for(var t = 0; t < this.thirdBorders.length; t++) {
-      let border = this.thirdBorders[t];
-      TweenMax.to(border.circle, 2.3, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.65})
-    }
-  }
-
-  hide() {
-
   }
 }
