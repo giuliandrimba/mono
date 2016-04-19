@@ -27,7 +27,8 @@ export function intro(req, done) {
   } else {
     el.style.zIndex = 1;
     head.animationIn();
-    head.disableDrag()
+    head.enableDrag()
+    layout.plane.show()
     showTitleTimeout = _.delay(showTitle, 4000);
     resize()
   }

@@ -84,6 +84,7 @@ export default class Head {
   }
 
   reset() {
+    this.clock = new THREE.Clock();
     this.mouseDownX = 0;
     this.mouseX = 0;
     this.mouseDownAngle = 0; 
@@ -92,6 +93,7 @@ export default class Head {
     this.mesh.material.uniforms[ 'distortion' ].value = 10.0
     this.distortion.reset();
     this.mesh.rotation.y = 0;
+    this.speed = 0.3;
   }
 
   onMouseMove(event) {
