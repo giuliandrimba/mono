@@ -4,6 +4,7 @@ import Vivus from "vivus";
 import Snap from "snapsvg";
 import Segment from "segment-js";
 import _ from "lodash";
+import ways from "ways";
 
 export default class Menu {
   constructor() {
@@ -46,6 +47,7 @@ export default class Menu {
   events() {
     this.el.addEventListener("mouseover", this.onMouseOver.bind(this))
     this.el.addEventListener("mouseout", this.onMouseOut.bind(this))
+    this.el.addEventListener("mousedown", this.onMouseDown.bind(this))
   }
 
   showProgress(progress) {
@@ -71,6 +73,10 @@ export default class Menu {
       this.smallCircleRed.stop();
       this.smallCircleRed.animate({cy: -41}, 500, Ease.easeExpOut)
     }
+  }
+
+  onMouseDown() {
+    ways.go("/calendar");
   }
 
   onMouseOver() {

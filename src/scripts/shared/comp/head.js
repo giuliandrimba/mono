@@ -49,8 +49,9 @@ export default class Head {
     }
   }
 
-  animationOut() {
-
+  animationOut(done) {
+    Head.scope.animating = true;
+    this.animDistortOut(done)
   }
 
   enableDrag() {
@@ -218,5 +219,14 @@ export default class Head {
     TweenMax.to(this, 1, {speed:0.01})
     TweenMax.to(this.distortion, 1.1, {angle:45, ease:Expo.easeInOut, delay:0.7})
     TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3})
+  } 
+
+  animDistortOut(done) {
+    TweenMax.to(this.mesh.position, 1, {y:1, ease:Expo.easeInOut})
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:5.0, ease:Expo.easeInOut})
+    TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5, onComplete:done})
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
+    TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
+    TweenMax.to(this, 1, {speed:0.3})
   } 
 }

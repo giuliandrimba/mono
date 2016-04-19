@@ -12,5 +12,5 @@ export function init() {
   ways("/monkey", monkey.intro, monkey.outro, "/");
   ways("/calendar", calendar.intro, calendar.outro, "/");
 
-  ways.go("/calendar")
+  ways.go("/monkey")
 }

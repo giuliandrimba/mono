@@ -24,7 +24,8 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
-  done()
+  layout.plane.hide()
+  head.animationOut(done)
 }
 
 function animationIn() {
