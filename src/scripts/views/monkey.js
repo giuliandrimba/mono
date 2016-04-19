@@ -27,7 +27,6 @@ export function intro(req, done) {
   } else {
     el.style.zIndex = 1;
     head.animationIn();
-    head.enableDrag()
     layout.plane.show()
     showTitleTimeout = _.delay(showTitle, 4000);
     resize()
@@ -38,6 +37,7 @@ export function intro(req, done) {
 export function outro(req, done) {
   document.body.classList.remove("grab");
   layout.plane.hide(true)
+  head.disableDrag()
   head.animationOut(()=>{
     active = false;
     done();
@@ -134,6 +134,7 @@ function render() {
 }
 
 function showTitle() {
+  document.body.classList.add("grab");
   title.classList.add("show");
 
   head.enableDrag()

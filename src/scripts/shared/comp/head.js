@@ -219,7 +219,7 @@ export default class Head {
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.01})
     TweenMax.to(this.distortion, 1.1, {angle:45, ease:Expo.easeInOut, delay:0.7})
-    TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3})
+    TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3, onComplete:()=>{Head.scope.animating = false;}})
   } 
 
   animDistortOut(done) {

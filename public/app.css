@@ -492,9 +492,9 @@ body.grabbing {
   filter: alpha(opacity=40);
 }
 
-/* line 37 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
+/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
 
-/* line 37 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar {
@@ -502,16 +502,17 @@ body.grabbing {
   width: 100%;
   height: 100%;
   z-index: 0;
+  pointer-events: none;
 }
 
-/* line 7 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date {
   position: absolute;
   top: 50%;
   margin-top: -160px;
 }
 
-/* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 13 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date p {
   color: #fff;
   opacity: 0.4;
@@ -535,19 +536,19 @@ body.grabbing {
   transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1), opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* line 22 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 23 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date .weekday {
   position: absolute;
 }
 
-/* line 25 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 26 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date .month-year {
   position: absolute;
 }
 
-/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
-
 /* line 29 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+
+/* line 30 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -559,7 +560,7 @@ body.grabbing {
   transform: translateY(0);
 }
 
-/* line 33 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 34 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p.month {
   -webkit-transition-delay: 0.1s;
   -moz-transition-delay: 0.1s;
@@ -568,7 +569,7 @@ body.grabbing {
   transition-delay: 0.1s;
 }
 
-/* line 36 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 37 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p.year {
   -webkit-transition-delay: 0.2s;
   -moz-transition-delay: 0.2s;
