@@ -31,13 +31,13 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
-  active = false;
   // window.cancelAnimationFrame(rAF);
-  animationOut()
+  animationOut(done)
   // done();
 }
 
 function render() {
+  rendered = true;
   el = parseHTML(tmpl);
   document.getElementById("pages").appendChild(el);
 
@@ -93,15 +93,18 @@ function animationIn() {
   }
 }
 
-function animationOut() {
+function animationOut(done) {
   date.classList.remove("tween");
   for(var i = 0; i < numGrids; i++) {
     grids[i].animateOut();
   }
+  TweenMax.to(gridsContainer, 2, {y:-window.innerHeight * numGrids, ease:Expo.easeInOut, delay:1.3, onComplete:()=>{active = false}});
+  _.delay(done, 2000);
 }
 
 function loop() {
   rAF = window.requestAnimationFrame(loop);
-
-  renderer.render(stage);
+  if(active){
+    renderer.render(stage);
+  }
 }

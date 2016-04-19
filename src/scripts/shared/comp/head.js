@@ -88,7 +88,7 @@ export default class Head {
     this.mouseX = 0;
     this.mouseDownAngle = 0; 
     this.mesh.visible = true;
-    this.mesh.position.y -= 0.32;
+    this.mesh.position.y = -0.32;
     this.mesh.material.uniforms[ 'distortion' ].value = 10.0
     this.distortion.reset();
     this.mesh.rotation.y = 0;
@@ -222,7 +222,7 @@ export default class Head {
 
   animDistortOut(done) {
     TweenMax.to(this.mesh.position, 1, {y:1, ease:Expo.easeInOut})
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:5.0, ease:Expo.easeInOut})
+    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:10.0, ease:Expo.easeInOut})
     TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})

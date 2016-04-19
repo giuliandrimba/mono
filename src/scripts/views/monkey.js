@@ -7,6 +7,8 @@ import Background from "scripts/shared/comp/background";
 import * as layout from "scripts/views/layout";
 import _ from "lodash";
 
+var rendered = false;
+var active = false;
 var el = undefined;
 var scene = undefined;
 var camera = undefined;
@@ -19,14 +21,26 @@ var title = undefined;
 var showTitleTimeout = undefined;
 
 export function intro(req, done) {
-  render();
+  active = true;
+  if(!rendered) {
+    render();
+  } else {
+    el.style.zIndex = 1;
+    head.animationIn();
+    head.disableDrag()
+    showTitleTimeout = _.delay(showTitle, 4000);
+    resize()
+  }
   done()
 }
 
 export function outro(req, done) {
   document.body.classList.remove("grab");
   layout.plane.hide(true)
-  head.animationOut(done)
+  head.animationOut(()=>{
+    active = false;
+    done();
+  })
   hideTitle()
 }
 
@@ -90,7 +104,7 @@ function onBackgroundShow() {
 }
 
 function render() {
-
+  rendered = true;
   el = parseHTML(tmpl);
   document.getElementById("pages").appendChild(el);
 
@@ -112,14 +126,15 @@ function render() {
 
   el.appendChild(renderer.domElement);
 
+  events()
   animationIn();
   resize()
-  events()
   loop()
 }
 
 function showTitle() {
   title.classList.add("show");
+
   head.enableDrag()
 }
 
@@ -137,8 +152,10 @@ function resize() {
 
 function loop() {
   requestAnimationFrame( loop );
-  head.update()
-  if(dot) dot.update()
-  camera.lookAt( scene.position )
-  renderer.render(scene, camera);
+  if(active) {
+    head.update()
+    if(dot) dot.update()
+    camera.lookAt( scene.position )
+    renderer.render(scene, camera);
+  }
 }
