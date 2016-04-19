@@ -24,12 +24,14 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
+  document.body.classList.remove("grab");
   layout.plane.hide(true)
   head.animationOut(done)
   hideTitle()
 }
 
 function animationIn() {
+  document.body.classList.add("grab");
   head.animationIn();
   head.disableDrag()
   _.delay(layout.showMenu, 1000);

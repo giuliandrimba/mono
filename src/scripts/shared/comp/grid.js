@@ -41,7 +41,7 @@ export default class Grid {
         TweenMax.to(this.texts[i], 3, {y:this.texts[i]._y, ease:Quart.easeInOut, delay:this.texts[i]._delay * 0.1})
       }
 
-      _.delay(this.showCaleido.bind(this), 3000)
+      _.delay(this.showCaleido.bind(this), 2000)
     }
   }
 

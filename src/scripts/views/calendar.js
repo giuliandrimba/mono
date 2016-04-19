@@ -1,4 +1,4 @@
-import tmpl from "templates/views/monkey.html";
+import tmpl from "templates/views/calendar.html";
 import parseHTML from "scripts/shared/lib/parseHTML";
 import TweenMax from "gsap";
 import moment from "moment";
@@ -6,6 +6,8 @@ import Grid from "scripts/shared/comp/grid";
 import _ from "lodash";
 
 var el = undefined;
+var date = undefined;
+var monthDay = undefined;
 var renderer = undefined;
 var stage = undefined;
 var grid = undefined;
@@ -34,6 +36,9 @@ function render() {
 
   stage = new PIXI.Container();
   gridsContainer = new PIXI.Container;
+  date = el.querySelector(".date");
+  monthDay = el.querySelector(".month-year");
+
 
   for(var i = 0; i < numGrids; i++) {
     let grid = new Grid(gridsContainer, i)
@@ -51,6 +56,8 @@ function render() {
 }
 
 function resize() {
+  date.style.left = 160 * window.innerWidth / 1920;
+  monthDay.style.left = 280 * window.innerWidth / 1920;
   renderer.resize(window.innerWidth, window.innerHeight);
 
   for(var i = 0; i < numGrids; i++) {
@@ -62,6 +69,11 @@ function animationIn() {
   gridsContainer.y = window.innerHeight
   let _y = window.innerHeight * moment().month();
   TweenMax.to(gridsContainer, 3, {y:- _y, ease:Quart.easeInOut});
+
+  _.delay(()=>{
+    date.classList.add("tween");
+  }, 4000)
+
   for(var i = 0; i < numGrids; i++) {
     grids[i].animate();
   }

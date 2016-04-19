@@ -17,6 +17,8 @@ export default class Menu {
     this.bigCircleDelay = undefined;
     this.smallCircleDelay = undefined;
     this.overState = false;
+    this.animating = false;
+    this.calendarState = false;
   }
 
   render(parent) {
@@ -42,12 +44,17 @@ export default class Menu {
     this.el.appendChild(this.SVG.node)
     parent.appendChild(this.el);
     this.events();
+    this.resize();
   }
 
   events() {
     this.el.addEventListener("mouseover", this.onMouseOver.bind(this))
     this.el.addEventListener("mouseout", this.onMouseOut.bind(this))
     this.el.addEventListener("mousedown", this.onMouseDown.bind(this))
+  }
+
+  resize() {
+    this.el.style.left = 160 * window.innerWidth / 1920
   }
 
   showProgress(progress) {
@@ -75,12 +82,29 @@ export default class Menu {
     }
   }
 
+  enableCalendarState() {
+    let paths = this.el.querySelector("path")
+    this.onMouseOver()
+    this.calendarState = true;
+
+    this.borderPath.attr({stroke:"#85734c"})
+    this.innerPath.attr({stroke:"#85734c"})
+    this.overPath.attr({stroke:"#85734c"})
+  }
+
+  disableCalendarState() {
+
+  }
+
   onMouseDown() {
+    if(this.animating)
+      return
+    this.enableCalendarState()
     ways.go("/calendar");
   }
 
   onMouseOver() {
-    if(this.locked)
+    if(this.locked || this.animating || this.calendarState)
       return;
 
     this.overState = true;
@@ -107,7 +131,7 @@ export default class Menu {
   }
 
   onMouseOut() {
-    if(this.locked)
+    if(this.locked || this.animating || this.calendarState)
       return;
 
     this.overState = false;
@@ -126,6 +150,7 @@ export default class Menu {
   }
 
   beforeAnimationIn() {
+    this.animating = true;
     TweenMax.set(this.borderPath.node, { css:{strokeDasharray: this.segmentBorderPath.strokeDasharray(0, 0) } });
     TweenMax.set(this.innerPath.node, { css:{strokeDasharray: this.segmentInnerPath.strokeDasharray(0, 0) } });
     TweenMax.set(this.overPath.node, { css:{strokeDasharray: this.segmentOverPath.strokeDasharray(0, 0) } });
@@ -139,7 +164,7 @@ export default class Menu {
 
     _.delay(()=>{
       this.smallCircle.animate({cy:30}, 750, Ease.easeExpOut)
-      TweenMax.to(this.smallCircle.node, 0.75, {cy: 30, ease:Expo.easeIn });
+      TweenMax.to(this.smallCircle.node, 0.75, {cy: 30, ease:Expo.easeIn, onComplete:()=>{this.animating = false} });
     }, 2000)
   }
 
@@ -186,8 +211,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:out",
-      stroke: "#ffffff",
-      opacity:0.2,
+      stroke: "#333333",
+      opacity:1,
       strokeWidth: "2" ,
       fill: "none"
     })
@@ -205,8 +230,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:inner",
-      stroke: "#ffffff",
-      opacity:0.2,
+      stroke: "#333333",
+      opacity:1,
       strokeWidth: "1" ,
       fill: "none"
     })
@@ -222,8 +247,8 @@ export default class Menu {
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:over",
-      stroke: "#ffffff",
-      opacity:0.2,
+      stroke: "#333333",
+      opacity:1,
       strokeWidth: "1" ,
       fill: "none"
     })

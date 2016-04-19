@@ -3,3 +3,35 @@
   width 100%
   height 100%
   z-index 0
+  
+  .date 
+    position absolute
+    top 50%
+    margin-top -160px
+    
+  .date p
+    color white
+    opacity 0.4
+    font-family 'RobotoMonoMedium'
+    font-size 10px
+    margin-bottom 10px
+    opacity 0
+    transform translateY(15px)
+    transition transform 1s easeOutExpo, opacity 1s easeOutExpo;
+    
+  .date .weekday
+    position absolute
+    
+  .date .month-year
+    position absolute
+    
+  .date.tween
+    p 
+      opacity 0.4
+      transform translateY(0)
+      
+    p.month
+      transition-delay 0.1s
+      
+    p.year
+      transition-delay 0.2s

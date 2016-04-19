@@ -32,8 +32,6 @@ export default class Head {
 
     Head.scope = this;
 
-    document.body.classList.add("grab");
-
     loadObj('./assets/macaco_medium.OBJ', this.createMesh.bind(this))
 
     this.triggeredAnimationIn = false;
@@ -229,6 +227,6 @@ export default class Head {
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
     TweenMax.to(this, 1, {speed:0.3})
-    _.delay(done, 1500);
+    _.delay(done, 1200);
   } 
 }
