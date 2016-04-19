@@ -16,7 +16,7 @@ var dot = undefined;
 var background = undefined;
 var background = undefined;
 var title = undefined;
-var showTitleTimeout = undefined
+var showTitleTimeout = undefined;
 
 export function intro(req, done) {
   render();
@@ -24,8 +24,9 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
-  layout.plane.hide()
+  layout.plane.hide(true)
   head.animationOut(done)
+  hideTitle()
 }
 
 function animationIn() {

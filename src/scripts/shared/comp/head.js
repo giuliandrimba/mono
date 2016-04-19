@@ -4,6 +4,7 @@ const glslify = require('glslify');
 import loadObj from "scripts/shared/lib/three/loadObj";
 import Distortion from "scripts/shared/lib/three/distortion";
 import happens from "happens";
+import _ from "lodash";
 
 export default class Head {
   constructor(scene, camera, renderer) {
@@ -224,9 +225,10 @@ export default class Head {
   animDistortOut(done) {
     TweenMax.to(this.mesh.position, 1, {y:1, ease:Expo.easeInOut})
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:5.0, ease:Expo.easeInOut})
-    TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5, onComplete:done})
+    TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
     TweenMax.to(this, 1, {speed:0.3})
+    _.delay(done, 1500);
   } 
 }
