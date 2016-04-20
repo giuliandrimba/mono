@@ -449,16 +449,16 @@ body.grabbing {
   filter: alpha(opacity=40);
 }
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+/* line 38 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 
-/* line 32 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
+/* line 38 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
 .monkey {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* line 7 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */

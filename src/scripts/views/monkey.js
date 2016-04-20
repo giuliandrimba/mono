@@ -41,9 +41,9 @@ export function outro(req, done) {
   head.disableDrag()
   head.animationOut(()=>{
     active = false;
-    done();
   })
   hideTitle()
+  _.delay(done, 1000)
 }
 
 function animationIn() {
