@@ -23,9 +23,10 @@ var showTitleTimeout = undefined;
 export function intro(req, done) {
   active = true;
   if(!rendered) {
-    render();
+    _.defer(render)
   } else {
     el.style.zIndex = 1;
+    head.disableDrag()
     head.animationIn();
     layout.plane.show()
     showTitleTimeout = _.delay(showTitle, 4000);
@@ -100,8 +101,8 @@ function showBackground() {
 function onBackgroundShow() {
   head.animationIn(()=>{
     layout.menu.showProgress(0);
-    head.enableDrag()
   })
+  showTitleTimeout = _.delay(showTitle, 4000);
 }
 
 function render() {
@@ -128,7 +129,7 @@ function render() {
   el.appendChild(renderer.domElement);
 
   events()
-  animationIn();
+  _.delay(animationIn, 1000)
   resize()
   loop()
 }

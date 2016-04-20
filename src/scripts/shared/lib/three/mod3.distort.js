@@ -91,8 +91,6 @@
           TweenMax.to(this, 2.5, {distortScale:2, ease:Expo.easeInOut})
           TweenMax.to(this, 2.8, {distortScale:3.5, ease:Expo.easeOut, delay:1.5})
           setTimeout(done, 1500);
-          // done()
-          // TweenMax.to(this, 2, {distortScale:0, ease:Expo.easeInOut, delay:0.69})
         },
 
         reset: function(done) {

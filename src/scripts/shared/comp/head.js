@@ -54,10 +54,12 @@ export default class Head {
   }
 
   enableDrag() {
+    console.log("enableDrag")
     Head.scope.canDrag = true;
   }
 
   disableDrag() {
+    console.log("disableDrag")
     Head.scope.canDrag = false;
   }
 
@@ -134,7 +136,9 @@ export default class Head {
         Head.scope.animating = false;
       }, 2000)
     })
-    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 0.5, {value:0.0, ease:Expo.easeOut, delay:1.35})
+    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 0.5, {value:0.0, ease:Expo.easeOut, delay:1.35, onComplete:()=>{
+      Head.scope.mesh.visible = false;
+    }})
     Head.scope.resetAngle()
   }
 
@@ -176,20 +180,21 @@ export default class Head {
     })
     self.mesh = new THREE.Mesh(this.geometry, self.material);
     self.mesh.name = "head";
+    this.distortion = new Distortion(this.mesh);
+    self.reset();
     self.scene.add(self.mesh);
     self.loaded = true;
 
-    this.distortion = new Distortion(this.mesh);
 
     if(this.triggeredAnimationIn) {
       this.animationIn();
-      this.events();
     }
+    this.events();
   }
 
   update() {
 
-    if(!this.loaded)
+    if(!this.loaded || !this.mesh.visible)
       return
 
     var delta = 5 * this.clock.getDelta();

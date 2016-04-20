@@ -100,7 +100,7 @@ export default class Menu {
   }
 
   onMouseDown() {
-    if(this.animating)
+    if(this.animating || this.locked)
       return
     if(!this.calendarState) {
       this.enableCalendarState()
