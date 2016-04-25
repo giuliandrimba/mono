@@ -31,9 +31,7 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
-  // window.cancelAnimationFrame(rAF);
   animationOut(done)
-  // done();
 }
 
 function render() {

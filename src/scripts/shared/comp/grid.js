@@ -48,6 +48,7 @@ export default class Grid {
   animateOut() {
     if(this.caleido) {
       this.caleido.hide()
+      this.caleido.dispose()
     }
   }
 
@@ -57,7 +58,7 @@ export default class Grid {
   }
 
   addCaleido(reset) {
-    this.caleido = new Caleido(moment().date(), reset);
+    this.caleido = new Caleido(moment().date());
     this.textsContainer.addChild(this.caleido.el);
     this.caleido.el.x = this.texts[7].x + (this.texts[7].width / 2)
     this.caleido.el.y = this.texts[7].y + (this.texts[7].height / 2)
