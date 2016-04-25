@@ -9,7 +9,7 @@ export default class Caleido {
     this.el = new PIXI.Container();
     this.redCaleido = new RedCaleido(moment().date())
     this.goldCaleido = new GoldCaleido(moment().date())
-    this.theme = this.goldCaleido;
+    this.theme = this.redCaleido;
     this.el.addChild(this.redCaleido.el);
     this.el.addChild(this.goldCaleido.el);
 
