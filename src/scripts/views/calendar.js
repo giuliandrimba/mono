@@ -1,9 +1,11 @@
 import tmpl from "templates/views/calendar.html";
 import parseHTML from "scripts/shared/lib/parseHTML";
 import TweenMax from "gsap";
+import * as layout from "scripts/views/layout";
 import moment from "moment";
 import Grid from "scripts/shared/comp/grid";
 import _ from "lodash";
+import chineseLunar from "chinese-lunar";
 
 var rendered = false;
 var el = undefined;
@@ -19,6 +21,7 @@ var grids = [];
 var rAF = undefined;
 var active = false;
 var changingTheme = true;
+var theme = "gregorian";
 
 
 export function intro(req, done) {
@@ -32,6 +35,7 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
+  layout.lockMenu()
   animationOut(done)
 }
 
@@ -57,7 +61,7 @@ function render() {
   }
 
   window.addEventListener("resize", resize)
-  document.body.addEventListener("mousedown", onClick)
+  document.getElementById("pages").addEventListener("mousedown", onClick)
 
   stage.addChild(gridsContainer);
   init();
@@ -71,10 +75,37 @@ function onClick() {
   for(var i = 0; i < grids.length; i++) {
     grids[i].toggleTheme();
   }
+  changeDate();
 
   _.delay(()=>{
     changingTheme = false;
   }, 3000);
+}
+
+function changeDate(){
+  date.classList.remove("tween");
+
+  _.delay(()=>{
+
+    if(theme === "gregorian") {
+      theme = "chinese";
+      var l = chineseLunar.solarToLunar(new Date())
+      var year = chineseLunar.format(l, "Y")
+      var month = chineseLunar.format(l, "M")
+
+      document.getElementById("weekday").innerText = year;
+      document.getElementById("month").innerText = month;
+      document.getElementById("year").innerText = "";
+    } else {
+      theme = "gregorian";
+
+      document.getElementById("weekday").innerText = moment().format("dddd");
+      document.getElementById("month").innerText = moment().format("MMMM");
+      document.getElementById("year").innerText = moment().format("YYYY");
+    }
+
+    date.classList.add("tween");
+  }, 500)
 }
 
 function init() {
@@ -101,6 +132,7 @@ function animationIn() {
   _.delay(()=>{
     date.classList.add("tween");
     changingTheme = false;
+    layout.unlockMenu()
   }, 4000)
 
   for(var i = 0; i < numGrids; i++) {

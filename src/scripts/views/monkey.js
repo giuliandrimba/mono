@@ -36,6 +36,7 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
+  layout.lockMenu();
   document.body.classList.remove("grab");
   layout.plane.hide(true)
   head.disableDrag()
@@ -78,6 +79,7 @@ function onDragEnd() {
 }
 
 function onExplodeStart() {
+  layout.lockMenu();
   hideTitle()
   head.disableDrag()
   layout.menu.lock()
@@ -137,7 +139,7 @@ function render() {
 function showTitle() {
   document.body.classList.add("grab");
   title.classList.add("show");
-
+  layout.unlockMenu()
   head.enableDrag()
 }
 

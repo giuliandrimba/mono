@@ -19,6 +19,7 @@ export default class Menu {
     this.overState = false;
     this.animating = false;
     this.calendarState = false;
+    this.enableClick = false;
   }
 
   render(parent) {
@@ -100,7 +101,8 @@ export default class Menu {
   }
 
   onMouseDown() {
-    if(this.animating || this.locked)
+    console.log(this.enableClick);
+    if(this.animating || this.locked || !this.enableClick)
       return
     if(!this.calendarState) {
       this.enableCalendarState()
@@ -132,10 +134,11 @@ export default class Menu {
   }
 
   lock() {
-
+    this.enableClick = false;
   }
 
   unlock() {
+    this.enableClick = true;
   }
 
   onMouseOut() {

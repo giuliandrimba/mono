@@ -46,5 +46,13 @@ export function showMenu() {
   menu.animationIn();
 }
 
+export function lockMenu() {
+  menu.lock()
+}
+
+export function unlockMenu() {
+  menu.unlock()
+}
+
 export var plane = plane;
 export var menu = menu;
