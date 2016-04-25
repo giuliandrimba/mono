@@ -31,6 +31,7 @@ export function intro(req, done) {
   } else {
     init();
   }
+  document.getElementById("pages").addEventListener("mousedown", onClick)
   done();
 }
 
@@ -62,7 +63,6 @@ function render() {
   }
 
   window.addEventListener("resize", resize)
-  document.getElementById("pages").addEventListener("mousedown", onClick)
 
   stage.addChild(gridsContainer);
   init();
