@@ -43,7 +43,7 @@ export default class GoldCaleido {
   }
 
   resize() {
-    this.RADIUS = Math.round(109 * window.innerWidth / 1920);
+    this.RADIUS = Math.round(108 * window.innerWidth / 1920);
     this.el.scale.x = this.el.scale.y = window.innerWidth / this.ORIGINAL_WIDTH;
   }
 
@@ -128,69 +128,14 @@ export default class GoldCaleido {
     b1.addChild(b1circle);
     b1circle.mask = b1mask;
 
-    if(position === "top") {
-      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
-      b1circle.x = b1circle._x2 = (b1circle.width / 2);
+    b1mask.x = -(_width/2)
+    b1mask.y = -(_height)
 
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
+    b1circle.y = b1circle._y2 = (b1circle.height) + 2 -(_height)
+    b1circle.x = b1circle._x2 = (b1circle.width / 2) -(_width/2)
 
-    if(position === "right") {
-      b1circle.y = b1circle._y2 = (b1circle.height / 2);
-      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom") {
-      b1circle.y = b1circle._y2 = (-b1circle.width / 2) - 2
-      b1circle.x = b1circle._x2 = (b1circle.width / 2);
-
-      b1circle._y = (-b1circle.width / 2) + _height
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "left") {
-      b1circle.y = b1circle._y2 = (b1circle.height / 2) + 2;
-      b1circle.x = b1circle._x2 = (b1circle.width);
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "top-right") {
-      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
-      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom-right") {
-      b1circle.y = b1circle._y2 = (-b1circle.height / 2) - 2;
-      b1circle.x = b1circle._x2 = (-b1circle.width / 2) - 2;
-
-      b1circle._y = (-b1circle.height / 2) + _height;
-      b1circle._x = (-b1circle.width / 2) + _width;
-    }
-
-    if(position === "bottom-left") {
-      b1circle.y = b1circle._y2 = (-b1circle.height / 2) - 2;
-      b1circle.x = b1circle._x2 =(b1circle.width) + 2;
-
-      b1circle._y = (-b1circle.height / 2) + _height;
-      b1circle._x = (b1circle.width / 2);
-    }
-
-    if(position === "top-left") {
-      b1circle.y = b1circle._y2 = (b1circle.height) + 2;
-      b1circle.x = b1circle._x2 = (b1circle.width) + 2;
-
-      b1circle._y = (b1circle.height / 2);
-      b1circle._x = (b1circle.width / 2);
-    }
+    b1circle._y = (b1circle.height / 2)-(_height)
+    b1circle._x = (b1circle.width / 2)-(_width/2)
 
     b1._width = _width
     b1._height = _height
@@ -206,154 +151,57 @@ export default class GoldCaleido {
   }
 
    buildFirstBorder() {
-    var b1 = this.buildBorder(218, 109, "top");
-    b1.x = (- this.circle.width / 2);
-    b1.y = (-this.circle.height) - 2
 
-    this.pattern.addChild(b1);
-    this.firstBorders.push(b1);
+    var angle = 0;
+    var step = 360 / 8;
 
-    var b2 = this.buildBorder(109, 218,"right");
-    b2.x = (this.circle.width / 2) + 2;
-    b2.y = (-this.circle.height / 2);
-    this.pattern.addChild(b2);
-    this.firstBorders.push(b2);
+    for(var i = 0; i < 8; i++) {
+      var b1 = this.buildBorder(216, 108);
+      var rad = angle * Math.PI / 180
 
-    var b3 = this.buildBorder(218, 109,"bottom");
-    b3.x = (-this.circle.width / 2);
-    b3.y = (this.circle.height / 2) + 2;
-    this.pattern.addChild(b3);
-    this.firstBorders.push(b3);
-
-    var b4 = this.buildBorder(109, 218,"left");
-    b4.x = (-this.circle.width) - 2;
-    b4.y = (-this.circle.height / 2);
-    this.pattern.addChild(b4);
-    this.firstBorders.push(b4);
+      b1.x = Math.cos(rad) * (this.RADIUS + 4);
+      b1.y = Math.sin(rad) * (this.RADIUS + 4);
+      b1.rotation = rad + (Math.PI / 2);
+      angle += step;
+      this.pattern.addChild(b1);
+      this.firstBorders.push(b1);
+    }
   }
 
   buildSecondBorder() {
-    var b1 = this.buildBorder(218, 86, "top");
-    b1.x = (-this.circle.width / 2);
-    b1.y = (-this.circle.height) - b1._height - 5
-    this.pattern.addChild(b1);
-    this.secondBorders.push(b1);
+    var angle = 0;
+    var step = 360 / 8;
+    var radius = Math.round(113 * window.innerWidth / 1920);
 
-    var b2 = this.buildBorder(109, 109, "top-right");
-    b2.x = (this.circle.width / 2) + 2;
-    b2.y = (-this.circle.height) - 2
-    this.pattern.addChild(b2);
-    this.secondBorders.push(b2);
+    for(var i = 0; i < 8; i++) {
+      var b1 = this.buildBorder(216, 76);
+      var rad = angle * Math.PI / 180
 
-    var b3 = this.buildBorder(86, 218, "right");
-    b3.x = (this.circle.width) + 5
-    b3.y = (-this.circle.height / 2)
-    this.pattern.addChild(b3);
-    this.secondBorders.push(b3);
-
-    var b4 = this.buildBorder(109, 109, "bottom-right");
-    b4.x = (this.circle.width / 2) + 2;
-    b4.y = (this.circle.height / 2) + 2
-    this.pattern.addChild(b4);
-    this.secondBorders.push(b4);
-
-    var b5 = this.buildBorder(218, 86, "bottom");
-    b5.x = (- this.circle.width / 2);
-    b5.y = (this.circle.height) + 5
-    this.pattern.addChild(b5);
-    this.secondBorders.push(b5);
-
-    var b6 = this.buildBorder(109, 109, "bottom-left");
-    b6.x = -(this.circle.width) - 2;
-    b6.y = (this.circle.height / 2) + 2
-    this.pattern.addChild(b6);
-    this.secondBorders.push(b6);
-
-    var b7 = this.buildBorder(86, 218, "left");
-    b7.x = -(this.circle.width) - b7._width - 5;
-    b7.y = (-this.circle.height / 2)
-    this.pattern.addChild(b7);
-    this.secondBorders.push(b7);
-
-    var b8 = this.buildBorder(109, 109, "top-left");
-    b8.x = (-this.circle.width / 2) - b8._width - 2
-    b8.y = (-this.circle.height) - 2 
-    this.pattern.addChild(b8);
-    this.secondBorders.push(b8);
+      b1.x = Math.cos(rad) * (this.RADIUS + radius + 4);
+      b1.y = Math.sin(rad) * (this.RADIUS + radius + 4);
+      b1.rotation = rad + (Math.PI / 2);
+      angle += step;
+      this.pattern.addChild(b1);
+      this.secondBorders.push(b1);
+    }
   }
 
   buildThirdBorder() {
 
-    var b1 = this.buildBorder(218, 43, "top");
-    b1.x = (- this.circle.width / 2);
-    b1.y = (-this.circle.height) - this.secondBorders[0]._height - b1._height - 11
-    this.pattern.addChild(b1);
-    this.thirdBorders.push(b1);
+    var angle = 0;
+    var step = 360 / 8;
+    var radius = Math.round(192 * window.innerWidth / 1920);
 
-    var b2 = this.buildBorder(109, 86, "top-right");
-    b2.x = (this.circle.width / 2) + 2
-    b2.y = (-this.circle.height) - this.secondBorders[0]._height - 5
-    this.pattern.addChild(b2);
-    this.thirdBorders.push(b2);
+    for(var i = 0; i < 8; i++) {
+      var b1 = this.buildBorder(216, 38);
+      var rad = angle * Math.PI / 180
 
-    var b3 = this.buildBorder(86, 109, "top-right");
-    b3.x = (this.circle.width / 2) + this.secondBorders[1]._width + 5
-    b3.y = (-this.circle.height) - 2
-    this.pattern.addChild(b3);
-    this.thirdBorders.push(b3);
-
-    var b4 = this.buildBorder(43, 218, "right");
-    b4.x = (this.circle.width) + this.secondBorders[2]._width + 11
-    b4.y = (-this.circle.height / 2)
-    this.pattern.addChild(b4);
-    this.thirdBorders.push(b4);
-
-    var b5 = this.buildBorder(86, 109, "bottom-right");
-    b5.x = (this.circle.width) + 5
-    b5.y = (this.circle.height / 2) + 2
-    this.pattern.addChild(b5);
-    this.thirdBorders.push(b5);
-
-    var b6 = this.buildBorder(109, 86, "bottom-right");
-    b6.x = (this.circle.width / 2) + 2
-    b6.y = (this.circle.height) + 5
-    this.pattern.addChild(b6);
-    this.thirdBorders.push(b6);
-
-    var b7 = this.buildBorder(218, 43, "bottom");
-    b7.x = (- this.circle.width / 2);
-    b7.y = (this.circle.height) + this.secondBorders[0]._height + 11
-    this.pattern.addChild(b7);
-    this.thirdBorders.push(b7);
-
-    var b8 = this.buildBorder(109, 86, "bottom-left");
-    b8.x = (-this.circle.width) - 2
-    b8.y = (this.circle.height) + 5
-    this.pattern.addChild(b8);
-    this.thirdBorders.push(b8);
-
-    var b9 = this.buildBorder(86, 109, "bottom-left");
-    b9.x = -(this.circle.width) - b9._width - 5
-    b9.y = (this.circle.height / 2) + 2
-    this.pattern.addChild(b9);
-    this.thirdBorders.push(b9);
-
-    var b10 = this.buildBorder(43, 218, "left");
-    b10.x = -(this.circle.width) - this.secondBorders[2]._width - b10._width - 11
-    b10.y = (-this.circle.height / 2)
-    this.pattern.addChild(b10);
-    this.thirdBorders.push(b10);
-
-    var b11 = this.buildBorder(86, 109, "top-left");
-    b11.x = -(this.circle.width) - b11._width - 5
-    b11.y = (-this.circle.height) - 2
-    this.pattern.addChild(b11);
-    this.thirdBorders.push(b11);
-
-    var b12 = this.buildBorder(109, 86, "top-left");
-    b12.x = -(this.circle.width) - 2
-    b12.y = (-this.circle.height) - this.secondBorders[0]._height - 5
-    this.pattern.addChild(b12);
-    this.thirdBorders.push(b12);
+      b1.x = Math.cos(rad) * (this.RADIUS + radius + 10);
+      b1.y = Math.sin(rad) * (this.RADIUS + radius + 10);
+      b1.rotation = rad + (Math.PI / 2);
+      angle += step;
+      this.pattern.addChild(b1);
+      this.thirdBorders.push(b1);
+    }
   }
 }
