@@ -1,5 +1,6 @@
 import moment from "moment";
 window.moment = moment;
+import * as calendar from "scripts/models/calendar"
 import Caleido from "./caleido";
 import _ from "lodash";
 
@@ -7,17 +8,18 @@ export default class Grid {
   constructor(parent, month) {
     this.parent = parent;
     this.month = month;
+    this.theme = "gregorian";
+    this.FONT_SIZE = 120;
     this.ORIGINAL_WIDTH = 1920;
     this.ORIGINAL_HEIGHT = 1080;
     this.TOTAL_DAYS = 15;
-    this.days = [];
+    this.days = calendar.days(this.month);
     this.texts = []
     this.textsContainer = undefined;
     this.mask = undefined;
     this.caleido = undefined;
 
     this.el = undefined;
-    this.buildDays()
     this.render()
     if(moment().month() === this.month) {
       this.addCaleido(false)
@@ -45,6 +47,32 @@ export default class Grid {
     }
   }
 
+  toggleTheme() {
+    if(this.caleido) {
+      this.caleido.toggleTheme();
+    }
+    this.toggleTexts();
+  }
+
+  toggleTexts() {
+    if(this.theme === "gregorian") {
+      this.FONT_SIZE = 80;
+      this.days = calendar.days(this.month, "chinese");
+      this.theme = "chinese";
+    } else {
+      this.theme = "gregorian";
+      this.FONT_SIZE = 120;
+      this.days = calendar.days(this.month);
+    }
+    if(moment().month() === this.month){
+      for(var i = 0; i < this.texts.length; i++) {
+        this.texts[i].alpha = 0;
+        this.texts[i].text = this.days[i];
+        TweenMax.to(this.texts[i], 1, {alpha:0.06, ease:Quart.easeInOut})
+      }
+    }
+  }
+
   animateOut() {
     if(this.caleido) {
       this.caleido.hide()
@@ -67,7 +95,7 @@ export default class Grid {
   buildTexts() {
     var marginLeft = Math.round(200 * window.innerWidth / this.ORIGINAL_WIDTH);
     var marginBottom = Math.round(200 * window.innerHeight / this.ORIGINAL_HEIGHT);
-    var fontSize = Math.round(120 * window.innerWidth / this.ORIGINAL_WIDTH);
+    var fontSize = Math.round(this.FONT_SIZE * window.innerWidth / this.ORIGINAL_WIDTH);
 
     var col = 0;
     var row = 0;
@@ -107,24 +135,6 @@ export default class Grid {
     }
 
     return container;
-  }
-
-  buildDays() {
-
-    var diff = moment().month() - this.month;
-    var date = moment().subtract(14 * diff, 'days')
-
-    this.days[7] = date.date()
-
-    for(var i = 6; i > -1; i--) {
-      var a = date.clone();
-      this.days[i] = a.subtract(7 - i, 'days').date()
-    }
-
-    for(var i = 8; i < this.TOTAL_DAYS; i++) {
-      var a = date.clone();
-      this.days[i] = a.add(i - 7, 'days').date()
-    }
   }
 
   buildMask() {

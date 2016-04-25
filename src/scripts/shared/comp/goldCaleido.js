@@ -1,6 +1,11 @@
+import moment from "moment";
+import chineseLunar from "chinese-lunar";
+
 export default class GoldCaleido {
   constructor(date) {
-    this.date = date;
+    var m = moment()
+    var l = chineseLunar.solarToLunar(new Date(m.year(), m.month(), m.date()))
+    this.date = chineseLunar.format(l, "D");
     this.ORIGINAL_WIDTH = window.innerWidth
     this.el = new PIXI.Container();
     this.firstBorders = [];
@@ -20,12 +25,12 @@ export default class GoldCaleido {
   }
 
   buildPattern(total) {
-    var fontSize = Math.round(120 * window.innerWidth / 1920);
+    var fontSize = Math.round(80 * window.innerWidth / 1920);
     this.pattern = new PIXI.Container();
     this.text = new PIXI.Text(this.date,{font : `${fontSize}px HelveticaBold`, fill : 0x000000});
     this.text.alpha = 0;
     this.text.x = -this.text.width / 2;
-    this.text.y = -this.text.width / 2;
+    this.text.y = -this.text.height / 2;
     this.circle = this.buildCircle();
 
     this.pattern.addChild(this.circle);

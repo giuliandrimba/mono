@@ -18,6 +18,7 @@ var numGrids = 12;
 var grids = [];
 var rAF = undefined;
 var active = false;
+var changingTheme = true;
 
 
 export function intro(req, done) {
@@ -56,9 +57,24 @@ function render() {
   }
 
   window.addEventListener("resize", resize)
+  document.body.addEventListener("mousedown", onClick)
 
   stage.addChild(gridsContainer);
   init();
+}
+
+function onClick() {
+  if(changingTheme)
+    return
+
+  changingTheme = true;
+  for(var i = 0; i < grids.length; i++) {
+    grids[i].toggleTheme();
+  }
+
+  _.delay(()=>{
+    changingTheme = false;
+  }, 3000);
 }
 
 function init() {
@@ -84,6 +100,7 @@ function animationIn() {
 
   _.delay(()=>{
     date.classList.add("tween");
+    changingTheme = false;
   }, 4000)
 
   for(var i = 0; i < numGrids; i++) {

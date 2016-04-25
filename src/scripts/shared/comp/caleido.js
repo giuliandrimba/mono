@@ -14,12 +14,6 @@ export default class Caleido {
     this.el.addChild(this.goldCaleido.el);
 
     Caleido.scope = this;
-
-    document.body.addEventListener("mousedown", this.onClick)
-  }
-
-  onClick() {
-    Caleido.scope.toggleTheme()
   }
 
   show() {
@@ -39,7 +33,6 @@ export default class Caleido {
   }
 
   dispose() {
-    document.body.removeEventListener("mousedown", this.onClick)
   }
 
   toggleTheme(){
