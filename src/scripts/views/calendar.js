@@ -36,6 +36,7 @@ export function intro(req, done) {
 
 export function outro(req, done) {
   layout.lockMenu()
+  document.getElementById("pages").removeEventListener("mousedown", onClick)
   animationOut(done)
 }
 
