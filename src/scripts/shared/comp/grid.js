@@ -64,12 +64,11 @@ export default class Grid {
       this.FONT_SIZE = 120;
       this.days = calendar.days(this.month);
     }
-    if(moment().month() === this.month){
-      for(var i = 0; i < this.texts.length; i++) {
-        this.texts[i].alpha = 0;
-        this.texts[i].text = this.days[i];
-        TweenMax.to(this.texts[i], 1, {alpha:0.06, ease:Quart.easeInOut})
-      }
+    
+    for(var i = 0; i < this.texts.length; i++) {
+      this.texts[i].alpha = 0;
+      this.texts[i].text = this.days[i];
+      TweenMax.to(this.texts[i], 1, {alpha:0.06, ease:Quart.easeInOut})
     }
   }
 

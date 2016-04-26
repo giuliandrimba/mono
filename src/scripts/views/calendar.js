@@ -55,6 +55,7 @@ function render() {
   date = el.querySelector(".date");
   monthDay = el.querySelector(".month-year");
 
+  changeToGregorian();
 
   for(var i = 0; i < numGrids; i++) {
     let grid = new Grid(gridsContainer, i)
@@ -90,23 +91,30 @@ function changeDate(){
 
     if(theme === "gregorian") {
       theme = "chinese";
-      var l = chineseLunar.solarToLunar(new Date())
-      var year = chineseLunar.format(l, "Y")
-      var month = chineseLunar.format(l, "M")
-
-      document.getElementById("weekday").innerText = year;
-      document.getElementById("month").innerText = month;
-      document.getElementById("year").innerText = "";
+      changeToChinese();
     } else {
       theme = "gregorian";
-
-      document.getElementById("weekday").innerText = moment().format("dddd");
-      document.getElementById("month").innerText = moment().format("MMMM");
-      document.getElementById("year").innerText = moment().format("YYYY");
+      changeToGregorian();
     }
 
     date.classList.add("tween");
   }, 500)
+}
+
+function changeToChinese(){
+  var l = chineseLunar.solarToLunar(new Date())
+  var year = chineseLunar.format(l, "Y")
+  var month = chineseLunar.format(l, "M")
+
+  document.getElementById("weekday").innerText = year;
+  document.getElementById("month").innerText = month;
+  document.getElementById("year").innerText = "";
+}
+
+function changeToGregorian(){
+  document.getElementById("weekday").innerText = moment().format("dddd");
+  document.getElementById("month").innerText = moment().format("MMMM");
+  document.getElementById("year").innerText = moment().format("YYYY");
 }
 
 function init() {
