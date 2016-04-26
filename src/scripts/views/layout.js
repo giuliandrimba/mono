@@ -13,7 +13,7 @@ var menu = undefined;
 export function intro(req, done) {
   WebFont.load({
     custom: {
-      families:['HelveticaBold','CloudXingCao'],
+      families:['HelveticaBold','JingLi'],
       urls: ['/app.css']
     }
   })
