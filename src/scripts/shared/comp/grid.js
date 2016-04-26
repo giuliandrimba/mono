@@ -58,7 +58,7 @@ export default class Grid {
     this.days = [];
 
     if(this.theme === "gregorian") {
-      this.FONT_SIZE = 80;
+      this.FONT_SIZE = 100;
       this.days = calendar.days(this.month, "chinese");
       this.theme = "chinese";
     } else {
@@ -67,8 +67,17 @@ export default class Grid {
       this.days = calendar.days(this.month);
     }
     
+    var fontSize = Math.round(this.FONT_SIZE * window.innerWidth / this.ORIGINAL_WIDTH);
     for(var i = 0; i < this.texts.length; i++) {
+
       this.texts[i].alpha = 0;
+
+      if(this.theme === "gregorian") {
+        this.texts[i].style.font = `${fontSize}px HelveticaBold`
+      } else {
+        this.texts[i].style.font = `${fontSize}px JingLi`
+      }
+      // `${fontSize}px HelveticaBold`
       this.texts[i].text = this.days[i];
       TweenMax.to(this.texts[i], 1, {alpha:0.06, ease:Quart.easeInOut})
     }
@@ -111,7 +120,12 @@ export default class Grid {
         num = `0${num}`
       }
 
-      let text = new PIXI.Text(num,{font : `${fontSize}px HelveticaBold`, fill : 0xFFFFFF});
+      var family = 'HelveticaBold'
+
+      if(this.theme === "chinese")
+        family = 'JingLi'
+
+      let text = new PIXI.Text(num,{font : `${fontSize}px ${family}`, fill : 0xFFFFFF});
       text.alpha = 0.06;
       text.x = col * (marginLeft + text.width);
       if(moment().month() === this.month){

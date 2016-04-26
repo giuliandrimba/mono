@@ -262,7 +262,7 @@ body.grabbing {
   user-select: none;
 }
 
-/* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
+/* line 26 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/global.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/shared/fonts.styl */
 @font-face {
@@ -275,6 +275,12 @@ body.grabbing {
 @font-face {
   font-family: 'HelveticaBold';
   src: url("/fonts/helvetica/HelveticaBold.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'JingLi';
+  src: url("/fonts/cloud-xing/JingLi.ttf") format('truetype');
   font-weight: normal;
   font-style: normal;
 }

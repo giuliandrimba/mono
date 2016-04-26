@@ -25,9 +25,9 @@ export default class GoldCaleido {
   }
 
   buildPattern(total) {
-    var fontSize = Math.round(80 * window.innerWidth / 1920);
+    var fontSize = Math.round(100 * window.innerWidth / 1920);
     this.pattern = new PIXI.Container();
-    this.text = new PIXI.Text(this.date,{font : `${fontSize}px HelveticaBold`, fill : 0x000000});
+    this.text = new PIXI.Text(this.date,{font : `${fontSize}px JingLi`, fill : 0x000000});
     this.text.alpha = 0;
     this.text.x = -this.text.width / 2;
     this.text.y = -this.text.height / 2;
