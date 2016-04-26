@@ -19,6 +19,7 @@ export function days(month, theme){
 function chineseDays(month){
   var diff = moment().month() - month;
   var date = moment().subtract(14 * diff, 'days')
+  chinese = [];
 
   var l = lunar([date.year(), date.month(), date.date()])
   chinese[7] = chineseLunar.format(l, "D")
@@ -43,7 +44,7 @@ function chineseDays(month){
 function romanDays(month) {
   var diff = moment().month() - month;
   var date = moment().subtract(14 * diff, 'days')
-
+  gregorian = [];
   gregorian[7] = date.date()
 
   for(var i = 6; i > -1; i--) {

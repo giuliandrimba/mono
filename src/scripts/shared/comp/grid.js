@@ -55,6 +55,8 @@ export default class Grid {
   }
 
   toggleTexts() {
+    this.days = [];
+
     if(this.theme === "gregorian") {
       this.FONT_SIZE = 80;
       this.days = calendar.days(this.month, "chinese");
