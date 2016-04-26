@@ -74,6 +74,7 @@ function onClick() {
     return
 
   changingTheme = true;
+  layout.lockMenu();
   for(var i = 0; i < grids.length; i++) {
     grids[i].toggleTheme();
   }
@@ -81,6 +82,7 @@ function onClick() {
 
   _.delay(()=>{
     changingTheme = false;
+    layout.unlockMenu();
   }, 3000);
 }
 
