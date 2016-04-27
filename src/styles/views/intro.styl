@@ -17,16 +17,31 @@
       shape-rendering crispEdges
       
   .title
-    font-size 10px
-    font-family "RobotoMonoMedium"
     position absolute
-    color #fff
-    opacity 0
     top 50%
     left 50%
     transform translateX(-50%) translateY(-50%)
     margin-top 20%
+    text-align center
+    
+  .title-year
+    opacity 0
+    font-family "RobotoMonoMedium"
+    color #fff
+    font-size 10px
+    transition opacity 1s easeOutExpo;
+
+  .chinese-title
+    opacity 0
+    font-size 40px
+    font-family "JingLi"
+    color #fff
+    text-align center
+    margin-bottom 20px
     transition opacity 1s easeOutExpo;
     
   .title.show
-    opacity 0.4
+    p.title-year
+      opacity 0.4
+    p.chinese-title
+      opacity 0.3
