@@ -177,14 +177,14 @@ export default class Menu {
     TweenMax.to(this.innerPath.node, 1.3, {strokeDasharray: this.segmentInnerPath.strokeDasharray("0%", "100%"), delay:1, ease:Expo.easeOut });
 
     _.delay(()=>{
-      this.smallCircle.animate({cy:30}, 750, Ease.easeExpOut)
-      TweenMax.to(this.smallCircle.node, 0.75, {cy: 30, ease:Expo.easeIn, onComplete:()=>{this.animating = false} });
+      this.smallCircle.animate({cy:34}, 750, Ease.easeExpOut)
+      TweenMax.to(this.smallCircle.node, 0.75, {cy: 34, ease:Expo.easeIn, onComplete:()=>{this.animating = false} });
     }, 2000)
   }
 
   // Template
   _createSmallCircle() {
-    let circle = this.SVG.circle(86, -13, 13);
+    let circle = this.SVG.circle(92, -13, 13);
     circle.attr({
       id: "menu:circle",
       stroke: "none",
@@ -194,7 +194,7 @@ export default class Menu {
   }
 
   _createSmallCircleRed() {
-    let circle = this.SVG.circle(86, -13 - this.SIZE, 13);
+    let circle = this.SVG.circle(92, -13 - this.SIZE, 13);
     circle.attr({
       id: "menu:circle:red",
       stroke: "none",
