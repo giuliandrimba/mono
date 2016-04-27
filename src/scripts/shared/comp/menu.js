@@ -10,7 +10,7 @@ export default class Menu {
   constructor() {
     this.el = undefined;
     this.SVG = undefined;
-    this.SIZE = 114;
+    this.SIZE = 122;
     this.vivus = undefined;
     this.borderPath = undefined;
     this.locked = false;
@@ -52,10 +52,13 @@ export default class Menu {
     this.el.addEventListener("mouseover", this.onMouseOver.bind(this))
     this.el.addEventListener("mouseout", this.onMouseOut.bind(this))
     this.el.addEventListener("mousedown", this.onMouseDown.bind(this))
+    window.addEventListener("resize", this.resize.bind(this));
   }
 
   resize() {
-    this.el.style.left = 160 * window.innerWidth / 1920
+    this.el.style.left = Math.round(160 * window.innerWidth / 1920);
+    this.el.style.width = Math.ceil(120 * window.innerWidth / 1920)
+    this.el.style.height = Math.ceil(120 * window.innerWidth / 1920)
   }
 
   showProgress(progress) {
@@ -213,19 +216,21 @@ export default class Menu {
 
   _createBorderPath() {
     let path = svgPath();
-    path.moveTo(0,0);
-    path.lineTo(this.SIZE,0);
-    path.lineTo(this.SIZE,this.SIZE);
-    path.lineTo(0,this.SIZE);
-    path.lineTo(0,0);
+    path.moveTo(4,4);
+    path.lineTo(this.SIZE - 4,4);
+    path.lineTo(this.SIZE - 4,this.SIZE - 4);
+    path.lineTo(4,this.SIZE - 4);
+    path.lineTo(4,4);
 
     let face = this.SVG.path(path.getPath())
     face.attr({
       id: "menu:out",
       stroke: "#333333",
       opacity:1,
-      strokeWidth: "2" ,
-      fill: "none"
+      strokeWidth: "1" ,
+      fill: "none",
+      x:2,
+      y:2
     })
 
     return face;
@@ -233,10 +238,10 @@ export default class Menu {
 
   _createInnerPath() {
     let path = svgPath();
-    path.moveTo(this.SIZE / 2,this.SIZE);
-    path.lineTo(this.SIZE / 2,0);
-    path.lineTo(0,this.SIZE / 2);
-    path.lineTo(this.SIZE / 2,this.SIZE / 2);
+    path.moveTo(4 + this.SIZE / 2,this.SIZE - 4);
+    path.lineTo(4 + this.SIZE / 2,4);
+    path.lineTo(4,4 + this.SIZE / 2);
+    path.lineTo(4 + this.SIZE / 2,4 + this.SIZE / 2);
 
     let face = this.SVG.path(path.getPath())
     face.attr({
@@ -252,8 +257,8 @@ export default class Menu {
 
   _createOverPath() {
     let path = svgPath();
-    path.moveTo(this.SIZE,0);
-    path.lineTo(0,this.SIZE);
+    path.moveTo(this.SIZE - 4,4);
+    path.lineTo(4,this.SIZE - 4);
 
     let face = this.SVG.path(path.getPath())
     face.attr({
