@@ -57,8 +57,15 @@ export default class Menu {
 
   resize() {
     this.el.style.left = Math.round(160 * window.innerWidth / 1920);
-    this.el.style.width = Math.ceil(120 * window.innerWidth / 1920)
-    this.el.style.height = Math.ceil(120 * window.innerWidth / 1920)
+    this.el.style.width = Math.ceil(117 * window.innerWidth / 1920)
+    this.el.style.height = Math.ceil(117 * window.innerWidth / 1920)
+
+    var _w = Math.ceil(122 * window.innerWidth / 1920)
+
+    if(this.SVG) {
+      this.SVG.node.setAttribute("width",`${_w}px`)
+      this.SVG.node.setAttribute("height",`${_w}px`)
+    }
   }
 
   showProgress(progress) {
