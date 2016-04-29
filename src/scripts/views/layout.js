@@ -9,21 +9,30 @@ var el = undefined;
 var plane = undefined;
 var SVG = undefined;
 var menu = undefined;
+var introDone = undefined;
+var background = undefined;
 
 export function intro(req, done) {
+  introDone = done;
   WebFont.load({
     custom: {
       families:['HelveticaBold','JingLi'],
       urls: ['/app.css']
-    }
+    },
+    active:loaded
   })
-  render();
 
+  render();
+  TweenMax.to(background, .5, {y:-(window.innerHeight / 2), ease:Expo.easeOut})
+}
+
+function loaded() {
+  TweenMax.to(background, .5, {y:0, ease:Expo.easeOut})
   plane = new Plane();
   plane.render(el)
 
   menu = new Menu()
-  _.defer(animationIn.bind(this, done), 0);
+  _.defer(animationIn.bind(this, introDone), 0);
 }
 
 export function outro(req, done) {
@@ -32,13 +41,13 @@ export function outro(req, done) {
 
 
 function animationIn(done) {
-  el.classList.add("animation-in")
   plane.animationIn(done);
 }
 
 function render() {
   el = parseHTML(tmpl);
   document.getElementById("main").appendChild(el);
+  background = document.querySelector(".background")
 }
 
 export function showMenu() {
