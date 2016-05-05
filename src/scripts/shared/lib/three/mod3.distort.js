@@ -89,7 +89,7 @@
           this.scaleAngle = 1;
           TweenMax.to(this, 0.8, {scaleAngle:1.1, ease:Expo.easeOut})
           TweenMax.to(this, 1.2, {distortScale:0.3, ease:Expo.easeInOut})
-          TweenMax.to(this, 3, {distortScale:-4, ease:Expo.easeOut, delay:1.5})
+          TweenMax.to(this, 3, {distortScale:-5, ease:Expo.easeOut, delay:1.5})
           setTimeout(done, 2500);
         },
 

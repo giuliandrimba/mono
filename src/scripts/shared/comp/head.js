@@ -137,7 +137,7 @@ export default class Head {
         Head.scope.animating = false;
       }, 2000)
     })
-    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 1, {value:1.0, ease:Expo.easeOut, delay:2.5, onComplete:()=>{
+    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 1, {value:0.0, ease:Expo.easeOut, delay:2.5, onComplete:()=>{
       Head.scope.mesh.visible = false;
     }})
     Head.scope.resetAngle()
