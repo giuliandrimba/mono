@@ -19,7 +19,7 @@ class Distortion {
     if(Math.abs(this.angle) < 180)
       return;
 
-    // TweenMax.to(this.mesh.material.uniforms[ 'opacity' ], 1, {value:0.0,ease:Expo.easeOut, delay:0.9})
+    // TweenMax.to(this.mesh.material.uniforms[ 'explosion' ], 1, {value:3.0,ease:Expo.easeOut})
     TweenMax.to(this, 0.5, {angle:0, ease:Expo.easeOut})
 
     this.twist.explode(done)

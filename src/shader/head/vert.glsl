@@ -26,7 +26,7 @@ void main() {
 
     // vec2 r = vec2(1.0,1.0);
     // fract r1 = rand(r);
-    mvPosition += vec4(vNormal, 0.0) * explosion * scale;
+    mvPosition += vec4(normal, 0.0) * explosion;
 
     gl_Position = projectionMatrix * mvPosition;
 }

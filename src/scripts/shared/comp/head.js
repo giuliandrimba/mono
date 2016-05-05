@@ -93,6 +93,7 @@ export default class Head {
     this.mesh.visible = true;
     this.mesh.position.y = -0.32;
     this.mesh.material.uniforms[ 'distortion' ].value = 10.0
+    this.mesh.material.uniforms[ 'explosion' ].value = 0.0
     this.distortion.reset();
     this.mesh.rotation.y = 0;
     this.speed = 0.3;
@@ -136,7 +137,7 @@ export default class Head {
         Head.scope.animating = false;
       }, 2000)
     })
-    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 0.5, {value:0.0, ease:Expo.easeOut, delay:1.35, onComplete:()=>{
+    TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 1, {value:1.0, ease:Expo.easeOut, delay:2.5, onComplete:()=>{
       Head.scope.mesh.visible = false;
     }})
     Head.scope.resetAngle()
