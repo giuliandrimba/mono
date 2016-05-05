@@ -78,7 +78,6 @@ function onClick() {
   for(var i = 0; i < grids.length; i++) {
     grids[i].toggleTheme();
   }
-  changeDate();
 
   _.delay(()=>{
     changingTheme = false;

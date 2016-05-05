@@ -15,6 +15,31 @@ export function days(month, theme){
   }
 }
 
+export function season(month){
+  switch(month) {
+    case 3:
+    case 4:
+      return "春天";
+      break
+    case 5:
+    case 6:
+    case 7:
+      return "夏天";
+      break
+    case 8:
+    case 9:
+      return "秋天";
+      break
+    case 10:
+    case 11:
+    case 0:
+    case 1:
+    case 2:
+      return "冬天";
+      break
+  }
+}
+
 function chineseDays(month){
   var diff = moment().month() - month;
   var date = moment().subtract(14 * diff, 'days')

@@ -51,7 +51,6 @@ export default class Grid {
     if(this.caleido) {
       this.caleido.toggleTheme();
     }
-    this.toggleTexts();
   }
 
   toggleTexts() {

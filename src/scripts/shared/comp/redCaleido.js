@@ -1,6 +1,8 @@
 export default class RedCaleido {
   constructor(date) {
     this.date = date;
+    if(this.date < 10)
+      this.date = "0" + this.date
     this.ORIGINAL_WIDTH = window.innerWidth
     this.el = new PIXI.Container();
     this.firstBorders = [];
@@ -25,7 +27,7 @@ export default class RedCaleido {
     this.text = new PIXI.Text(this.date,{font : `${fontSize}px HelveticaBold`, fill : 0x000000});
     this.text.alpha = 0;
     this.text.x = -this.text.width / 2;
-    this.text.y = -this.text.width / 2;
+    this.text.y = -this.text.height / 2;
     this.circle = this.buildCircle();
 
     this.pattern.addChild(this.circle);
