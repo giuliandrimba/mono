@@ -25,7 +25,9 @@ export default class Caleido {
   }
 
   reset() {
-    this.theme.reset()
+    this.redCaleido.reset()
+    this.goldCaleido.reset()
+    this.theme = this.redCaleido;
   }
 
   resize() {
