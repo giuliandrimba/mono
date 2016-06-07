@@ -5,6 +5,7 @@ import loadObj from "scripts/shared/lib/three/loadObj";
 import Distortion from "scripts/shared/lib/three/distortion";
 import happens from "happens";
 import _ from "lodash";
+import * as sounds from "scripts/shared/audio";
 
 export default class Head {
   constructor(scene, camera, renderer) {
@@ -130,7 +131,9 @@ export default class Head {
   explode() {
     Head.scope.animating = true;
     Head.scope.emit("explode:start")
-
+    _.delay(function(){
+      sounds.playBell()
+    }, 1650)
     Head.scope.distortion.explode(()=> {
       Head.scope.emit("explode:end")
       _.delay(()=>{

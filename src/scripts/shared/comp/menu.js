@@ -5,6 +5,7 @@ import Snap from "snapsvg";
 import Segment from "segment-js";
 import _ from "lodash";
 import ways from "ways";
+import * as sounds from "scripts/shared/audio";
 
 export default class Menu {
   constructor() {
@@ -117,6 +118,7 @@ export default class Menu {
     if(!this.calendarState) {
       this.enableCalendarState()
       ways.go("/calendar");
+      sounds.playGolden()
     } else {
       this.disableCalendarState()
       ways.go("/monkey");

@@ -6,6 +6,7 @@ import moment from "moment";
 import Grid from "scripts/shared/comp/grid";
 import _ from "lodash";
 import chineseLunar from "chinese-lunar";
+import * as sounds from "scripts/shared/audio";
 
 var rendered = false;
 var el = undefined;

@@ -1,5 +1,7 @@
 import moment from "moment";
 window.moment = moment;
+import * as sounds from "scripts/shared/audio";
+import _ from "lodash";
 
 import RedCaleido from "scripts/shared/comp/redCaleido";
 import GoldCaleido from "scripts/shared/comp/goldCaleido";
@@ -18,6 +20,9 @@ export default class Caleido {
 
   show() {
     this.theme.show()
+    _.delay(function(){
+      sounds.playRed();
+    }, 500)
   }
 
   hide() {
