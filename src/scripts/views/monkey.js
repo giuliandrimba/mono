@@ -120,23 +120,23 @@ function render() {
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
   renderer = new THREE.WebGLRenderer({alpha: true, antialias : true, transparent: false})
   renderer.setSize( window.innerWidth, window.innerHeight )
-  composer = new THREE.EffectComposer(renderer)
+  // composer = new THREE.EffectComposer(renderer)
 
-  var renderPass = new THREE.RenderPass(scene, camera);
-  renderPass.renderToScreen = true;
+  // var renderPass = new THREE.RenderPass(scene, camera);
+  // renderPass.renderToScreen = true;
 
-  var copyPass = new THREE.ShaderPass( THREE.CopyShader );
-  copyPass.renderToScreen = true;
+  // var copyPass = new THREE.ShaderPass( THREE.CopyShader );
+  // copyPass.renderToScreen = true;
 
-  var shaderBleach = THREE.BleachBypassShader;
+  // var shaderBleach = THREE.BleachBypassShader;
 
-  var filmPass = new THREE.FilmPass(0.35, 0.025, 2048, false )
-  filmPass.renderToScreen = true;
+  // var filmPass = new THREE.FilmPass(0.35, 0.025, 2048, false )
+  // filmPass.renderToScreen = true;
 
-  var effectBloom = new THREE.BloomPass( 0.5 );
-
-  composer.addPass(renderPass)
-  composer.addPass(copyPass)
+  // var effectBloom = new THREE.BloomPass( 0.5 );
+// 
+  // composer.addPass(renderPass)
+  // composer.addPass(copyPass)
   // composer.addPass( filmPass );
 
 
@@ -183,7 +183,7 @@ function loop() {
     head.update()
     if(dot) dot.update()
     camera.lookAt( scene.position )
-    composer.render()
-    // renderer.render(scene, camera);
+    // composer.render()
+    renderer.render(scene, camera);
   }
 }
