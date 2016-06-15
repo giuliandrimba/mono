@@ -1,5 +1,5 @@
 import * as howler from "howler"
-
+howler.Howl.volume = 0;
 var loopSound = new howler.Howl({
   urls: ['audio/loop-noise.mp3'],
   loop: true,
@@ -21,29 +21,29 @@ var bell = new howler.Howl({
 });
 
 export function startLoop(){
-  if(!loopSound._playing){
-    loopSound.play();
-    loopSound._playing = true;
-  }
-  TweenMax.to(loopSound, 1, {_vol:1,  onUpdate:function(){
-    loopSound.volume(loopSound._vol)
-  }})
+  // if(!loopSound._playing){
+  //   loopSound.play();
+  //   loopSound._playing = true;
+  // }
+  // TweenMax.to(loopSound, 1, {_vol:1,  onUpdate:function(){
+  //   loopSound.volume(loopSound._vol)
+  // }})
 }
 
 export function stopLoop(){
-  TweenMax.to(loopSound, 1, {_vol:0, ease:Quad.easeOut, onUpdate:function(){
-    loopSound.volume(loopSound._vol)
-  }})
+  // TweenMax.to(loopSound, 1, {_vol:0, ease:Quad.easeOut, onUpdate:function(){
+  //   loopSound.volume(loopSound._vol)
+  // }})
 }
 
 export function playGolden(){
-  bellGoldenSound.play()
+  // bellGoldenSound.play()
 }
 
 export function playRed(){
-  bellRedSound.play()
+  // bellRedSound.play()
 }
 
 export function playBell(){
-  bell.play()
+  // bell.play()
 }

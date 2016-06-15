@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "2pi-scale": "^1.0.0",
+    "@superguigui/wagner": "^0.1.23",
     "chinese-lunar": "^0.1.1",
     "d3-ease": "^0.7.0",
     "glsl-easings": "^1.0.0",
@@ -29,6 +30,7 @@
     "segment-js": "^1.0.8",
     "snapsvg": "^0.4.0",
     "three": "^0.75.0",
+    "three-effectcomposer": "0.0.1",
     "three-js": "^75.0.1",
     "three-obj-loader": "^1.0.2",
     "three.js": "^0.73.2",
