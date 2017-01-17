@@ -166,7 +166,7 @@ export default class Head {
     var self = this;
     this.geometry = geometry;
     this.mesh = new Animation(this.geometry)
-    this.mesh.animate(6)
+    // this.mesh.animate(6)
     // self.material = new THREE.ShaderMaterial({
     //   uniforms : {
     //     time           : {type: 'f', value: 0},

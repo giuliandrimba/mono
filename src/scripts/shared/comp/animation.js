@@ -88,7 +88,7 @@ function Animation(model) {
     shading: THREE.SmoothShading,
     side: THREE.DoubleSide,
     uniforms: {
-      uTime: {value: 1.0},
+      uTime: {value: this.totalDuration},
       // specular       : {value: 0.1}
       // diffuse          : {value: new THREE.Color(0x4c4c4c)},
       // shininess      : {type: 'f', value: 2.9},
