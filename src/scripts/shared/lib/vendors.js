@@ -1,6 +1,5 @@
 import WAGNER from '@superguigui/wagner';
 window.WAGNER = WAGNER
-
 require("scripts/shared/lib/three/shaders/CopyShader");;
 require("scripts/shared/lib/three/shaders/DigitalGlitch");
 require("scripts/shared/lib/three/shaders/FilmShader");

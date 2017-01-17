@@ -6,6 +6,7 @@ import Dot from "scripts/shared/comp/dot";
 import Background from "scripts/shared/comp/background";
 import * as layout from "scripts/views/layout";
 import _ from "lodash";
+var OrbitControls = require('three-orbit-controls')(THREE)
 
 var rendered = false;
 var active = false;
@@ -120,6 +121,7 @@ function render() {
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
   renderer = new THREE.WebGLRenderer({alpha: true, antialias : true, transparent: false})
   renderer.setSize( window.innerWidth, window.innerHeight )
+  var ontrols = new OrbitControls(camera)
   // composer = new THREE.EffectComposer(renderer)
 
   // var renderPass = new THREE.RenderPass(scene, camera);
@@ -142,8 +144,12 @@ function render() {
 
   camera.position.set(0, 0, 4)
 
+  addLights()
+
   head = new Head(scene, camera, renderer);
   background = new Background(scene, camera, renderer);
+
+
 
   _.defer(()=>{
     dot = new Dot(scene, camera, renderer);
@@ -163,6 +169,18 @@ function showTitle() {
   title.classList.add("show");
   layout.unlockMenu()
   head.enableDrag()
+}
+
+function addLights() {
+  var light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(0, 900, 2500);
+  scene.add(light);
+
+  light = new THREE.PointLight(0xffffff, 1.0, 6);
+  scene.add(light);
+
+  light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  scene.add( light );
 }
 
 function hideTitle() {

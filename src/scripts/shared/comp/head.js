@@ -6,6 +6,7 @@ import Distortion from "scripts/shared/lib/three/distortion";
 import happens from "happens";
 import _ from "lodash";
 import * as sounds from "scripts/shared/audio";
+import Animation from "./animation";
 
 export default class Head {
   constructor(scene, camera, renderer) {
@@ -81,7 +82,7 @@ export default class Head {
 
     Head.scope.mouseDownX = ( event.clientX - Head.scope.windowHalfX ) / 2;
     Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
-    Head.scope.mouseDownAngle = Head.scope.distortion.angle;
+    // Head.scope.mouseDownAngle = Head.scope.distortion.angle;
 
     document.addEventListener("mousemove", Head.scope.onMouseMove);
   }
@@ -93,9 +94,9 @@ export default class Head {
     this.mouseDownAngle = 0; 
     this.mesh.visible = true;
     this.mesh.position.y = -0.32;
-    this.mesh.material.uniforms[ 'distortion' ].value = 10.0
-    this.mesh.material.uniforms[ 'explosion' ].value = 0.0
-    this.distortion.reset();
+    // this.mesh.material.uniforms[ 'distortion' ].value = 10.0
+    // this.mesh.material.uniforms[ 'explosion' ].value = 0.0
+    // this.distortion.reset();
     this.mesh.rotation.y = 0;
     this.speed = 0.3;
   }
@@ -164,27 +165,32 @@ export default class Head {
   createMesh(geometry) {
     var self = this;
     this.geometry = geometry;
-    self.material = new THREE.ShaderMaterial({
-      uniforms : {
-        time           : {type: 'f', value: 0},
-        ambient        : {type: 'c', value: new THREE.Color(0x000000)},
-        specular       : {type: 'f', value: .1},
-        color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
-        shininess      : {type: 'f', value: 2.9},
-        lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
-        distortion     : {type: 'f', value: 10.0},
-        explosion     : {type: 'f', value: 0.0},
-        opacity     : {type: 'f', value: 1.0}
-      },
-      vertexShader : glslify('../../../shader/head/vert.glsl'),
-      fragmentShader : glslify('../../../shader/head/frag.glsl'),
-      shading     : THREE.FlatShading,
-      // wireframe   : true, 
-      transparent : true
-    })
-    self.mesh = new THREE.Mesh(this.geometry, self.material);
-    self.mesh.name = "head";
-    this.distortion = new Distortion(this.mesh);
+    this.mesh = new Animation(this.geometry)
+    this.mesh.animate(6)
+    // self.material = new THREE.ShaderMaterial({
+    //   uniforms : {
+    //     time           : {type: 'f', value: 0},
+    //     ambient        : {type: 'c', value: new THREE.Color(0x000000)},
+    //     specular       : {type: 'f', value: .1},
+    //     color          : {type: 'c', value: new THREE.Color(0x4c4c4c)},
+    //     shininess      : {type: 'f', value: 2.9},
+    //     lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
+    //     distortion     : {type: 'f', value: 10.0},
+    //     explosion     : {type: 'f', value: 0.0},
+    //     opacity     : {type: 'f', value: 1.0}
+    //   },
+    //   vertexShader : glslify('../../../shader/head/vert.glsl'),
+    //   fragmentShader : glslify('../../../shader/head/frag.glsl'),
+    //   shading     : THREE.FlatShading,
+    //   // wireframe   : true, 
+    //   transparent : true
+    // })
+    // self.mesh = new THREE.Mesh(this.geometry, self.material);
+    // self.mesh.name = "head";
+    // this.distortion = new Distortion(this.mesh);
+
+    console.log(this.mesh)
+
     self.reset();
     self.scene.add(self.mesh);
     self.loaded = true;
@@ -208,7 +214,7 @@ export default class Head {
 
     if(this.dragging) {
       var angle = (this.mouseDownAngle + (this.mouseDownX - this.mouseX) * 2) * -1
-      this.distortion.angle = angle / this.windowHalfX * 360
+      // this.distortion.angle = angle / this.windowHalfX * 360
     }
 
     if(this.distortion) {
@@ -225,18 +231,18 @@ export default class Head {
   }
 
   animDistort() {
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
+    // TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.01})
-    TweenMax.to(this.distortion, 1.1, {angle:45, ease:Expo.easeInOut, delay:0.7})
-    TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3, onComplete:()=>{Head.scope.animating = false;}})
+    // TweenMax.to(this.distortion, 1.1, {angle:45, ease:Expo.easeInOut, delay:0.7})
+    // TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3, onComplete:()=>{Head.scope.animating = false;}})
   } 
 
   animDistortOut(done) {
     TweenMax.to(this.mesh.position, 1, {y:1, ease:Expo.easeInOut})
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:10.0, ease:Expo.easeInOut})
+    // TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:10.0, ease:Expo.easeInOut})
     TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5})
-    TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
-    TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
+    // TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
+    // TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
     TweenMax.to(this, 1, {speed:0.3})
     _.delay(done, 1200);
   } 

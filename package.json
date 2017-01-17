@@ -33,6 +33,7 @@
     "three-effectcomposer": "0.0.1",
     "three-js": "^75.0.1",
     "three-obj-loader": "^1.0.2",
+    "three-orbit-controls": "^82.1.0",
     "three.js": "^0.73.2",
     "vivus": "^0.3.0",
     "ways": "^0.5.0",
