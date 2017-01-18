@@ -133,9 +133,7 @@ export default class Head {
   explode() {
     Head.scope.animating = true;
     Head.scope.emit("explode:start")
-    _.delay(function(){
-      sounds.playBell()
-    }, 1650)
+    sounds.playBell()
     Head.scope.distortion.explode(()=> {
       this.mesh.visible = false
       this.meshExplosion.visible = true

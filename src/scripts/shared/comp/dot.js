@@ -1,7 +1,6 @@
 const glslify = require('glslify');
 import happens from "happens";
 import "scripts/shared/lib/three/ExplodeModifier";
-import * as sounds from "scripts/shared/audio";
 import * as _ from "lodash";
 
 export default class Dot {
@@ -117,9 +116,6 @@ export default class Dot {
     if(this.animType > 2)
       this.animType = 0
 
-    _.delay(function(){
-      sounds.playRed()
-    }, 1500)
   }
 
   hide() {
