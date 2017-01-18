@@ -20,9 +20,7 @@ class Distortion {
       return;
 
     // TweenMax.to(this.mesh.material.uniforms[ 'explosion' ], 1, {value:3.0,ease:Expo.easeOut})
-    TweenMax.to(this, 0.5, {angle:0, ease:Expo.easeOut})
-
-    this.twist.explode(done)
+    TweenMax.to(this, 0.1, {angle:0, ease:Expo.easeOut, onComplete:done})
   }
 
   reset() {

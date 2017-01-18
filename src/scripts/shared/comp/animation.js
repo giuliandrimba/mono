@@ -89,7 +89,7 @@ function Animation(model) {
     side: THREE.DoubleSide,
     uniforms: {
       uTime: {value: this.totalDuration},
-      uDistortion     : {type: 'f', value: 20.0}
+      uDistortion     : {type: 'f', value: 0.0}
       // specular       : {value: 0.1}
       // diffuse          : {value: new THREE.Color(0x4c4c4c)},
       // shininess      : {type: 'f', value: 2.9},
@@ -98,7 +98,7 @@ function Animation(model) {
     },
     uniformValues: {
       diffuse: new THREE.Color(0x4c4c4c),
-      metalness: 0.1,
+      metalness: 0.0,
       roughness: 0.25,
       shininess: 2.9
     },
@@ -172,8 +172,9 @@ Animation.prototype.animate = function (duration, options) {
   options = options || {};
   options.time = 0.0;
 
-  var timeline = new TimelineMax({repeat:-1, yoyo:true})
-  timeline.add(TweenMax.fromTo(this, duration, {time: this.totalDuration}, options))
+  // var timeline = new TimelineMax({repeat:-1, yoyo:true})
+  TweenMax.fromTo(this, duration, {time: this.totalDuration}, options)
+  // timeline.add(TweenMax.fromTo(this, duration, {time: this.totalDuration}, options))
 };
 
 function ease(e, t, b, c, d) {
