@@ -119,7 +119,7 @@ export default class Dot {
 
     _.delay(function(){
       sounds.playGolden()
-    }, 1600)
+    }, 1100)
   }
 
   hide() {
@@ -136,7 +136,7 @@ export default class Dot {
     if(this.mesh.visible) {
         
       if(this.frame / this.total_frames <= 1) {
-        this.frame += this.distance / 20;
+        this.frame += this.distance / 15;
         this.mesh.material.uniforms['v_frame'].value = this.frame;
 
         var count = this.frame / this.total_frames;
