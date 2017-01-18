@@ -173,7 +173,7 @@ Animation.prototype.animate = function (duration, options) {
   options.time = 0.0;
 
   // var timeline = new TimelineMax({repeat:-1, yoyo:true})
-  TweenMax.fromTo(this, duration, {time: this.totalDuration}, options)
+  TweenMax.fromTo(this, duration, {time: this.totalDuration * 0.9}, options)
   // timeline.add(TweenMax.fromTo(this, duration, {time: this.totalDuration}, options))
 };
 

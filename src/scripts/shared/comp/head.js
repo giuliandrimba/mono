@@ -139,7 +139,7 @@ export default class Head {
     Head.scope.distortion.explode(()=> {
       this.mesh.visible = false
       this.meshExplosion.visible = true
-      this.meshExplosion.animate(6)
+      this.meshExplosion.animate(4)
         _.delay(()=>{
           Head.scope.emit("explode:end")
           Head.scope.animating = false;
