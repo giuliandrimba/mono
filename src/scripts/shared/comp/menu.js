@@ -118,7 +118,7 @@ export default class Menu {
     if(!this.calendarState) {
       this.enableCalendarState()
       ways.go("/calendar");
-      sounds.playGolden()
+      // sounds.playRed()
     } else {
       this.disableCalendarState()
       ways.go("/monkey");
