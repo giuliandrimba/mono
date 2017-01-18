@@ -78,7 +78,7 @@ export default class Head {
 
     document.body.classList.add("grabbing");
     Head.scope.dragging = true;
-    TweenMax.killTweensOf(Head.scope.distortion);
+    // TweenMax.killTweensOf(Head.scope.distortion);
 
     Head.scope.mouseDownX = ( event.clientX - Head.scope.windowHalfX ) / 2;
     Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
@@ -116,15 +116,15 @@ export default class Head {
     document.body.classList.remove("grabbing");
     document.removeEventListener("mousemove", Head.scope.onMouseMove) 
 
-    TweenMax.killTweensOf(Head.scope.distortion);
+    // TweenMax.killTweensOf(Head.scope.distortion);
 
-    if(Math.abs(Head.scope.distortion.angle) > 270) {
-      Head.scope.explode()
-      return;
-    }
+    // if(Math.abs(Head.scope.distortion.angle) > 270) {
+      // Head.scope.explode()
+      // return;
+    // }
 
     var time = 1
-    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut, onComplete:()=>{Head.scope.animating = false}})
+    // TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut, onComplete:()=>{Head.scope.animating = false}})
     Head.scope.emit("drag", 0);
     Head.scope.emit("drag:end")
   } 
@@ -135,12 +135,12 @@ export default class Head {
     _.delay(function(){
       sounds.playBell()
     }, 1650)
-    Head.scope.distortion.explode(()=> {
-      Head.scope.emit("explode:end")
-      _.delay(()=>{
-        Head.scope.animating = false;
-      }, 2000)
-    })
+    // Head.scope.distortion.explode(()=> {
+    //   Head.scope.emit("explode:end")
+    //   _.delay(()=>{
+    //     Head.scope.animating = false;
+    //   }, 2000)
+    // })
     TweenMax.to(Head.scope.mesh.material.uniforms['opacity'], 1, {value:0.0, ease:Expo.easeOut, delay:2.5, onComplete:()=>{
       Head.scope.mesh.visible = false;
     }})
@@ -159,13 +159,14 @@ export default class Head {
 
   implode() {
     this.mesh.visible = true;
-    Head.scope.distortion.implode()
+    // Head.scope.distortion.implode()
   }
 
   createMesh(geometry) {
     var self = this;
     this.geometry = geometry;
     this.mesh = new Animation(this.geometry)
+    console.log(this.mesh.geometry)
     // this.mesh.animate(6)
     // self.material = new THREE.ShaderMaterial({
     //   uniforms : {
@@ -218,7 +219,7 @@ export default class Head {
     }
 
     if(this.distortion) {
-      this.distortion.update();
+      // this.distortion.update();
       this.drag_percent = Math.abs(this.distortion.angle / 270);
       if(this.drag_percent > 1)
         this.drag_percent = 1
@@ -231,7 +232,7 @@ export default class Head {
   }
 
   animDistort() {
-    // TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
+    TweenMax.to(this.mesh.material.uniforms[ 'uDistortion' ], 0.65, {value:0.0, ease:Expo.easeOut, delay:1.0})
     TweenMax.to(this, 1, {speed:0.01})
     // TweenMax.to(this.distortion, 1.1, {angle:45, ease:Expo.easeInOut, delay:0.7})
     // TweenMax.to(this.distortion, 0.8, {angle:0, ease:Expo.easeOut, delay:1.3, onComplete:()=>{Head.scope.animating = false;}})

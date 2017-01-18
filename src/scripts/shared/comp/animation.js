@@ -89,6 +89,7 @@ function Animation(model) {
     side: THREE.DoubleSide,
     uniforms: {
       uTime: {value: this.totalDuration},
+      uDistortion     : {type: 'f', value: 20.0}
       // specular       : {value: 0.1}
       // diffuse          : {value: new THREE.Color(0x4c4c4c)},
       // shininess      : {type: 'f', value: 2.9},
@@ -109,6 +110,7 @@ function Animation(model) {
     ],
     vertexParameters: [
       'uniform float uTime;',
+      'uniform float uDistortion;',
 
       'attribute vec2 aDelayDuration;',
 
@@ -134,12 +136,15 @@ function Animation(model) {
     ],
     vertexPosition: [
       'transformed *= progress;',
-
+    
       'transformed += aPivot;',
       'transformed = rotateVector(quat, transformed);',
       'transformed -= aPivot;',
 
-      'transformed += mix(aStartPosition, aEndPosition, easeBackOut(progress, 4.0));'
+
+      'transformed += mix(aStartPosition, aEndPosition, easeBackOut(progress, 4.0));',
+      'transformed.y += transformed.y * uDistortion - uDistortion;',
+
     ],
     fragmentInit: [
       'if (vProgress == 0.0) discard;'

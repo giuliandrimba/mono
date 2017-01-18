@@ -121,7 +121,7 @@ function render() {
   camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
   renderer = new THREE.WebGLRenderer({alpha: true, antialias : true, transparent: false})
   renderer.setSize( window.innerWidth, window.innerHeight )
-  var ontrols = new OrbitControls(camera)
+  // var ontrols = new OrbitControls(camera)
   // composer = new THREE.EffectComposer(renderer)
 
   // var renderPass = new THREE.RenderPass(scene, camera);
