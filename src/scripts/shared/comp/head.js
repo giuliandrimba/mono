@@ -38,7 +38,7 @@ export default class Head {
 
     if(/medium/.test(window.location.href.toString())) {
       var modelString = './assets/galo_med.OBJ'
-    } else if(/medium/.test(window.location.href.toString())) {
+    } else if(/high/.test(window.location.href.toString())) {
       var modelString = './assets/galo_high.OBJ'
     }
 
