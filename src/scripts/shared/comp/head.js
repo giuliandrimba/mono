@@ -38,6 +38,8 @@ export default class Head {
 
     if(/medium/.test(window.location.href.toString())) {
       var modelString = './assets/galo_med.OBJ'
+    } else if(/medium/.test(window.location.href.toString())) {
+      var modelString = './assets/galo_high.OBJ'
     }
 
     loadObj(modelString, this.createMesh.bind(this))
