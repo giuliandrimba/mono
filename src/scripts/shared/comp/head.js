@@ -34,7 +34,13 @@ export default class Head {
 
     Head.scope = this;
 
-    loadObj('./assets/galo_low.OBJ', this.createMesh.bind(this))
+    var modelString = './assets/galo_low.OBJ'
+
+    if(/medium/.test(window.location.href.toString())) {
+      var modelString = './assets/galo_med.OBJ'
+    }
+
+    loadObj(modelString, this.createMesh.bind(this))
 
     this.triggeredAnimationIn = false;
   }
