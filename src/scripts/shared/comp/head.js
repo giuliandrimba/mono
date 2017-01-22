@@ -34,9 +34,9 @@ export default class Head {
 
     Head.scope = this;
 
-    var modelString = './assets/galo_low.OBJ'
+    var modelString = './assets/galo_med.OBJ'
 
-    if(/medium/.test(window.location.href.toString())) {
+    if(/low/.test(window.location.href.toString())) {
       var modelString = './assets/galo_med.OBJ'
     } else if(/high/.test(window.location.href.toString())) {
       var modelString = './assets/galo_high.OBJ'
