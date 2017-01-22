@@ -206,6 +206,7 @@ export default class Head {
 
     this.meshExplosion.scale.set(0.85,0.85,0.85);
     this.mesh.scale.set(0.80,0.80,0.80);
+    // this.mesh.position.x += 2;
 
     self.scene.add(self.mesh);
     self.scene.add(this.meshExplosion);

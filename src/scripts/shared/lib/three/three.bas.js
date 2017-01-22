@@ -1452,7 +1452,7 @@ THREE.BAS.StandardAnimationMaterial.prototype._concatFragmentShader = function (
     // modulation
     '#include <aomap_fragment>',
 
-    "vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;",
+    "vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + totalEmissiveRadiance;",
 
     "	gl_FragColor = vec4( outgoingLight, diffuseColor.a );",
 

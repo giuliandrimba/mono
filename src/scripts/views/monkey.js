@@ -172,14 +172,14 @@ function showTitle() {
 }
 
 function addLights() {
-  var light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(0, 900, 2500);
+  var light = new THREE.DirectionalLight(0xffffff, 2);
+  light.position.set(750, -200, 1000);
   scene.add(light);
 
   light = new THREE.PointLight(0xffffff, 1.0, 6);
   scene.add(light);
 
-  light = new THREE.AmbientLight( 0x404040 ); // soft white light
+  light = new THREE.AmbientLight( 0x000000 ); // soft white light
   scene.add( light );
 }
 

@@ -90,17 +90,13 @@ function Animation(model) {
     uniforms: {
       uTime: {value: this.totalDuration},
       uDistortion     : {type: 'f', value: 0.0}
-      // specular       : {value: 0.1}
-      // diffuse          : {value: new THREE.Color(0x4c4c4c)},
-      // shininess      : {type: 'f', value: 2.9},
-      // lightDirection : {type: 'v3', value: new THREE.Vector3(800,1800,5000)},
-      // opacity     : {type: 'f', value: 1.0}
     },
     uniformValues: {
       diffuse: new THREE.Color(0x4c4c4c),
-      metalness: 0.0,
-      roughness: 0.25,
-      shininess: 2.9
+      metalness: 0.35,
+      roughness: 0.0,
+      shininess: -1.0,
+      emissive: new THREE.Vector3( 0.0, 0.0, 0.0 )
     },
     vertexFunctions: [
       THREE.BAS.ShaderChunk.cubic_bezier,
