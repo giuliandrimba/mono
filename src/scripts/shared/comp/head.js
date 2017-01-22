@@ -34,7 +34,7 @@ export default class Head {
 
     Head.scope = this;
 
-    loadObj('./assets/galo_high.OBJ', this.createMesh.bind(this))
+    loadObj('./assets/galo_low.OBJ', this.createMesh.bind(this))
 
     this.triggeredAnimationIn = false;
   }
