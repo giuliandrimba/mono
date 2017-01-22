@@ -34,7 +34,7 @@ export default class Head {
 
     Head.scope = this;
 
-    loadObj('./assets/macaco_medium.OBJ', this.createMesh.bind(this))
+    loadObj('./assets/galo_high.OBJ', this.createMesh.bind(this))
 
     this.triggeredAnimationIn = false;
   }
@@ -93,8 +93,8 @@ export default class Head {
     this.mouseX = 0;
     this.mouseDownAngle = 0; 
     this.mesh.visible = true;
-    this.mesh.position.y = -0.32;
-    this.mesh.material.uniforms[ 'distortion' ].value = 10.0
+    this.mesh.position.y = -1.3;
+    this.mesh.material.uniforms[ 'distortion' ].value = 5.0
     // this.mesh.material.uniforms[ 'explosion' ].value = 0.0
     this.distortion.reset();
     this.mesh.rotation.y = 0;
@@ -195,6 +195,10 @@ export default class Head {
     this.meshExplosion.visible = false;
 
     self.reset();
+
+    this.meshExplosion.scale.set(0.85,0.85,0.85);
+    this.mesh.scale.set(0.80,0.80,0.80);
+
     self.scene.add(self.mesh);
     self.scene.add(this.meshExplosion);
     self.loaded = true;
@@ -246,7 +250,7 @@ export default class Head {
   animDistortOut(done) {
     TweenMax.to(this.mesh.position, 1, {y:1, ease:Expo.easeInOut})
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 1, {value:10.0, ease:Expo.easeInOut})
-    TweenMax.to(this.mesh.position, 3, {y:4, ease:Expo.easeOut, delay:0.5})
+    TweenMax.to(this.mesh.position, 3, {y:6, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.mesh.material.uniforms[ 'distortion' ], 2, {value:0.0, ease:Expo.easeOut, delay:0.5})
     TweenMax.to(this.distortion, 1.1, {angle:270, ease:Expo.easeInOut})
     TweenMax.to(this, 1, {speed:0.3})
