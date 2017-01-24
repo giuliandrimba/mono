@@ -27,11 +27,12 @@ function animationin() {
 
   _.delay(()=> {
     title.classList.add("show")
+    layout.audio.startLoop()
   }, 1000)
 
   _.delay(()=>{ 
     ways.go("/monkey");
-  }, 4000)
+  }, 4500)
 }
 
 function render() {

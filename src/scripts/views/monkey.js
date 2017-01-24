@@ -110,7 +110,6 @@ function onBackgroundShow() {
 }
 
 function render() {
-  layout.audio.startLoop()
   rendered = true;
   el = parseHTML(tmpl);
   document.getElementById("pages").appendChild(el);

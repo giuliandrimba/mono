@@ -1,22 +1,25 @@
 import * as howler from "howler"
 var loopSound = new howler.Howl({
-  urls: ['audio/loop-noise.mp3'],
+  urls: ['audio/loop.mp3'],
   loop: true,
-  volume: 1
+  volume: 0
 });
 loopSound._vol = 0;
 loopSound._playing = false;
 
 var bellGoldenSound = new howler.Howl({
-  urls: ['audio/bell-golden.mp3']
+  urls: ['audio/bell-golden.mp3'],
+  volume: 1
 });
 
 var bellRedSound = new howler.Howl({
-  urls: ['audio/bell-red.mp3']
+  urls: ['audio/bell-red.mp3'],
+  volume: 1
 });
 
 var bell = new howler.Howl({
-  urls: ['audio/bell-1.mp3']
+  urls: ['audio/bell-1.mp3'],
+  volume: 1
 });
 
 export function startLoop(){
@@ -24,7 +27,7 @@ export function startLoop(){
     loopSound.play();
     loopSound._playing = true;
   }
-  TweenMax.to(loopSound, 1, {_vol:1,  onUpdate:function(){
+  TweenMax.to(loopSound, 2, {_vol:0.15,  onUpdate:function(){
     loopSound.volume(loopSound._vol)
   }})
 }
