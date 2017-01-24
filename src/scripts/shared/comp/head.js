@@ -76,23 +76,97 @@ export default class Head {
   events() {
     document.querySelector(".monkey").addEventListener("mousedown", this.onMouseDown)
     document.addEventListener("mouseup", this.onMouseUp)
+
+    document.querySelector(".monkey").addEventListener("touchstart", this.onTouchDown)
+    document.addEventListener("touchend", this.onTouchEnd)
   }
 
   onMouseDown(event) {
     if(Head.scope.animating || !Head.scope.canDrag || !Head.scope.mesh.visible)
       return;
 
+    Head.scope.down(event.clientX, event.clientY)
+    document.addEventListener("mousemove", Head.scope.onMouseMove);
+  }
+
+  onMouseMove(event) {
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
+      return
+    Head.scope.move(event.clientX, event.clientY)
+  }
+
+  onMouseUp(event) {
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
+      return
+    document.removeEventListener("mousemove", Head.scope.onMouseMove) 
+
+    Head.scope.up();
+  } 
+
+  onTouchDown(e) {
+    console.log("onTouchDown", Head.scope.animating, Head.scope.canDrag, Head.scope.mesh.visible)
+    if(Head.scope.animating || !Head.scope.canDrag || !Head.scope.mesh.visible)
+      return;
+
+
+    if(e.touches.length)
+      Head.scope.down(e.touches[0].clientX, e.touches[0].clientY)
+
+    document.querySelector(".monkey").removeEventListener("touchmove", Head.scope.onTouchMove)
+    document.querySelector(".monkey").addEventListener("touchmove", Head.scope.onTouchMove)
+
+  }
+
+  onTouchMove(e) {
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
+      return
+    if(e.touches.length){
+      Head.scope.move(e.touches[0].clientX, e.touches[0].clientY)
+    }
+  }
+
+  onTouchEnd(e) {
+    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
+      return
+
+    document.querySelector(".monkey").removeEventListener("touchmove", Head.scope.onTouchMove)
+
+    Head.scope.up()
+  }
+
+  down(x, y) {
     Head.scope.emit("drag:start")
 
+    TweenMax.killTweensOf(Head.scope.distortion);
     document.body.classList.add("grabbing");
     Head.scope.dragging = true;
+
+    Head.scope.mouseDownX = ( x - Head.scope.windowHalfX ) / 2;
+    Head.scope.mouseX = ( x - Head.scope.windowHalfX ) / 2;
+    Head.scope.mouseDownAngle = Head.scope.distortion.angle;
+  }
+
+  move(x, y) {
+    Head.scope.mouseX = ( x - Head.scope.windowHalfX ) / 2;
+    console.log(Head.scope.drag_percent)
+    Head.scope.emit("drag", Head.scope.drag_percent);
+  }
+
+  up() {
+    Head.scope.dragging = false;
+    document.body.classList.remove("grabbing");
+
     TweenMax.killTweensOf(Head.scope.distortion);
 
-    Head.scope.mouseDownX = ( event.clientX - Head.scope.windowHalfX ) / 2;
-    Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
-    Head.scope.mouseDownAngle = Head.scope.distortion.angle;
+    if(Math.abs(Head.scope.distortion.angle) > 270) {
+      Head.scope.explode()
+      return;
+    }
 
-    document.addEventListener("mousemove", Head.scope.onMouseMove);
+    var time = 1
+    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut, onComplete:()=>{Head.scope.animating = false}})
+    Head.scope.emit("drag", 0);
+    Head.scope.emit("drag:end")
   }
 
   reset() {
@@ -109,34 +183,6 @@ export default class Head {
     this.meshExplosion.rotation.y = 0;
     this.speed = 0.3;
   }
-
-  onMouseMove(event) {
-    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
-      return
-    Head.scope.mouseX = ( event.clientX - Head.scope.windowHalfX ) / 2;
-    Head.scope.emit("drag", Head.scope.drag_percent);
-  }
-
-  onMouseUp(event) {
-    if(!Head.scope.canDrag || !Head.scope.mesh.visible || Head.scope.animating)
-      return
-
-    Head.scope.dragging = false;
-    document.body.classList.remove("grabbing");
-    document.removeEventListener("mousemove", Head.scope.onMouseMove) 
-
-    TweenMax.killTweensOf(Head.scope.distortion);
-
-    if(Math.abs(Head.scope.distortion.angle) > 270) {
-      Head.scope.explode()
-      return;
-    }
-
-    var time = 1
-    TweenMax.to(Head.scope.distortion, time, {angle:0, ease:Elastic.easeOut, onComplete:()=>{Head.scope.animating = false}})
-    Head.scope.emit("drag", 0);
-    Head.scope.emit("drag:end")
-  } 
 
   explode() {
     Head.scope.animating = true;
