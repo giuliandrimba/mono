@@ -26,6 +26,7 @@ var theme = "gregorian";
 
 
 export function intro(req, done) {
+  document.body.style.cursor = "pointer";
   active = true;
   if(!rendered) {
     render(); 
@@ -37,6 +38,7 @@ export function intro(req, done) {
 }
 
 export function outro(req, done) {
+  document.body.style.cursor = "";
   layout.lockMenu()
   document.getElementById("pages").removeEventListener("mousedown", onClick)
   animationOut(done)

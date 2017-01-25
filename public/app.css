@@ -5,7 +5,7 @@
 
 /* line 14 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/gulp-stylus/node_modules/stylus/lib/functions/index.styl */
 
-/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
 /* line 10 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/index.styl */
 
@@ -25,7 +25,7 @@
 
 /* line 90 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/flex.styl */
 
-/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
 /* line 11 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/gradients.styl */
 
@@ -41,7 +41,7 @@
 
 /* line 19 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/image.styl */
 
-/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
 /* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/normalize/index.styl */
 
@@ -89,7 +89,7 @@
 
 /* line 5 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/reset.styl */
 
-/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
 /* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/node_modules/nib/lib/nib/text/index.styl */
 
@@ -374,9 +374,9 @@ body.grabbing {
   shape-rendering: crispEdges;
 }
 
-/* line 47 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
+/* line 52 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/layout.styl */
 
-/* line 42 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+/* line 29 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 .intro {
@@ -471,6 +471,15 @@ body.grabbing {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
 }
+@media (max-width: 600px) {
+
+/* line 50 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+
+/* line 51 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
+  .intro .title {
+    display: none;
+  }
+}
 
 /* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/intro.styl */
 
@@ -515,9 +524,9 @@ body.grabbing {
   filter: alpha(opacity=40);
 }
 
-/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/monkey.styl */
 
-/* line 20 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 45 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 
 /* line 1 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar {
@@ -526,16 +535,22 @@ body.grabbing {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  cursor: pointer;
 }
 
-/* line 8 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 9 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+.calendar.zIndex {
+  z-index: 2;
+}
+
+/* line 12 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date {
   position: absolute;
   top: 50%;
   margin-top: -160px;
 }
 
-/* line 13 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 17 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date p {
   color: #fff;
   opacity: 0.4;
@@ -560,19 +575,19 @@ body.grabbing {
   width: 100px;
 }
 
-/* line 24 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 28 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date .weekday {
   position: absolute;
 }
 
-/* line 27 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 31 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date .month-year {
   position: absolute;
 }
 
-/* line 30 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 34 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 
-/* line 31 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 35 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
@@ -584,7 +599,7 @@ body.grabbing {
   transform: translateY(0);
 }
 
-/* line 35 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 39 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p.month {
   -webkit-transition-delay: 0.1s;
   -moz-transition-delay: 0.1s;
@@ -593,11 +608,20 @@ body.grabbing {
   transition-delay: 0.1s;
 }
 
-/* line 38 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+/* line 42 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
 .calendar .date.tween p.year {
   -webkit-transition-delay: 0.2s;
   -moz-transition-delay: 0.2s;
   -o-transition-delay: 0.2s;
   -ms-transition-delay: 0.2s;
   transition-delay: 0.2s;
+}
+@media (max-width: 600px) {
+
+/* line 46 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+
+/* line 47 : /Users/giuliandrimba/workspace/doublepi/mono/src/src/styles/views/calendar.styl */
+  .calendar .date {
+    margin-top: -140px;
+  }
 }

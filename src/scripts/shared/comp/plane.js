@@ -172,8 +172,14 @@ export default class Plane {
   }
 
   resize() {
-    this.SVG_WIDTH = window.innerWidth * 600 / 1920;
-    this.WIDTH = window.innerWidth * 524 / 1920;
+
+    let proportion = window.innerWidth / 1920
+    if(proportion < 0.5) {
+      proportion = 0.5;
+    }
+
+    this.SVG_WIDTH = 600 * proportion;
+    this.WIDTH =524 * proportion;
     this.HEIGHT = this.WIDTH;
 
     this.CENTER_X = this.SVG_WIDTH / 2;

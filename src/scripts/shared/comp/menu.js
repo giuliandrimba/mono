@@ -57,11 +57,17 @@ export default class Menu {
   }
 
   resize() {
-    this.el.style.left = Math.round(160 * window.innerWidth / 1920);
-    this.el.style.width = Math.ceil(117 * window.innerWidth / 1920)
-    this.el.style.height = Math.ceil(117 * window.innerWidth / 1920)
+    let proportion = window.innerWidth / 1920
 
-    var _w = Math.ceil(122 * window.innerWidth / 1920)
+    if(proportion < 0.5) {
+      proportion = 0.5
+    }
+
+    this.el.style.left = Math.round(160 * proportion);
+    this.el.style.width = Math.ceil(117 * proportion)
+    this.el.style.height = Math.ceil(117 * proportion)
+
+    var _w = Math.ceil(122 * proportion)
 
     if(this.SVG) {
       this.SVG.node.setAttribute("width",`${_w}px`)

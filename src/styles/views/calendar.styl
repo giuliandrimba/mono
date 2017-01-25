@@ -4,6 +4,10 @@
   height 100%
   z-index 0
   pointer-events none
+  cursor pointer
+  
+  &.zIndex
+    z-index 2
   
   .date 
     position absolute
@@ -37,3 +41,8 @@
       
     p.year
       transition-delay 0.2s
+
+@media (max-width: 600px)
+  .calendar 
+    .date 
+      margin-top -140px

@@ -23,6 +23,8 @@ export default class GoldCaleido {
     this.day.addChild(this.pattern);
 
     this.el.addChild(this.day);
+
+    this.el.buttonMode = true;
   }
 
   buildPattern(total) {
