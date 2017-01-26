@@ -178,8 +178,8 @@ export default class Plane {
       proportion = 0.5;
     }
 
-    this.SVG_WIDTH = 600 * proportion;
-    this.WIDTH =524 * proportion;
+    this.SVG_WIDTH = Math.round(600 * proportion);
+    this.WIDTH = Math.round(524 * proportion);
     this.HEIGHT = this.WIDTH;
 
     this.CENTER_X = this.SVG_WIDTH / 2;

@@ -49,7 +49,7 @@ export function playRed(){
 
 export function playBell(){
   window.clearTimeout(gongFade);
-  bell.volume(1)
+  bell.volume(0.6)
   bell.play()
   gongFade = setTimeout(()=>{
     bell.fade(1,0, 500)
