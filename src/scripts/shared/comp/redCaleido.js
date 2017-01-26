@@ -1,3 +1,5 @@
+import * as sounds from "scripts/shared/audio";
+
 export default class RedCaleido {
   constructor(date) {
     this.date = date;
@@ -68,6 +70,10 @@ export default class RedCaleido {
       let border = this.thirdBorders[t];
       TweenMax.to(border.circle, 2.3, {x:border.circle._x, y:border.circle._y, ease:Expo.easeInOut, delay:0.65})
     }
+
+    _.delay(function(){
+      sounds.playRed();
+    }, 500)
   }
 
   hide() {

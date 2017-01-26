@@ -6,6 +6,7 @@ var loopSound = new howler.Howl({
 });
 loopSound._vol = 0;
 loopSound._playing = false;
+var gongFade = undefined;
 
 var bellGoldenSound = new howler.Howl({
   urls: ['audio/bell-golden.mp3'],
@@ -18,7 +19,7 @@ var bellRedSound = new howler.Howl({
 });
 
 var bell = new howler.Howl({
-  urls: ['audio/bell-1.mp3'],
+  urls: ['audio/gong.mp3'],
   volume: 1
 });
 
@@ -47,5 +48,10 @@ export function playRed(){
 }
 
 export function playBell(){
+  window.clearTimeout(gongFade);
+  bell.volume(1)
   bell.play()
+  gongFade = setTimeout(()=>{
+    bell.fade(1,0, 500)
+  }, 9000)
 }
