@@ -40,4 +40,18 @@
     
     path 
       shape-rendering crispEdges
+      
+@media (max-width: 640px) and (orientation: portrait)
+  .layout
+    #menu-area
+      left 50% !important
+      transform translateX(-50%)
+      top initial
+      bottom 10%
+      
+@media (max-width: 640px) and (orientation: landscape)
+  .layout
+    #menu-area
+      left 5% !important
+      top 56% !important
   

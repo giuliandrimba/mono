@@ -94,7 +94,7 @@ function onExplodeEnd() {
 
 function onImplodeEnd() {
   layout.plane.show()
-  _.delay(showBackground, 1750);
+  _.delay(showBackground, 2200);
 }
 
 function showBackground() {

@@ -59,8 +59,8 @@ export default class Menu {
   resize() {
     let proportion = window.innerWidth / 1920
 
-    if(proportion < 0.5) {
-      proportion = 0.5
+    if(proportion < 0.6) {
+      proportion = 0.6
     }
 
     this.el.style.left = Math.round(160 * proportion);

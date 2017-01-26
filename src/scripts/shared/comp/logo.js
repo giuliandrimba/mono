@@ -57,6 +57,12 @@ export default class logo {
 
   resize() {
 
+    let proportion = window.innerWidth / 1920
+
+    if(proportion < 0.5) {
+      proportion = 0.5
+    }
+
     this.CENTER_X = window.innerWidth / 2;
     this.CENTER_Y = window.innerHeight / 2;
 
@@ -64,7 +70,7 @@ export default class logo {
     this.INIT_Y = this.CENTER_Y - this.HEIGHT / 2
 
     if(this.SVG) {
-      let width = (window.innerWidth * 524) / 1920
+      let width = 524 * proportion
       this.SVG.node.setAttribute("width",`${width}px`)
       this.SVG.node.setAttribute("height",`${width}px`)
     }

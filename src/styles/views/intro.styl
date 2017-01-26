@@ -46,7 +46,12 @@
     p.chinese-title
       opacity 0.3
       
-@media (max-width: 600px)
+@media (max-width: 640px) and (orientation: portrait)
+  .intro
+    .title
+      display none
+      
+@media (max-height: 600px) and (orientation: landscape)
   .intro
     .title
       display none
