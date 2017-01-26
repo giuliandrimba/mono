@@ -9,13 +9,13 @@ loopSound._playing = false;
 var gongFade = undefined;
 
 var bellGoldenSound = new howler.Howl({
-  urls: ['audio/bell-golden.mp3'],
-  volume: 1
+  urls: ['audio/bell-golden-amp.mp3'],
+  volume: 0.3
 });
 
 var bellRedSound = new howler.Howl({
-  urls: ['audio/bell-red.mp3'],
-  volume: 1
+  urls: ['audio/bell-red-amp.mp3'],
+  volume: 0.3
 });
 
 var bell = new howler.Howl({
@@ -28,7 +28,7 @@ export function startLoop(){
     loopSound.play();
     loopSound._playing = true;
   }
-  TweenMax.to(loopSound, 2, {_vol:0.15,  onUpdate:function(){
+  TweenMax.to(loopSound, 2, {_vol:0.45,  onUpdate:function(){
     loopSound.volume(loopSound._vol)
   }})
 }
@@ -49,7 +49,7 @@ export function playRed(){
 
 export function playBell(){
   window.clearTimeout(gongFade);
-  bell.volume(0.6)
+  bell.volume(1)
   bell.play()
   gongFade = setTimeout(()=>{
     bell.fade(1,0, 500)
