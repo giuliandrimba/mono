@@ -28,7 +28,7 @@ export function startLoop(){
     loopSound.play();
     loopSound._playing = true;
   }
-  TweenMax.to(loopSound, 2, {_vol:0.45,  onUpdate:function(){
+  TweenMax.to(loopSound, 2, {_vol:0.35,  onUpdate:function(){
     loopSound.volume(loopSound._vol)
   }})
 }
