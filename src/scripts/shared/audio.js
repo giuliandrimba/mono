@@ -10,12 +10,12 @@ var gongFade = undefined;
 
 var bellGoldenSound = new howler.Howl({
   urls: ['audio/bell-golden-amp.mp3'],
-  volume: 0.3
+  volume: 0.15
 });
 
 var bellRedSound = new howler.Howl({
   urls: ['audio/bell-red-amp.mp3'],
-  volume: 0.3
+  volume: 0.12
 });
 
 var bell = new howler.Howl({
